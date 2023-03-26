@@ -1,0 +1,68 @@
+html,
+body,
+#root,
+.App {
+  min-height: 100%;
+}
+
+:root {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  line-height: 1.5;
+  text-rendering: optimizelegibility;
+  text-size-adjust: 100%;
+  color: rgb(255 255 255 / 87%);
+  background-color: #fff;
+  color-scheme: light dark;
+}
+
+a {
+  font-weight: 500;
+  text-decoration: inherit;
+  color: inherit;
+}
+
+/* button {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 1em;
+  background-color: #1a1a1a;
+  transition: border-color 0.25s;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #646cff;
+} */
+
+/* button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+} */
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #fff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+} */
