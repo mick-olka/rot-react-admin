@@ -38,8 +38,10 @@ export const AlertDialog = (props: I_Props) => {
         <DialogContentText id='alert-dialog-description'>{props.text}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>{props.cancelTitle || 'Cancel'}</Button>
-        <Button onClick={handleAgree} autoFocus>
+        <Button autoFocus variant='contained' onClick={handleClose}>
+          {props.cancelTitle || 'Cancel'}
+        </Button>
+        <Button variant='outlined' onClick={handleAgree} autoFocus>
           {props.agreeTitle || 'OK'}
         </Button>
       </DialogActions>

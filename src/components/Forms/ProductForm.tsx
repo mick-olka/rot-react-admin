@@ -3,38 +3,30 @@ import { useForm } from 'react-hook-form'
 
 import { MultiLangTextField } from 'src/components/MultiLangTextField'
 import * as S from 'src/components/styles'
+import { lanEnumToObject } from 'src/services'
 import { I_ProductForm } from 'src/services/products.service'
 
 interface I_Props {
   onSubmit: (data: I_ProductForm) => void
   isLoading: boolean
-  defaultValues?: I_ProductForm
+  initValues?: I_ProductForm
   required?: boolean
 }
 const def: I_ProductForm = {
-  name: {
-    en: '',
-    ua: '',
-    de: '',
-  },
+  name: lanEnumToObject(''),
   code: '',
   price: 1000,
 }
 
 const fieldBoxStyles = { display: 'flex', width: '20rem', alignItems: 'left' }
 
-export const ProductForm = ({
-  onSubmit,
-  isLoading,
-  defaultValues,
-  required,
-}: Readonly<I_Props>) => {
+export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Readonly<I_Props>) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<I_ProductForm>({
-    defaultValues: defaultValues || def,
+    defaultValues: initValues || def,
   })
 
   return (

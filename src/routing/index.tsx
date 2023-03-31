@@ -4,6 +4,7 @@ import { MainLayout } from 'src/layouts'
 
 import { HomePage, Login, Register } from 'src/pages'
 import { CollectionPage, CollectionsList } from 'src/pages/Collections'
+import { CreateCollectionPage } from 'src/pages/Collections/CreateCollection'
 import { CreateProductPage, ProductPage } from 'src/pages/Products'
 import { useAuthStore } from 'src/store/auth.store'
 import { ROUTES } from 'src/utils/constants/routes'
@@ -57,6 +58,16 @@ export const Routing = () => {
           <RequireAuth>
             <MainLayout>
               <CollectionPage />
+            </MainLayout>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path={ROUTES.createCollection}
+        element={
+          <RequireAuth>
+            <MainLayout>
+              <CreateCollectionPage />
             </MainLayout>
           </RequireAuth>
         }

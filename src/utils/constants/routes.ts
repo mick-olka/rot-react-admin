@@ -10,6 +10,7 @@ export enum ROUTES {
 
   collectionsPage = '/collections',
   collection = '/collections/:id',
+  createCollection = '/collections/create',
 
   // Auth
   login = '/login',

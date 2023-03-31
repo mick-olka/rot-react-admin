@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add'
 import DeleteOutlined from '@mui/icons-material/DeleteOutlined'
-import { Box, Pagination, Skeleton } from '@mui/material'
+import { Box, Pagination, Skeleton, Tooltip } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 import { useState } from 'react'
 
@@ -20,10 +20,13 @@ type CommonProps<T> = {
   title?: string
   data: DataType<T>
   columns: GridColDef[]
+  deleteTitle?: string
+  clientPagination?: boolean
   onItemClick: (id: string) => void
-  onDeleteMultiple?: (ids: string[]) => Promise<unknown>
+  onDeleteMultiple?: (ids: string[]) => void
   onCreateClick?: () => void
   onSearchTrigger?: (query: string | undefined) => void
+  onChooseClick?: (id: string, prod_ids: string[]) => void
 }
 
 type PaginationProps =
@@ -44,6 +47,9 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
     onCreateClick,
     onItemClick,
     pagination,
+    onChooseClick,
+    clientPagination,
+    deleteTitle,
   } = props
   const [selected, setSelected] = useState<string[]>([])
   const [deleteDialog, setDeleteDialog] = useState(false)
@@ -55,8 +61,13 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
 
   const onDeleteClick = () => setDeleteDialog(true)
   const onConfirmDelete = () => deleteMany && deleteMany(selected)
+  const onChooseCollection = onChooseClick
+    ? (col_id: string) => {
+        onChooseClick(col_id, selected)
+      }
+    : undefined
   return (
-    <S.ProductsListPane>
+    <S.ItemsListPane>
       {data.isLoading && <Skeleton width='20rem' height='20rem' />}
       {data.data && (
         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -66,6 +77,8 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
             onDeleteClick={deleteMany ? onDeleteClick : undefined}
             handleSearchTrigger={onSearchTrigger ? handleSearchTrigger : undefined}
             onCreateClick={onCreateClick}
+            onChooseClick={onChooseCollection}
+            deleteTitle={deleteTitle}
           />
           <ItemsTable
             columns={columns}
@@ -73,8 +86,9 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
             onSelect={handleSelect}
             onItemClick={onItemClick}
             limit={data.limit}
+            clientPagination={clientPagination}
           />
-          {pagination && (
+          {pagination && !clientPagination && (
             <Pagination
               sx={{ paddingTop: '0.5rem' }}
               onChange={onPageChange}
@@ -88,12 +102,12 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
       <AlertDialog
         open={deleteDialog}
         setOpen={setDeleteDialog}
-        title='Delete Selected Items?'
+        title={deleteTitle || 'Delete Selected Items?'}
         text='This action can not be undone'
         onAgree={onConfirmDelete}
         onCancel={() => null}
       />
-    </S.ProductsListPane>
+    </S.ItemsListPane>
   )
 }
 
@@ -101,9 +115,11 @@ const ControlPane = (
   props: Readonly<{
     title?: string
     selected?: string[]
+    deleteTitle?: string
     handleSearchTrigger?: (text: string) => void
     onDeleteClick?: () => void
     onCreateClick?: () => void
+    onChooseClick?: (id: string) => void
   }>,
 ) => {
   return (
@@ -117,15 +133,21 @@ const ControlPane = (
       {props.handleSearchTrigger && <SearchField onSearchTrigger={props.handleSearchTrigger} />}
       {props.selected && (
         <>
-          <CollectionSelector disabled={!props.selected.length} />
+          {props.onChooseClick && (
+            <CollectionSelector disabled={!props.selected.length} onSubmit={props.onChooseClick} />
+          )}
           {props.onDeleteClick && (
-            <S.RoundButton
-              variant='contained'
-              disabled={!props.selected.length}
-              onClick={props.onDeleteClick}
-            >
-              <DeleteOutlined />
-            </S.RoundButton>
+            <Tooltip title={props.deleteTitle || 'Delete Selected Items'}>
+              <Box>
+                <S.RoundButton
+                  variant='contained'
+                  disabled={!props.selected.length}
+                  onClick={props.onDeleteClick}
+                >
+                  <DeleteOutlined />
+                </S.RoundButton>
+              </Box>
+            </Tooltip>
           )}
         </>
       )}
@@ -138,6 +160,7 @@ const ItemsTable = <T extends { _id: string }>(
     columns: GridColDef[]
     items: T[]
     limit: number
+    clientPagination?: boolean
     onSelect: (ids: string[]) => void
     onItemClick: (id: string) => void
   }>,
@@ -151,6 +174,7 @@ const ItemsTable = <T extends { _id: string }>(
         onRowClick={props.onItemClick}
         onSelect={onProdsSelect}
         limit={props.limit}
+        pagination={props.clientPagination}
       />
     </Box>
   )

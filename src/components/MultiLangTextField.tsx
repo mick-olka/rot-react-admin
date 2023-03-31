@@ -8,6 +8,7 @@ interface I_Props<T extends FieldValues> {
   names: Path<T>[]
   registerOptions?: RegisterOptions<T, Path<T>>
   label?: string
+  error?: boolean
 }
 
 export const MultiLangTextField = <I_FormData extends FieldValues>({
@@ -15,6 +16,7 @@ export const MultiLangTextField = <I_FormData extends FieldValues>({
   register,
   registerOptions,
   label,
+  error,
 }: I_Props<I_FormData>) => {
   const [current, setCurrent] = useState<number>(0)
   // const [name, setName] = useState<Path<I_FormData>>(names[0])
@@ -33,6 +35,7 @@ export const MultiLangTextField = <I_FormData extends FieldValues>({
           {...register(n, registerOptions)}
           sx={{ display: n === names[current] ? 'block' : 'none' }}
           label={label}
+          error={error}
         />
       ))}
 

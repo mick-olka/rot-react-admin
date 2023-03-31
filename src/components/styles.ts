@@ -18,9 +18,11 @@ export const TextFieldBox = styled(Box)`
   justify-content: space-between;
   align-items: center;
 `
-export const ProductsListPane = styled(Box)`
-  height: calc(100% - 2rem);
-  padding: 1rem;
+export const ItemsListPane = styled(Box)`
+  &&& {
+    height: calc(100% - 2rem);
+    padding: 1rem;
+  }
 `
 
 export const RoundButton = styled(Button)<{ width?: string }>`

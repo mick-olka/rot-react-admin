@@ -4,13 +4,13 @@ import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 
 import { PHOTOS_URL } from 'src/utils/constants/constants'
 
-export const columns: GridColDef[] = [
+export const product_columns: GridColDef[] = [
   { field: 'name', headerName: 'Name', width: 130, valueGetter: (param) => param.value.ua },
   {
     field: 'thumbnail',
     headerName: 'Image',
     width: 130,
-    renderCell: (params: GridRenderCellParams<string>) => (
+    renderCell: (params) => (
       <Box>
         {params.value ? (
           <Box sx={{ width: '3rem', height: '3rem' }}>
@@ -26,6 +26,7 @@ export const columns: GridColDef[] = [
         )}
       </Box>
     ),
+    // valueGetter: (params) => params.row.thumbnail,
   },
   { field: 'price', headerName: 'Price', width: 130 },
 ]

@@ -16,7 +16,7 @@ export type I_ProductFeatures = {
   ]
 }
 
-interface I_ProductPopulated {
+export interface I_ProductPopulated {
   _id: string
   name: I_Locales
   url_name: string

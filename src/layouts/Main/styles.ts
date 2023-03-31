@@ -21,6 +21,9 @@ export const MainMiddle = styled.div`
 export const MainContent = styled.main`
   /* background-color: ${({ theme }) => theme.colors.white}; */
   width: 100%;
+  & > div {
+    height: 100%;
+  }
 `
 
 export const MainNav = styled.nav`

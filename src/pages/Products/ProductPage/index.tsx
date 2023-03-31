@@ -47,7 +47,7 @@ export const ProductPage = () => {
             </Box>
             <ProductForm
               isLoading={isLoading}
-              defaultValues={getDefaultValues(product)}
+              initValues={getDefaultValues(product)}
               onSubmit={onSubmit}
             />
           </Box>

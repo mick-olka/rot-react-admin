@@ -21,12 +21,12 @@ export const CollectionsList = () => {
   const navigate = useNavigate()
   const onItemClick = (id: string) => {
     if (collections) {
-      const url_name = collections.find((p) => p._id === id)?.url_name
+      const url_name = collections.find((c) => c._id === id)?.url_name
       if (url_name) navigate(getRouteWithId(ROUTES.collection, url_name))
     }
   }
   const onCreateProdClick = () => {
-    navigate(ROUTES.createProduct)
+    navigate(ROUTES.createCollection)
   }
 
   return (

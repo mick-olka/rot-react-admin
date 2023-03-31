@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { DataGrid, GridColDef, GridSelectionModel } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridRowSelectionModel } from '@mui/x-data-grid'
 
 import { products_page_limit } from 'src/utils/constants/constants'
 
@@ -9,26 +9,33 @@ interface I_Props {
   onRowClick: (id: string) => void
   onSelect: (ids: string[]) => void
   limit?: number
+  pagination?: boolean
 }
 
-export const DataTable = ({ columns, rows, onRowClick, onSelect, limit }: I_Props) => {
+export const DataTable = (props: I_Props) => {
+  const { columns, rows, onRowClick, onSelect, limit, pagination } = props
+  const pageSize = limit || products_page_limit
   return (
     <Box sx={{ height: '100%', width: '100%' }}>
       <DataGrid
         getRowId={(row) => row._id}
         rows={rows}
         columns={columns}
-        pageSize={limit || products_page_limit}
-        // rowsPerPageOptions={[1]}
+        // pageSize={limit || products_page_limit}
+        // pageSizeOptions={[pageSize, pageSize + 20, pageSize + 30]}
+        pageSizeOptions={[pageSize]}
         checkboxSelection
         disableColumnMenu
-        disableSelectionOnClick
-        hideFooterSelectedRowCount
-        hideFooter
-        onSelectionModelChange={(ids: GridSelectionModel) => {
+        disableColumnFilter
+        disableRowSelectionOnClick
+        hideFooterSelectedRowCount={!pagination}
+        hideFooter={!pagination}
+        onRowSelectionModelChange={(ids: GridRowSelectionModel) => {
           onSelect(ids as string[])
         }}
-        sortingMode='server'
+        initialState={{
+          pagination: { paginationModel: { pageSize } },
+        }}
         onRowClick={(param) => onRowClick(String(param.id))}
       />
     </Box>
