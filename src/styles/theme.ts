@@ -4,6 +4,8 @@ const colors = {
   yellow: '#ffc300',
   red: '#ff6b6b',
   blue: '	#3a86ff',
+  dark_blue: 'rgb(0, 30, 60)',
+  dark_blue2: 'rgb(30, 50, 70)',
   light_yellow: '#f7dc6f',
   pink: '#f0a27a',
   white: '#fff',
@@ -26,16 +28,16 @@ const components = {
     c: colors.white,
   },
   header: {
-    bg: colors.gray,
-    c: colors.black,
+    bg: colors.black,
+    c: colors.white,
   },
   main: {
     bg: colors.white,
     c: colors.black,
   },
   nav: {
-    bg: colors.light_gray,
-    c: colors.black,
+    bg: colors.white,
+    c: colors.dark_blue,
   },
   footer: {
     bg: colors.gray,

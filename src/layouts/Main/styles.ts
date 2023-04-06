@@ -12,14 +12,15 @@ export const MainHeader = styled.header`
   background-color: ${({ theme }) => theme.components.header.bg};
   color: ${({ theme }) => theme.components.header.c};
   height: 6vh;
+  /* border-bottom: 2px solid ${({ theme }) => theme.colors.gray}; */
 `
+
 export const MainMiddle = styled.div`
   min-height: calc(94vh - 2px);
   display: flex;
 `
 
 export const MainContent = styled.main`
-  /* background-color: ${({ theme }) => theme.colors.white}; */
   width: 100%;
   & > div {
     height: 100%;
@@ -31,6 +32,7 @@ export const MainNav = styled.nav`
   color: ${({ theme }) => theme.components.nav.c};
   width: 10rem;
   padding: 0.1rem;
+  border-right: 1px solid ${({ theme }) => theme.colors.light_gray};
 `
 
 export const MainFooter = styled.footer`
