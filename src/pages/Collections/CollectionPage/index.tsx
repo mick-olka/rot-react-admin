@@ -1,30 +1,38 @@
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box } from '@mui/material'
 import { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { ContentDialog } from 'src/components/Dialogs/ContentDialog'
+import { CollectionForm } from 'src/components/Forms/CollectionForm'
 import { ItemsPage } from 'src/components/ItemsPage/ItemsPage'
+import { RoundButton } from 'src/components/styles'
 
-import { useCollectionById, useUpdateCollectionItems } from 'src/hooks/useCollections'
+import {
+  useCollectionById,
+  useUpdateCollection,
+  useUpdateCollectionItems,
+} from 'src/hooks/useCollections'
 import { product_columns } from 'src/pages/Products/data'
 import { getRouteWithId } from 'src/routing'
+import { I_CollectionForm } from 'src/services/collections.service'
 import { I_ProductPopulated } from 'src/services/products.service'
 import { ROUTES } from 'src/utils/constants/routes'
+import { filterArrByReg } from 'src/utils/helpers/utils'
 
 export const CollectionPage = () => {
   const id = String(useParams().id)
   const navigate = useNavigate()
   const [page, setPage] = useState<number>(1)
+  const [open, setOpen] = useState(false)
   const { collection, isLoading, isError } = useCollectionById(id)
   const { update: deleteItems } = useUpdateCollectionItems(id)
+  const { update: update_collection } = useUpdateCollection()
   const [filter, setFilter] = useState<string | null>(null)
   const getFilteredProductsList = (): I_ProductPopulated[] =>
     useMemo(() => {
       if (collection) {
-        if (filter) {
-          const reg = new RegExp(filter, 'gi')
-          const matchedItems = collection.items.filter((i) => String(i.name.ua).match(reg))
-          return matchedItems
-        }
+        if (filter) return filterArrByReg(collection.items, filter)
         return collection.items
       }
       return []
@@ -41,7 +49,11 @@ export const CollectionPage = () => {
   const handleSearchTrigger = (query?: string) => {
     setFilter(query || null)
   }
-  const data = {
+  const handleCollectionUpdate = (dat: I_CollectionForm) => {
+    if (collection) update_collection({ id: collection._id, form_data: dat })
+    setOpen(false)
+  }
+  const products = {
     data: getFilteredProductsList(),
     isLoading,
     isError,
@@ -51,15 +63,10 @@ export const CollectionPage = () => {
   if (collection) {
     return (
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Box>
-          <h2>{collection.name.ua}</h2>
-        </Box>
-        <Box>{collection.description.ua}</Box>
-        <hr />
         <Box sx={{ height: '100%' }}>
           <ItemsPage
-            title='Collection Items'
-            data={data}
+            title={collection.name.ua}
+            data={products}
             columns={product_columns}
             pagination
             page={page}
@@ -69,8 +76,19 @@ export const CollectionPage = () => {
             onItemClick={onProdClick}
             onSearchTrigger={handleSearchTrigger}
             deleteTitle='Remove these items from the collection'
-          />
+          >
+            <RoundButton onClick={() => setOpen(true)}>
+              <EditOutlinedIcon />
+            </RoundButton>
+          </ItemsPage>
         </Box>
+        <ContentDialog open={open} setOpen={setOpen}>
+          <CollectionForm
+            initValues={collection}
+            isLoading={isLoading}
+            onSubmit={handleCollectionUpdate}
+          />
+        </ContentDialog>
       </Box>
     )
   }

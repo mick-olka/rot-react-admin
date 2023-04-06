@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 import { PhotosForm } from './PhotosForm'
 
-import { AlertDialog } from 'src/components/AlertDialog'
+import { AlertDialog } from 'src/components/Dialogs/AlertDialog'
 import * as S from 'src/components/styles'
 import {
   useCreatePhotosGroup,

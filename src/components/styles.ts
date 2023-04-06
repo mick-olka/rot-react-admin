@@ -21,16 +21,16 @@ export const TextFieldBox = styled(Box)`
 export const ItemsListPane = styled(Box)`
   &&& {
     height: calc(100% - 2rem);
-    padding: 1rem;
+    padding: 0 1rem;
   }
 `
 
 export const RoundButton = styled(Button)<{ width?: string }>`
   &&& {
-    height: ${(props) => props.width || '4rem'};
-    width: ${(props) => props.width || '4rem'};
+    height: ${(props) => props.width || '3rem'};
+    width: ${(props) => props.width || '3rem'};
     border-radius: 50%;
-    min-width: ${(props) => props.width || '4rem'};
+    min-width: ${(props) => props.width || '3rem'};
     background-color: ${({ theme }) => theme.components.button.bg};
     color: ${({ theme }) => theme.components.button.c};
     opacity: ${(props) => (props.disabled ? 0.5 : 1)};
@@ -40,7 +40,16 @@ export const ControlPaneStyled = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1rem;
+  padding: 0.5rem 0 1rem;
+  & > div > * {
+    margin-right: 1rem;
+  }
+`
+
+export const ControlPaneBox = styled(Box)`
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
 `
 
 export const SubmitButton = styled(TextField)`

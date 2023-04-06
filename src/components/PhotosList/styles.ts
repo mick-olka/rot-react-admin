@@ -25,3 +25,7 @@ export const InnerBorder = styled(Box)`
   height: 148px;
   cursor: pointer;
 `
+
+export const PhotosFormStyled = styled.form`
+  padding-bottom: 0.3rem;
+`

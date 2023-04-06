@@ -28,14 +28,16 @@ export const DataTable = (props: I_Props) => {
         disableColumnMenu
         disableColumnFilter
         disableRowSelectionOnClick
-        hideFooterSelectedRowCount={!pagination}
-        hideFooter={!pagination}
+        // hideFooterSelectedRowCount={!pagination}
+        // hideFooter={!pagination}
+        hideFooterPagination={!pagination}
         onRowSelectionModelChange={(ids: GridRowSelectionModel) => {
           onSelect(ids as string[])
         }}
         initialState={{
           pagination: { paginationModel: { pageSize } },
         }}
+        keepNonExistentRowsSelected
         onRowClick={(param) => onRowClick(String(param.id))}
       />
     </Box>

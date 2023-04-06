@@ -1,3 +1,5 @@
+import { I_Locales } from 'src/services'
+
 const isFile = (v: unknown) => {
   return v instanceof File
 }
@@ -31,4 +33,10 @@ export const removeEmptyFields = (data: object): Partial<typeof data> => {
 
 export const areEqualObjects = (obj1: object, obj2: object): boolean => {
   return JSON.stringify(obj1) === JSON.stringify(obj2)
+}
+
+export const filterArrByReg = <T extends { name: I_Locales }>(arr: T[], filter: string): T[] => {
+  const reg = new RegExp(filter, 'gi')
+  const matchedItems = arr.filter((i) => String(i.name.ua).match(reg))
+  return matchedItems
 }

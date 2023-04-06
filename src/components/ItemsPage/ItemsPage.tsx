@@ -22,6 +22,7 @@ type CommonProps<T> = {
   columns: GridColDef[]
   deleteTitle?: string
   clientPagination?: boolean
+  children?: React.ReactNode
   onItemClick: (id: string) => void
   onDeleteMultiple?: (ids: string[]) => void
   onCreateClick?: () => void
@@ -50,10 +51,14 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
     onChooseClick,
     clientPagination,
     deleteTitle,
+    children,
   } = props
   const [selected, setSelected] = useState<string[]>([])
   const [deleteDialog, setDeleteDialog] = useState(false)
-  const handleSelect = (ids: string[]) => setSelected(ids)
+  const handleSelect = (ids: string[]) => {
+    setSelected(ids)
+    console.log(ids)
+  }
   const onPageChange = (e: unknown, p: number) => pagination && setPage(p)
   const handleSearchTrigger = (searchText: string) => {
     if (onSearchTrigger) onSearchTrigger(searchText ? searchText : undefined)
@@ -79,7 +84,9 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
             onCreateClick={onCreateClick}
             onChooseClick={onChooseCollection}
             deleteTitle={deleteTitle}
-          />
+          >
+            {children}
+          </ControlPane>
           <ItemsTable
             columns={columns}
             items={data.data}
@@ -116,6 +123,7 @@ const ControlPane = (
     title?: string
     selected?: string[]
     deleteTitle?: string
+    children?: React.ReactNode
     handleSearchTrigger?: (text: string) => void
     onDeleteClick?: () => void
     onCreateClick?: () => void
@@ -124,33 +132,41 @@ const ControlPane = (
 ) => {
   return (
     <S.ControlPaneStyled>
-      {props.title && <h2>{props.title}</h2>}
-      {props.onCreateClick && (
-        <S.RoundButton color='primary' variant='contained' onClick={props.onCreateClick}>
-          <AddIcon />
-        </S.RoundButton>
-      )}
-      {props.handleSearchTrigger && <SearchField onSearchTrigger={props.handleSearchTrigger} />}
-      {props.selected && (
-        <>
-          {props.onChooseClick && (
-            <CollectionSelector disabled={!props.selected.length} onSubmit={props.onChooseClick} />
-          )}
-          {props.onDeleteClick && (
-            <Tooltip title={props.deleteTitle || 'Delete Selected Items'}>
-              <Box>
-                <S.RoundButton
-                  variant='contained'
-                  disabled={!props.selected.length}
-                  onClick={props.onDeleteClick}
-                >
-                  <DeleteOutlined />
-                </S.RoundButton>
-              </Box>
-            </Tooltip>
-          )}
-        </>
-      )}
+      <S.ControlPaneBox>
+        {props.title && <h2>{props.title}</h2>}
+        {props.children}
+        {props.onCreateClick && (
+          <S.RoundButton color='primary' variant='contained' onClick={props.onCreateClick}>
+            <AddIcon />
+          </S.RoundButton>
+        )}
+      </S.ControlPaneBox>
+      <S.ControlPaneBox>
+        {props.handleSearchTrigger && <SearchField onSearchTrigger={props.handleSearchTrigger} />}
+        {props.selected && (
+          <>
+            {props.onChooseClick && (
+              <CollectionSelector
+                disabled={!props.selected.length}
+                onSubmit={props.onChooseClick}
+              />
+            )}
+            {props.onDeleteClick && (
+              <Tooltip title={props.deleteTitle || 'Delete Selected Items'}>
+                <Box>
+                  <S.RoundButton
+                    variant='contained'
+                    disabled={!props.selected.length}
+                    onClick={props.onDeleteClick}
+                  >
+                    <DeleteOutlined />
+                  </S.RoundButton>
+                </Box>
+              </Tooltip>
+            )}
+          </>
+        )}
+      </S.ControlPaneBox>
     </S.ControlPaneStyled>
   )
 }

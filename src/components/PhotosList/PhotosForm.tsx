@@ -5,11 +5,12 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Gallery } from './Gallery'
+import * as S from './styles'
 
 import { MultiLangTextField } from '../MultiLangTextField'
 
 import { AlertDialog } from 'src/components'
-import * as S from 'src/components/styles'
+import * as CS from 'src/components/styles'
 import { I_Locales, lanEnumToObject } from 'src/services'
 import { I_Photos } from 'src/services/photos.service'
 import { areEqualObjects } from 'src/utils/helpers/utils'
@@ -69,22 +70,22 @@ export const PhotosForm = ({ data, editMode, onCancel, onSubmit, onDeletePhoto }
     <Box sx={{ display: 'flex', overflow: 'auto', position: 'relative', width: '100%' }}>
       <Box sx={{ width: '17rem' }}>
         {editMode ? (
-          <form onSubmitCapture={handleSubmit(onSave)}>
+          <S.PhotosFormStyled onSubmitCapture={handleSubmit(onSave)}>
             <Box>
-              <S.TextFieldBox>
+              <CS.TextFieldBox>
                 <MultiLangTextField
                   label='Main Color'
                   register={register}
                   names={['main_color.ua', 'main_color.en', 'main_color.de']}
                 />
-              </S.TextFieldBox>
-              <S.TextFieldBox>
+              </CS.TextFieldBox>
+              <CS.TextFieldBox>
                 <MultiLangTextField
                   label='Pill Color'
                   register={register}
                   names={['pill_color.ua', 'pill_color.en', 'pill_color.de']}
                 />
-              </S.TextFieldBox>
+              </CS.TextFieldBox>
             </Box>
             <Box
               sx={{
@@ -93,14 +94,14 @@ export const PhotosForm = ({ data, editMode, onCancel, onSubmit, onDeletePhoto }
                 justifyContent: 'space-around',
               }}
             >
-              <S.RoundButton variant='contained' type='submit' width='3rem'>
+              <CS.RoundButton variant='contained' type='submit' width='3rem'>
                 <CheckRoundedIcon />
-              </S.RoundButton>
-              <S.RoundButton variant='contained' onClick={handleCancelClick} width='3rem'>
+              </CS.RoundButton>
+              <CS.RoundButton variant='contained' onClick={handleCancelClick} width='3rem'>
                 <ClearRoundedIcon />
-              </S.RoundButton>
+              </CS.RoundButton>
             </Box>
-          </form>
+          </S.PhotosFormStyled>
         ) : (
           <Box>
             <Typography>Main Color:</Typography>

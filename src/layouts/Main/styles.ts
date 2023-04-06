@@ -11,10 +11,10 @@ export const MainHeader = styled.header`
   padding: 1px;
   background-color: ${({ theme }) => theme.components.header.bg};
   color: ${({ theme }) => theme.components.header.c};
-  height: 10vh;
+  height: 6vh;
 `
 export const MainMiddle = styled.div`
-  min-height: 80vh;
+  min-height: calc(94vh - 2px);
   display: flex;
 `
 
@@ -36,7 +36,7 @@ export const MainNav = styled.nav`
 export const MainFooter = styled.footer`
   background-color: ${({ theme }) => theme.components.footer.bg};
   color: ${({ theme }) => theme.components.footer.c};
-  height: calc(10vh - 2px);
+  height: 10vh;
 `
 
 export const FooterContent = styled(Box)`
@@ -44,4 +44,8 @@ export const FooterContent = styled(Box)`
   & > p {
     margin: 1rem;
   }
+`
+
+export const HeaderText = styled.h1`
+  margin: 0.3rem;
 `
