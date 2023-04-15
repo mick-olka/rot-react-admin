@@ -1,13 +1,94 @@
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import ImageIcon from '@mui/icons-material/Image'
+import { Avatar, Box, IconButton, Typography } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
+
+import { PHOTOS_URL } from 'src/utils/constants/constants'
 
 export const columns: GridColDef[] = [{ field: 'name', headerName: 'Name', width: 130 }]
 
 export const cart_item_columns: GridColDef[] = [
-  { field: 'name', headerName: 'Name', width: 130 },
   {
-    field: 'phone',
+    field: 'product',
+    headerName: 'Product',
+    renderCell: (params) => (
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        {params.value.thumbnail ? (
+          <>
+            <Box sx={{ width: '3rem', height: '3rem' }}>
+              <Avatar
+                alt={params.value.thumbnail}
+                src={`${PHOTOS_URL}${params.value.thumbnail}`}
+                sx={{ width: 100, height: 50 }}
+                variant='square'
+              />
+            </Box>
+          </>
+        ) : (
+          <ImageIcon />
+        )}
+        <Typography sx={{ marginLeft: '1rem' }}>{params.value.name.ua}</Typography>
+      </Box>
+    ),
+    width: 300,
+  },
+  {
+    field: 'count',
     headerName: 'Phone',
     width: 130,
   },
-  { field: 'sum', headerName: 'Sum', width: 130 },
+  {
+    field: 'main_color',
+    headerName: 'Color 1',
+    width: 130,
+    // editable: true,
+    // renderCell: (params) => {
+    //   // const value = useRef<string>(params.value)
+    //   const [value, setValue] = useState(params.value)
+    //   return (
+    //     <TextField
+    //       value={value}
+    //       onChange={(e) => setValue(e.target.value)}
+    //       onBlur={() => updateRows(value, params.row._id, params.field)}
+    //       onKeyDown={(ev) => {
+    //         if (ev.key === 'Enter') {
+    //           updateRows(value, params.row._id, params.field)
+    //         }
+    //       }}
+    //     />
+    //   )
+    // },
+    // preProcessEditCellProps: (p) => {
+    //   // console.log(p)
+    //   return p
+    // },
+    // valueParser(value, params) {
+    //   console.log(value, params)
+    // },
+    // valueSetter(v) {
+    //   console.log(v)
+    // },
+  },
+  { field: 'pill_color', headerName: 'Color 2', width: 130 },
+  {
+    field: 'edit',
+    headerName: '',
+    width: 50,
+    renderCell: () => (
+      <IconButton>
+        <EditOutlinedIcon />
+      </IconButton>
+    ),
+  },
 ]
+
+const updateRows = (value: string, row_id: string, field: string) => {
+  console.log(value, row_id, field)
+}

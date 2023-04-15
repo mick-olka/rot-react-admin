@@ -53,7 +53,7 @@ export const useCreateOrder = () => {
 export const useUpdateOrder = () => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
-    ({ id, form_data }: { id: string; form_data: I_OrderDto }) =>
+    ({ id, form_data }: { id: string; form_data: Partial<I_OrderDto> }) =>
       toasterPending(OrdersService.update(id, form_data)),
     { onSuccess: () => queryClient.invalidateQueries(['orders']) },
   )

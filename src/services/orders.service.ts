@@ -20,12 +20,16 @@ export enum StatusEnum {
   p = 'in progress',
 }
 
-export interface I_OrderItem {
+export interface I_CartItem {
   _id: string
-  product: I_ProductPopulated
+  product: string
   count: number
   main_color: string
   pill_color: string
+}
+
+export interface I_CartItemPopulated extends Omit<I_CartItem, 'product'> {
+  product: I_ProductPopulated
 }
 
 export interface I_Order {
@@ -33,17 +37,21 @@ export interface I_Order {
   name: string
   phone: string
   message?: string
-  cart: I_OrderItem[]
+  cart: I_CartItem[]
   sum: number
   status: StatusEnum
   date: Date
+}
+
+export interface I_OrderPopulated extends Omit<I_Order, 'cart'> {
+  cart: I_CartItemPopulated[]
 }
 
 export interface I_OrderDto {
   name: string
   phone: string
   message?: string
-  cart: string[]
+  cart: Omit<I_CartItem, '_id'>[]
   sum: number
   status: StatusEnum
 }
@@ -65,7 +73,7 @@ export const ordersAPI = {
     return axios.get<I_OrdersResData>(route)
   },
   async getById(id: string) {
-    return axios.get<I_Order>(`/orders/${id}`)
+    return axios.get<I_OrderPopulated>(`/orders/${id}`)
   },
   async create(data: I_OrderDto) {
     return axios.post<I_Order>(`/orders/`, data)
