@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { NavPane } from './components/NavPane'
 import * as S from './styles'
 
-import { ROUTES } from 'src/utils/constants/routes'
+import { ROUTES } from 'src/routing/routes'
 
 interface I_Authorized {
   children: ReactNode

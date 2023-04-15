@@ -8,7 +8,7 @@ import { AvatarUploader, ProductForm } from 'src/components'
 import { useCreateProduct } from 'src/hooks/useProducts'
 import { getRouteWithId } from 'src/routing'
 import { I_ProductForm } from 'src/services/products.service'
-import { ROUTES } from 'src/utils/constants/routes'
+import { ROUTES } from 'src/routing/routes'
 
 export const CreateProductPage = () => {
   const { create, isLoading, isError, product } = useCreateProduct()

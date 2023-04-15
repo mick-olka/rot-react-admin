@@ -2,12 +2,21 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import { MainLayout } from 'src/layouts'
 
-import { HomePage, Login, Register } from 'src/pages'
-import { CollectionPage, CollectionsList } from 'src/pages/Collections'
-import { CreateCollectionPage } from 'src/pages/Collections/CreateCollection'
-import { CreateProductPage, ProductPage } from 'src/pages/Products'
+import {
+  HomePage,
+  Login,
+  Register,
+  CollectionPage,
+  CollectionsPage,
+  CreateCollectionPage,
+  CreateProductPage,
+  ProductPage,
+  OrdersPage,
+  OrderPage,
+  CreateOrderPage,
+} from 'src/pages'
+import { ROUTES } from 'src/routing/routes'
 import { useAuthStore } from 'src/store/auth.store'
-import { ROUTES } from 'src/utils/constants/routes'
 
 export const Routing = () => {
   return (
@@ -47,7 +56,7 @@ export const Routing = () => {
         element={
           <RequireAuth>
             <MainLayout>
-              <CollectionsList />
+              <CollectionsPage />
             </MainLayout>
           </RequireAuth>
         }
@@ -68,6 +77,39 @@ export const Routing = () => {
           <RequireAuth>
             <MainLayout>
               <CreateCollectionPage />
+            </MainLayout>
+          </RequireAuth>
+        }
+      />
+
+      <Route
+        path={ROUTES.ordersPage}
+        element={
+          <RequireAuth>
+            <MainLayout>
+              <OrdersPage />
+            </MainLayout>
+          </RequireAuth>
+        }
+      />
+
+      <Route
+        path={ROUTES.createOrder}
+        element={
+          <RequireAuth>
+            <MainLayout>
+              <CreateOrderPage />
+            </MainLayout>
+          </RequireAuth>
+        }
+      />
+
+      <Route
+        path={ROUTES.order}
+        element={
+          <RequireAuth>
+            <MainLayout>
+              <OrderPage />
             </MainLayout>
           </RequireAuth>
         }

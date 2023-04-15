@@ -7,7 +7,7 @@ import { CollectionForm } from 'src/components/Forms/CollectionForm'
 import { useCreateCollection } from 'src/hooks/useCollections'
 import { getRouteWithId } from 'src/routing'
 import { I_CollectionForm } from 'src/services/collections.service'
-import { ROUTES } from 'src/utils/constants/routes'
+import { ROUTES } from 'src/routing/routes'
 
 export const CreateCollectionPage = () => {
   const { create, isLoading, isError, product } = useCreateCollection()

@@ -15,9 +15,9 @@ import {
 } from 'src/hooks/useCollections'
 import { product_columns } from 'src/pages/Products/data'
 import { getRouteWithId } from 'src/routing'
+import { ROUTES } from 'src/routing/routes'
 import { I_CollectionForm } from 'src/services/collections.service'
 import { I_ProductPopulated } from 'src/services/products.service'
-import { ROUTES } from 'src/utils/constants/routes'
 import { filterArrByReg } from 'src/utils/helpers/utils'
 
 export const CollectionPage = () => {

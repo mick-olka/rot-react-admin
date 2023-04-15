@@ -12,6 +12,10 @@ export enum ROUTES {
   collection = '/collections/:id',
   createCollection = '/collections/create',
 
+  ordersPage = '/orders',
+  order = '/orders/:id',
+  createOrder = '/orders/create',
+
   // Auth
   login = '/login',
   register = '/register',

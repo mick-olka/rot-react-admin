@@ -8,7 +8,7 @@ import { ItemsPage } from 'src/components/ItemsPage/ItemsPage'
 import { useCollections, useDeleteCollectionsMany } from 'src/hooks/useCollections'
 import { getRouteWithId } from 'src/routing'
 import { I_Collection } from 'src/services/collections.service'
-import { ROUTES } from 'src/utils/constants/routes'
+import { ROUTES } from 'src/routing/routes'
 import { filterArrByReg } from 'src/utils/helpers/utils'
 
 export const CollectionsList = () => {

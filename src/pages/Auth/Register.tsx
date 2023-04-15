@@ -8,7 +8,7 @@ import * as S from './styles'
 import { TextFieldBox, TextFieldStyled } from 'src/components/styles'
 import { useRegister } from 'src/hooks/useAuth'
 import { useAuthStore } from 'src/store/auth.store'
-import { ROUTES } from 'src/utils/constants/routes'
+import { ROUTES } from 'src/routing/routes'
 
 export const Register = () => {
   const { register, tokens, isLoading, isError } = useRegister()

@@ -8,7 +8,7 @@ import * as S from './styles'
 
 import { useLogin } from 'src/hooks/useAuth'
 import { useAuthStore } from 'src/store/auth.store'
-import { ROUTES } from 'src/utils/constants/routes'
+import { ROUTES } from 'src/routing/routes'
 
 export const Login = () => {
   const { login, tokens, isLoading, isError } = useLogin()

@@ -27,7 +27,7 @@ export const useCreateCollection = () => {
     (form_data: I_CollectionDto) => toasterPending(CollectionService.create(form_data)),
     { onSuccess: () => queryClient.invalidateQueries(['collections']) },
   )
-  return { create: mutateAsync, product: data, isLoading, isError }
+  return { create: mutateAsync, collection: data, isLoading, isError }
 }
 
 export const useUpdateCollection = () => {
@@ -37,7 +37,7 @@ export const useUpdateCollection = () => {
       toasterPending(CollectionService.update(id, form_data)),
     { onSuccess: () => queryClient.invalidateQueries(['collections']) },
   )
-  return { update: mutateAsync, product: data, isLoading, isError }
+  return { update: mutateAsync, collection: data, isLoading, isError }
 }
 
 export const useUpdateCollectionItems = (validation_id?: string) => {
@@ -50,7 +50,7 @@ export const useUpdateCollectionItems = (validation_id?: string) => {
         queryClient.invalidateQueries(['collections', validation_id || data.data.url_name]),
     },
   )
-  return { update: mutateAsync, product: data, isLoading, isError }
+  return { update: mutateAsync, collection: data, isLoading, isError }
 }
 
 export const useDeleteCollection = () => {
@@ -60,7 +60,7 @@ export const useDeleteCollection = () => {
     (id: string) => toasterPending(CollectionService.delete(id)),
     { onSuccess: () => queryClient.invalidateQueries(['collections']) },
   )
-  return { delete: mutateAsync, product: data, isLoading, isError }
+  return { delete: mutateAsync, collection: data, isLoading, isError }
 }
 
 export const useDeleteCollectionsMany = () => {
@@ -69,5 +69,5 @@ export const useDeleteCollectionsMany = () => {
     (ids: string[]) => toasterPending(CollectionService.deleteMany(ids)),
     { onSuccess: () => queryClient.invalidateQueries(['collections']) },
   )
-  return { deleteMany: mutateAsync, products: data, isLoading, isError }
+  return { deleteMany: mutateAsync, collections: data, isLoading, isError }
 }

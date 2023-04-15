@@ -5,7 +5,7 @@ import * as S from '../styles'
 
 import { useAuthStore } from 'src/store/auth.store'
 
-import { ROUTES } from 'src/utils/constants/routes'
+import { ROUTES } from 'src/routing/routes'
 
 export const Footer = () => {
   const navigate = useNavigate()

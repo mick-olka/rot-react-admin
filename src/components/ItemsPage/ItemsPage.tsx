@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 import * as S from '../../components/styles'
 
-import { AlertDialog, CollectionSelector, DataTable, SearchField } from 'src/components'
+import { AlertDialog, DataTable, SearchField } from 'src/components'
 
 type DataType<T> = {
   count: number
@@ -27,7 +27,7 @@ type CommonProps<T> = {
   onDeleteMultiple?: (ids: string[]) => void
   onCreateClick?: () => void
   onSearchTrigger?: (query: string | undefined) => void
-  onChooseClick?: (id: string, prod_ids: string[]) => void
+  onSelect?: (prod_ids: string[]) => void
 }
 
 type PaginationProps =
@@ -48,7 +48,7 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
     onCreateClick,
     onItemClick,
     pagination,
-    onChooseClick,
+    onSelect,
     clientPagination,
     deleteTitle,
     children,
@@ -57,7 +57,7 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
   const [deleteDialog, setDeleteDialog] = useState(false)
   const handleSelect = (ids: string[]) => {
     setSelected(ids)
-    console.log(ids)
+    onSelect && onSelect(ids)
   }
   const onPageChange = (e: unknown, p: number) => pagination && setPage(p)
   const handleSearchTrigger = (searchText: string) => {
@@ -66,11 +66,11 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
 
   const onDeleteClick = () => setDeleteDialog(true)
   const onConfirmDelete = () => deleteMany && deleteMany(selected)
-  const onChooseCollection = onChooseClick
-    ? (col_id: string) => {
-        onChooseClick(col_id, selected)
-      }
-    : undefined
+  // const onChooseCollection = onChooseClick
+  //   ? (col_id: string) => {
+  //       onChooseClick(col_id, selected)
+  //     }
+  //   : undefined
   return (
     <S.ItemsListPane>
       {data.isLoading && <Skeleton width='20rem' height='20rem' />}
@@ -82,7 +82,7 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
             onDeleteClick={deleteMany ? onDeleteClick : undefined}
             handleSearchTrigger={onSearchTrigger ? handleSearchTrigger : undefined}
             onCreateClick={onCreateClick}
-            onChooseClick={onChooseCollection}
+            // onChooseClick={onChooseCollection}
             deleteTitle={deleteTitle}
           >
             {children}
@@ -127,7 +127,7 @@ const ControlPane = (
     handleSearchTrigger?: (text: string) => void
     onDeleteClick?: () => void
     onCreateClick?: () => void
-    onChooseClick?: (id: string) => void
+    // onChooseClick?: (id: string) => void
   }>,
 ) => {
   return (
@@ -145,12 +145,12 @@ const ControlPane = (
         {props.handleSearchTrigger && <SearchField onSearchTrigger={props.handleSearchTrigger} />}
         {props.selected && (
           <>
-            {props.onChooseClick && (
+            {/* {props.onChooseClick && (
               <CollectionSelector
                 disabled={!props.selected.length}
                 onSubmit={props.onChooseClick}
               />
-            )}
+            )} */}
             {props.onDeleteClick && (
               <Tooltip title={props.deleteTitle || 'Delete Selected Items'}>
                 <Box>

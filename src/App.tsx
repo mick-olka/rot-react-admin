@@ -11,7 +11,7 @@ import 'src/styles/fonts.scss'
 import { useCheckLogin } from './hooks/useAuth'
 import { Routing } from './routing'
 import { theme } from './styles/theme'
-import { ROUTES } from './utils/constants/routes'
+import { ROUTES } from './routing/routes'
 
 const AppStyled = styled.div`
   background-color: ${theme.components.app.bg};
