@@ -1,24 +1,8 @@
 import axios from 'axios'
 
-import { I_Locales, E_Languages } from '.'
+import { I_Locales } from '.'
 
-export type I_ProductFeatures = {
-  [key in E_Languages]: [
-    {
-      key: string
-      value: string
-    },
-  ]
-}
-
-interface I_ProductPopulated {
-  _id: string
-  name: I_Locales
-  url_name: string
-  thumbnail: string
-  price: number
-  old_price: number
-}
+import { I_ProductPopulated } from './products.service'
 
 export interface I_Collection {
   _id: string

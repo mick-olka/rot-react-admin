@@ -16,6 +16,8 @@ export enum ROUTES {
   order = '/orders/:id',
   createOrder = '/orders/create',
 
+  textBlocksPage = '/text_blocks',
+
   // Auth
   login = '/login',
   register = '/register',

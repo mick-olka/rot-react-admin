@@ -72,7 +72,7 @@ export const OrderPage = () => {
         sum,
         status: StatusEnum.p,
       }
-      if (new_products)
+      if (new_products?.length)
         form_data.cart = [
           ...(form_data.cart || []),
           ...new_products.map((n) => ({ product: n, count: 1, main_color: '', pill_color: '' })),

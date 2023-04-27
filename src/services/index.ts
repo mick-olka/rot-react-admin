@@ -1,13 +1,14 @@
 import axios from 'axios'
 
-import { API_URL } from 'src/utils/constants/constants'
 import { ROUTES } from 'src/routing/routes'
+import { API_URL } from 'src/utils/constants/constants'
 import { LocalStorage } from 'src/utils/helpers/localStorage'
 export { productsAPI as ProductService } from './products.service'
 export { collectionsAPI as CollectionService } from './collections.service'
 export { photosAPI as PhotosService } from './photos.service'
 export { authAPI as AuthService } from './auth.service'
 export { ordersAPI as OrdersService } from './orders.service'
+export { textBlocksAPI as TextBlocksService } from './text_blocks.service'
 
 export enum E_Languages {
   ua = 'ua',

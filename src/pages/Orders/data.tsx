@@ -41,8 +41,10 @@ export const cart_item_columns: GridColDef[] = [
   },
   {
     field: 'count',
-    headerName: 'Phone',
+    headerName: 'Count',
     width: 130,
+    align: 'center',
+    headerAlign: 'center',
   },
   {
     field: 'main_color',
@@ -88,7 +90,3 @@ export const cart_item_columns: GridColDef[] = [
     ),
   },
 ]
-
-const updateRows = (value: string, row_id: string, field: string) => {
-  console.log(value, row_id, field)
-}

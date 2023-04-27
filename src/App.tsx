@@ -10,8 +10,8 @@ import 'src/styles/fonts.scss'
 
 import { useCheckLogin } from './hooks/useAuth'
 import { Routing } from './routing'
-import { theme } from './styles/theme'
 import { ROUTES } from './routing/routes'
+import { theme } from './styles/theme'
 
 const AppStyled = styled.div`
   background-color: ${theme.components.app.bg};

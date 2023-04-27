@@ -14,6 +14,7 @@ import {
   OrdersPage,
   OrderPage,
   CreateOrderPage,
+  TextBlocksPage,
 } from 'src/pages'
 import { ROUTES } from 'src/routing/routes'
 import { useAuthStore } from 'src/store/auth.store'
@@ -110,6 +111,17 @@ export const Routing = () => {
           <RequireAuth>
             <MainLayout>
               <OrderPage />
+            </MainLayout>
+          </RequireAuth>
+        }
+      />
+
+      <Route
+        path={ROUTES.textBlocksPage}
+        element={
+          <RequireAuth>
+            <MainLayout>
+              <TextBlocksPage />
             </MainLayout>
           </RequireAuth>
         }

@@ -15,6 +15,9 @@ export const NavPane = () => {
       <p>
         <Link to={ROUTES.ordersPage}>Orders</Link>
       </p>
+      <p>
+        <Link to={ROUTES.textBlocksPage}>Text on Site</Link>
+      </p>
     </Box>
   )
 }
