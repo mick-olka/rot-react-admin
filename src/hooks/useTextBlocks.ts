@@ -12,7 +12,7 @@ export const useTextBlocks = () => {
   return { text_blocks: data, isLoading, isError }
 }
 
-export const useCollectionById = (id: string | undefined) => {
+export const useTextBlockById = (id: string | undefined) => {
   const { data, isLoading, isError } = useQuery(
     ['text_blocks', id],
     () => TextBlocksService.getById(String(id)),
@@ -21,7 +21,7 @@ export const useCollectionById = (id: string | undefined) => {
   return { text_block: data, isLoading, isError }
 }
 
-export const useCreateCollection = () => {
+export const useCreateTextBlock = () => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     (form_data: I_TextBlockDto) => toasterPending(TextBlocksService.create(form_data)),
@@ -30,7 +30,7 @@ export const useCreateCollection = () => {
   return { create: mutateAsync, text_block: data, isLoading, isError }
 }
 
-export const useUpdateCollection = () => {
+export const useUpdateTextBlock = () => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     ({ id, form_data }: { id: string; form_data: I_TextBlockDto }) =>
@@ -40,7 +40,7 @@ export const useUpdateCollection = () => {
   return { update: mutateAsync, text_block: data, isLoading, isError }
 }
 
-export const useDeleteCollection = () => {
+export const useDeleteTextBlock = () => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     'delete text_block',
@@ -50,7 +50,7 @@ export const useDeleteCollection = () => {
   return { delete: mutateAsync, text_block: data, isLoading, isError }
 }
 
-export const useDeleteCollectionsMany = () => {
+export const useDeleteTextBlocksMany = () => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     (ids: string[]) => toasterPending(TextBlocksService.deleteMany(ids)),
