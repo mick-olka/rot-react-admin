@@ -52,6 +52,7 @@ export const CollectionForm = (props: Readonly<I_Props>) => {
             <MultiLangTextField
               register={register}
               names={['description.ua', 'description.en', 'description.de']}
+              textarea
             />
           </Box>
         </S.TextFieldBox>

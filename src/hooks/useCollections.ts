@@ -30,12 +30,12 @@ export const useCreateCollection = () => {
   return { create: mutateAsync, collection: data, isLoading, isError }
 }
 
-export const useUpdateCollection = () => {
+export const useUpdateCollection = (validation_id?: string) => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     ({ id, form_data }: { id: string; form_data: I_CollectionDto }) =>
       toasterPending(CollectionService.update(id, form_data)),
-    { onSuccess: () => queryClient.invalidateQueries(['collections']) },
+    { onSuccess: () => queryClient.invalidateQueries(['collections', validation_id]) },
   )
   return { update: mutateAsync, collection: data, isLoading, isError }
 }

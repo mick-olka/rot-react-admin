@@ -68,7 +68,7 @@ export const PhotosList = ({ product_id, product_url, photos }: I_Props) => {
     if (editingId) deletePhotosGroup(editingId)
   }
   return (
-    <Box>
+    <Box sx={{ borderTop: '1px solid grey' }}>
       {photos.map((item) => {
         const editMode = item._id === editingId
         return (
@@ -77,7 +77,6 @@ export const PhotosList = ({ product_id, product_url, photos }: I_Props) => {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              borderTop: '1px solid grey',
               borderBottom: '1px solid grey',
               padding: '0.5rem',
             }}

@@ -1,11 +1,11 @@
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, Button } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import { cart_item_columns } from '../data'
 
-import { AlertDialog, OrderForm } from 'src/components'
+import { OrderForm } from 'src/components'
 import { ContentDialog } from 'src/components/Dialogs/ContentDialog'
 import { CartItemForm } from 'src/components/Forms/CartItemForm'
 import { ItemsPage } from 'src/components/ItemsPage/ItemsPage'
@@ -13,15 +13,7 @@ import { RoundButton } from 'src/components/styles'
 
 import { useOrderById, useUpdateOrder } from 'src/hooks/useOrders'
 import { ChooseProducts } from 'src/pages/Products/ChooseProducts'
-import { getRouteWithId } from 'src/routing'
-import { ROUTES } from 'src/routing/routes'
-import {
-  I_OrderDto,
-  I_OrderForm,
-  I_CartItem,
-  I_CartItemPopulated,
-  StatusEnum,
-} from 'src/services/orders.service'
+import { I_OrderDto, I_CartItemPopulated, StatusEnum } from 'src/services/orders.service'
 
 // interface I_OrderItemWithId extends I_CartItemPopulated {
 //   _id: string
@@ -29,7 +21,7 @@ import {
 
 export const OrderPage = () => {
   const id = String(useParams().id)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const [itemOpen, setItemOpen] = useState(false)
   const [cartItem, setCartItem] = useState<I_CartItemPopulated | null>(null)

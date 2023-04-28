@@ -7,8 +7,8 @@ import * as S from './styles'
 import { AvatarUploader, ProductForm } from 'src/components'
 import { useCreateProduct } from 'src/hooks/useProducts'
 import { getRouteWithId } from 'src/routing'
-import { I_ProductForm } from 'src/services/products.service'
 import { ROUTES } from 'src/routing/routes'
+import { I_ProductForm } from 'src/services/products.service'
 
 export const CreateProductPage = () => {
   const { create, isLoading, isError, product } = useCreateProduct()
@@ -27,10 +27,12 @@ export const CreateProductPage = () => {
     <S.CreateProductPane>
       <h2>Create Product</h2>
       <Box sx={{ display: 'flex' }}>
-        <AvatarUploader
-          handleChange={uploadAvatar}
-          currentURL={file && URL.createObjectURL(file)}
-        />
+        <Box sx={{ width: '150px', height: '150px', margin: '2rem' }}>
+          <AvatarUploader
+            handleChange={uploadAvatar}
+            currentURL={file && URL.createObjectURL(file)}
+          />
+        </Box>
         <ProductForm onSubmit={onSubmit} isLoading={isLoading} />
       </Box>
       {isError && <h3>Error creating product</h3>}

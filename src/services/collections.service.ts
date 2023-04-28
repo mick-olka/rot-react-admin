@@ -15,7 +15,7 @@ export interface I_Collection {
 }
 
 export interface I_CollectionDto {
-  name: I_Locales
+  name?: I_Locales
   url_name?: string
   items?: string[]
 }

@@ -1,5 +1,5 @@
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -13,6 +13,7 @@ import {
   useUpdateCollection,
   useUpdateCollectionItems,
 } from 'src/hooks/useCollections'
+import { ChooseProducts } from 'src/pages/Products/ChooseProducts'
 import { product_columns } from 'src/pages/Products/data'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
@@ -25,9 +26,10 @@ export const CollectionPage = () => {
   const navigate = useNavigate()
   const [page, setPage] = useState<number>(1)
   const [open, setOpen] = useState(false)
+  const [productsSelectionMode, setProductsSelectionMode] = useState(false)
   const { collection, isLoading, isError } = useCollectionById(id)
   const { update: deleteItems } = useUpdateCollectionItems(id)
-  const { update: update_collection } = useUpdateCollection()
+  const { update: update_collection } = useUpdateCollection(id)
   const [filter, setFilter] = useState<string | null>(null)
   const getFilteredProductsList = (): I_ProductPopulated[] =>
     useMemo(() => {
@@ -37,8 +39,11 @@ export const CollectionPage = () => {
       }
       return []
     }, [collection, filter])
-  const onItemsDelete = (ids: string[]) => {
+  const handleDeleteItems = (ids: string[]) => {
     if (collection) deleteItems({ id: collection._id, data: { action: 'delete', items: ids } })
+  }
+  const handleAddItems = (ids: string[]) => {
+    if (collection) deleteItems({ id: collection._id, data: { action: 'add', items: ids } })
   }
   const onProdClick = (id: string) => {
     if (collection) {
@@ -60,6 +65,19 @@ export const CollectionPage = () => {
     count: collection?.items.length || 0,
     limit: 20,
   }
+  if (productsSelectionMode) {
+    return (
+      <Box>
+        <ChooseProducts
+          onSubmit={(ids) => {
+            handleAddItems(ids)
+            setProductsSelectionMode(false)
+          }}
+          onCancel={() => setProductsSelectionMode(false)}
+        />
+      </Box>
+    )
+  }
   if (collection) {
     return (
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -72,7 +90,7 @@ export const CollectionPage = () => {
             page={page}
             setPage={setPage}
             clientPagination
-            onDeleteMultiple={onItemsDelete}
+            onDeleteMultiple={handleDeleteItems}
             onItemClick={onProdClick}
             onSearchTrigger={handleSearchTrigger}
             deleteTitle='Remove these items from the collection'
@@ -80,6 +98,7 @@ export const CollectionPage = () => {
             <RoundButton onClick={() => setOpen(true)}>
               <EditOutlinedIcon />
             </RoundButton>
+            <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
           </ItemsPage>
         </Box>
         <ContentDialog open={open} setOpen={setOpen}>

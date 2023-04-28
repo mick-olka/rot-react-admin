@@ -39,7 +39,7 @@ export const ProductPage = () => {
         <Box>
           <h2>Update Product</h2>
           <Box sx={{ display: 'flex' }}>
-            <Box sx={{ margin: '3rem', height: '150px' }}>
+            <Box sx={{ margin: '3rem', height: '150px', width: '150px' }}>
               <AvatarUploader
                 handleChange={uploadAvatar}
                 currentURL={`${PHOTOS_URL}${product.thumbnail}`}
@@ -51,9 +51,6 @@ export const ProductPage = () => {
               onSubmit={onSubmit}
             />
           </Box>
-          <hr />
-          <h2>Photos</h2>
-          {/* <hr /> */}
           <PhotosList
             product_id={product._id}
             product_url={product.url_name}
