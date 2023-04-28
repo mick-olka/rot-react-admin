@@ -45,10 +45,10 @@ export const TextBlocksPage = () => {
   return (
     <Box>
       <ItemsPage
-        title='Collections'
+        title='Text on Site'
         data={data}
         columns={columns}
-        pagination={false}
+        clientPagination
         onItemClick={onItemClick}
         onSearchTrigger={handleSearchTrigger}
       />

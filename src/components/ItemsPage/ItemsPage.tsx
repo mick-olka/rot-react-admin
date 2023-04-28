@@ -183,15 +183,13 @@ const ItemsTable = <T extends { _id: string }>(
 ) => {
   const onProdsSelect = (ids: string[]) => props.onSelect(ids)
   return (
-    <Box sx={{ height: '100%' }}>
-      <DataTable
-        rows={props.items}
-        columns={props.columns}
-        onRowClick={props.onItemClick}
-        onSelect={onProdsSelect}
-        limit={props.limit}
-        pagination={props.clientPagination}
-      />
-    </Box>
+    <DataTable
+      rows={props.items}
+      columns={props.columns}
+      onRowClick={props.onItemClick}
+      onSelect={onProdsSelect}
+      limit={props.limit}
+      pagination={props.clientPagination}
+    />
   )
 }

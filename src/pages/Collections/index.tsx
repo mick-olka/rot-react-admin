@@ -7,8 +7,8 @@ import { columns } from './data'
 import { ItemsPage } from 'src/components/ItemsPage/ItemsPage'
 import { useCollections, useDeleteCollectionsMany } from 'src/hooks/useCollections'
 import { getRouteWithId } from 'src/routing'
-import { I_Collection } from 'src/services/collections.service'
 import { ROUTES } from 'src/routing/routes'
+import { I_Collection } from 'src/services/collections.service'
 import { filterArrByReg } from 'src/utils/helpers/utils'
 
 export const CollectionsList = () => {
