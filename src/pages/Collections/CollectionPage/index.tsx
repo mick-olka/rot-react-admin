@@ -86,9 +86,9 @@ export const CollectionPage = () => {
             title={collection.name.ua}
             data={products}
             columns={product_columns}
-            pagination
-            page={page}
-            setPage={setPage}
+            // pagination
+            // page={page}
+            // setPage={setPage}
             clientPagination
             onDeleteMultiple={handleDeleteItems}
             onItemClick={onProdClick}

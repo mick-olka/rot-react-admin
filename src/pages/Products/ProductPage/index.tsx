@@ -2,6 +2,8 @@ import { Box, Skeleton } from '@mui/material'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { SimilarRelatedProducts } from './RelatedProducts'
+
 import { AvatarUploader, PhotosList, ProductForm } from 'src/components'
 import { useProductById, useUpdateProduct } from 'src/hooks/useProducts'
 import { I_Product, I_ProductForm } from 'src/services/products.service'
@@ -18,7 +20,7 @@ const getDefaultValues = (data: I_Product): I_ProductForm => {
 export const ProductPage = () => {
   const { id } = useParams()
   const { product, isFetching, isError } = useProductById(String(id))
-  const { update, isLoading } = useUpdateProduct()
+  const { update, isLoading } = useUpdateProduct(String(id))
 
   const onSubmit = (data: I_ProductForm) => {
     if (product && data) {
@@ -56,6 +58,23 @@ export const ProductPage = () => {
             product_url={product.url_name}
             photos={product.photos}
           />
+          <hr />
+          <SimilarRelatedProducts
+            prod_id={product._id}
+            related={product.related_products}
+            similar={product.similar_products}
+          />
+          {/* <ItemsPage
+            title={'Similar Products'}
+            data={product.similar_products}
+            columns={product_columns}
+            clientPagination
+            onDeleteMultiple={handleDeleteItems}
+            onItemClick={onProdClick}
+            deleteTitle='Remove these items from the collection'
+          >
+            <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
+          </ItemsPage> */}
         </Box>
       )}
       {isFetching && <Skeleton width='20rem' height='20rem' />}
@@ -63,28 +82,3 @@ export const ProductPage = () => {
     </Box>
   )
 }
-
-// const ProductPane = () => {
-//   return (
-//     <Box>
-//       <h2>Update Product</h2>
-//       <Box sx={{ display: 'flex' }}>
-//         <Box sx={{ margin: '3rem', height: '150px' }}>
-//           <AvatarUploader
-//             handleChange={uploadAvatar}
-//             currentURL={`${PHOTOS_URL}${product.thumbnail}`}
-//           />
-//         </Box>
-//         <ProductForm
-//           isLoading={productUpdate.isLoading}
-//           defaultValues={getDefaultValues(product)}
-//           onSubmit={onSubmit}
-//         />
-//       </Box>
-//       <hr />
-//       <h2>Photos</h2>
-//       {/* <hr /> */}
-//       <PhotosList product_id={product._id} product_url={product.url_name} photos={product.photos} />
-//     </Box>
-//   )
-// }

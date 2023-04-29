@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import { toasterPending } from './data'
@@ -22,6 +23,9 @@ export const useOrders = ({
       select: ({ data }) => data,
     },
   )
+  useEffect(() => {
+    refetch()
+  }, [regex])
   return {
     orders: data?.docs,
     count: data?.count,
