@@ -64,17 +64,6 @@ export const ProductPage = () => {
             related={product.related_products}
             similar={product.similar_products}
           />
-          {/* <ItemsPage
-            title={'Similar Products'}
-            data={product.similar_products}
-            columns={product_columns}
-            clientPagination
-            onDeleteMultiple={handleDeleteItems}
-            onItemClick={onProdClick}
-            deleteTitle='Remove these items from the collection'
-          >
-            <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
-          </ItemsPage> */}
         </Box>
       )}
       {isFetching && <Skeleton width='20rem' height='20rem' />}

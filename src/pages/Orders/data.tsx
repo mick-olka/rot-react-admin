@@ -20,7 +20,7 @@ export const cart_item_columns: GridColDef[] = [
           alignItems: 'center',
         }}
       >
-        {params.value.thumbnail ? (
+        {params.value?.thumbnail ? (
           <>
             <Box sx={{ width: '3rem', height: '3rem' }}>
               <Avatar
@@ -34,7 +34,9 @@ export const cart_item_columns: GridColDef[] = [
         ) : (
           <ImageIcon />
         )}
-        <Typography sx={{ marginLeft: '1rem' }}>{params.value.name.ua}</Typography>
+        <Typography sx={{ marginLeft: '1rem' }}>
+          {params.value ? params.value.name.ua : 'deleted product'}
+        </Typography>
       </Box>
     ),
     width: 300,

@@ -24,11 +24,11 @@ import { filterArrByReg } from 'src/utils/helpers/utils'
 export const CollectionPage = () => {
   const id = String(useParams().id)
   const navigate = useNavigate()
-  const [page, setPage] = useState<number>(1)
+  // const [page, setPage] = useState<number>(1)
   const [open, setOpen] = useState(false)
   const [productsSelectionMode, setProductsSelectionMode] = useState(false)
   const { collection, isLoading, isError } = useCollectionById(id)
-  const { update: deleteItems } = useUpdateCollectionItems(id)
+  const { update: updateItems } = useUpdateCollectionItems(id)
   const { update: update_collection } = useUpdateCollection(id)
   const [filter, setFilter] = useState<string | null>(null)
   const getFilteredProductsList = (): I_ProductPopulated[] =>
@@ -40,10 +40,10 @@ export const CollectionPage = () => {
       return []
     }, [collection, filter])
   const handleDeleteItems = (ids: string[]) => {
-    if (collection) deleteItems({ id: collection._id, data: { action: 'delete', items: ids } })
+    if (collection) updateItems({ id: collection._id, data: { action: 'delete', items: ids } })
   }
   const handleAddItems = (ids: string[]) => {
-    if (collection) deleteItems({ id: collection._id, data: { action: 'add', items: ids } })
+    if (collection) updateItems({ id: collection._id, data: { action: 'add', items: ids } })
   }
   const onProdClick = (id: string) => {
     if (collection) {

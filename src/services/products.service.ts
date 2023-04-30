@@ -39,6 +39,7 @@ export interface I_Product {
   photos: I_Photos[]
   related_products: I_ProductPopulated[]
   similar_products: I_ProductPopulated[]
+  collections: string[]
 }
 
 interface I_ProductsResData {
@@ -56,7 +57,9 @@ export interface I_ProductDto {
   name: I_Locales
   code: string
   price: number
-  thumbnail?: File
+  thumbnail: File
+  related_products?: string[]
+  similar_products?: string[]
 }
 
 export const productsAPI = {

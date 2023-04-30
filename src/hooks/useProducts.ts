@@ -60,7 +60,7 @@ export const useCreateProduct = () => {
 export const useUpdateProduct = (id: string) => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
-    ({ id, form_data }: { id: string; form_data: I_ProductDto }) =>
+    ({ id, form_data }: { id: string; form_data: Partial<I_ProductDto> }) =>
       toasterPending(ProductService.update(id, form_data)),
     { onSuccess: () => queryClient.invalidateQueries(['products', id]) },
   )
