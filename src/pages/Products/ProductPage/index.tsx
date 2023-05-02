@@ -9,14 +9,6 @@ import { useProductById, useUpdateProduct } from 'src/hooks/useProducts'
 import { I_Product, I_ProductForm } from 'src/services/products.service'
 import { PHOTOS_URL } from 'src/utils/constants/constants'
 
-const getDefaultValues = (data: I_Product): I_ProductForm => {
-  return {
-    name: data.name,
-    code: data.code,
-    price: data.price,
-  }
-}
-
 export const ProductPage = () => {
   const { id } = useParams()
   const { product, isFetching, isError } = useProductById(String(id))
@@ -47,11 +39,7 @@ export const ProductPage = () => {
                 currentURL={`${PHOTOS_URL}${product.thumbnail}`}
               />
             </Box>
-            <ProductForm
-              isLoading={isLoading}
-              initValues={getDefaultValues(product)}
-              onSubmit={onSubmit}
-            />
+            <ProductForm isLoading={isLoading} initValues={product} onSubmit={onSubmit} />
           </Box>
           <PhotosList
             product_id={product._id}

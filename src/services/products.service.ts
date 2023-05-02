@@ -40,6 +40,7 @@ export interface I_Product {
   related_products: I_ProductPopulated[]
   similar_products: I_ProductPopulated[]
   collections: string[]
+  index?: number
 }
 
 interface I_ProductsResData {
@@ -51,15 +52,17 @@ export interface I_ProductForm {
   name: I_Locales
   code: string
   price: number
+  index?: number
 }
 
 export interface I_ProductDto {
   name: I_Locales
   code: string
   price: number
-  thumbnail: File
+  thumbnail?: File
   related_products?: string[]
   similar_products?: string[]
+  index?: number
 }
 
 export interface I_ProductItemsDto {

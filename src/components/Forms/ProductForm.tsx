@@ -16,6 +16,7 @@ const def: I_ProductForm = {
   name: lanEnumToObject(''),
   code: '',
   price: 1000,
+  index: 0,
 }
 
 const fieldBoxStyles = { display: 'flex', width: '20rem', alignItems: 'left' }
@@ -53,6 +54,13 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
             <S.TextFieldStyled type='number' {...register('price', { required: !!required })} />
           </Box>
           {errors.code && <span>This field is required</span>}
+        </S.TextFieldBox>
+
+        <S.TextFieldBox>
+          <label>Index</label>
+          <Box sx={fieldBoxStyles}>
+            <S.TextFieldStyled type='number' {...register('index', { required: false })} />
+          </Box>
         </S.TextFieldBox>
 
         <S.ButtonStyled variant='contained' type='submit' disabled={isLoading}>
