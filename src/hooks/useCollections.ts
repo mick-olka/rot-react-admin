@@ -47,7 +47,7 @@ export const useUpdateCollectionItems = (validation_id?: string) => {
       toasterPending(CollectionService.updateItems(id, data)),
     {
       onSuccess: (data) =>
-        queryClient.invalidateQueries(['collections', validation_id || data.data.url_name]),
+        queryClient.invalidateQueries(['collections', validation_id || data.data._id]),
     },
   )
   return { update: mutateAsync, collection: data, isLoading, isError }

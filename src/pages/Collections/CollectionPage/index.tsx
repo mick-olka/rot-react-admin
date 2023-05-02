@@ -47,8 +47,8 @@ export const CollectionPage = () => {
   }
   const onProdClick = (id: string) => {
     if (collection) {
-      const url_name = collection.items.find((p) => p._id === id)?.url_name
-      if (url_name) navigate(getRouteWithId(ROUTES.product, url_name))
+      // const url_name = collection.items.find((p) => p._id === id)?.url_name
+      navigate(getRouteWithId(ROUTES.product, id))
     }
   }
   const handleSearchTrigger = (query?: string) => {

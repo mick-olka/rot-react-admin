@@ -26,8 +26,8 @@ export const CollectionsList = () => {
     }, [collections, filter])
   const onItemClick = (id: string) => {
     if (collections) {
-      const url_name = collections.find((c) => c._id === id)?.url_name
-      if (url_name) navigate(getRouteWithId(ROUTES.collection, url_name))
+      // const url_name = collections.find((c) => c._id === id)?.url_name
+      navigate(getRouteWithId(ROUTES.collection, id))
     }
   }
   const handleSearchTrigger = (query?: string) => {

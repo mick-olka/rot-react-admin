@@ -29,8 +29,8 @@ export const ProductsList = () => {
   }, [data.count])
   const onProdClick = (id: string) => {
     if (products) {
-      const url_name = products.find((p) => p._id === id)?.url_name
-      if (url_name) navigate(getRouteWithId(ROUTES.product, url_name))
+      // const url_name = products.find((p) => p._id === id)?.url_name
+      navigate(getRouteWithId(ROUTES.product, id))
     }
   }
   const onCreateProdClick = () => {

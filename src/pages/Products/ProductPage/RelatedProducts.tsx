@@ -5,7 +5,7 @@ import { ChooseProducts } from '../ChooseProducts'
 import { product_columns } from '../data'
 
 import { ItemsPage } from 'src/components/ItemsPage/ItemsPage'
-import { useUpdateProduct } from 'src/hooks/useProducts'
+import { useUpdateProductItems } from 'src/hooks/useProducts'
 import { I_ProductDto, I_ProductPopulated } from 'src/services/products.service'
 
 interface I_Props {
@@ -20,7 +20,7 @@ export const SimilarRelatedProducts = ({ prod_id, related, similar }: I_Props) =
   const [type, setType] = useState<ListType>(null)
 
   const [productsSelectionMode, setProductsSelectionMode] = useState(false)
-  const { update, isLoading } = useUpdateProduct(prod_id)
+  const { update, isLoading } = useUpdateProductItems(prod_id)
 
   const handleItemClick = (id: string) => {
     //
@@ -48,18 +48,27 @@ export const SimilarRelatedProducts = ({ prod_id, related, similar }: I_Props) =
   }
 
   const handleDeleteItems = (ids: string[]) => {
-    //
+    if (type) {
+      update({
+        id: prod_id,
+        form_data: {
+          type,
+          items: ids,
+          action: 'delete',
+        },
+      })
+    }
   }
   const handleAddItems = (ids: string[]) => {
     if (type) {
-      const idsList = data[type].data.map((i) => i._id)
-      ids.forEach((id) => {
-        if (!idsList.includes(id)) idsList.push(id)
+      update({
+        id: prod_id,
+        form_data: {
+          type,
+          items: ids,
+          action: 'add',
+        },
       })
-      const new_data: Partial<I_ProductDto> = {}
-      if (type === 'similar') new_data.similar_products = idsList
-      else if (type === 'related') new_data.related_products = idsList
-      update({ id: prod_id, form_data: new_data })
     }
   }
 

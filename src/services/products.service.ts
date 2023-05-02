@@ -62,6 +62,12 @@ export interface I_ProductDto {
   similar_products?: string[]
 }
 
+export interface I_ProductItemsDto {
+  items: string[]
+  type: 'related' | 'similar'
+  action: 'add' | 'delete'
+}
+
 export const productsAPI = {
   async getAll({ page, limit, regex }: { page?: number; limit?: number; regex?: string }) {
     let route = `/products?page=${page || 1}&limit=${limit || products_page_limit}`
@@ -78,6 +84,9 @@ export const productsAPI = {
   async update(id: string, data: Partial<I_ProductDto>) {
     const formData = getFormData(data)
     return axios.patch<I_Product>(`/products/${id}`, formData)
+  },
+  async updateItems(id: string, data: I_ProductItemsDto) {
+    return axios.put<I_Product>(`/products/${id}`, data)
   },
   async delete(id: string) {
     return axios.delete<I_Product>(`/products/${id}`)

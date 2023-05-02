@@ -4,7 +4,7 @@ import { products_page_limit } from './../utils/constants/constants'
 import { toasterPending } from './data'
 
 import { ProductService } from 'src/services'
-import { I_ProductDto } from 'src/services/products.service'
+import { I_ProductDto, I_ProductItemsDto } from 'src/services/products.service'
 
 export const useProducts = ({
   page,
@@ -62,6 +62,16 @@ export const useUpdateProduct = (id: string) => {
   const { mutateAsync, data, isLoading, isError } = useMutation(
     ({ id, form_data }: { id: string; form_data: Partial<I_ProductDto> }) =>
       toasterPending(ProductService.update(id, form_data)),
+    { onSuccess: () => queryClient.invalidateQueries(['products', id]) },
+  )
+  return { update: mutateAsync, product: data, isLoading, isError }
+}
+
+export const useUpdateProductItems = (id: string) => {
+  const queryClient = useQueryClient()
+  const { mutateAsync, data, isLoading, isError } = useMutation(
+    ({ id, form_data }: { id: string; form_data: I_ProductItemsDto }) =>
+      toasterPending(ProductService.updateItems(id, form_data)),
     { onSuccess: () => queryClient.invalidateQueries(['products', id]) },
   )
   return { update: mutateAsync, product: data, isLoading, isError }
