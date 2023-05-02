@@ -88,17 +88,19 @@ export const SimilarRelatedProducts = ({ prod_id, related, similar }: I_Props) =
         </ToggleButton>
       </ToggleButtonGroup>
       {type && (
-        <ItemsPage
-          // title={''}
-          data={data[type]}
-          columns={product_columns}
-          clientPagination
-          onDeleteMultiple={handleDeleteItems}
-          onItemClick={handleItemClick}
-          deleteTitle='Remove these items from the collection'
-        >
-          <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
-        </ItemsPage>
+        <Box sx={{ height: '600px' }}>
+          <ItemsPage
+            // title={''}
+            data={data[type]}
+            columns={product_columns}
+            clientPagination
+            onDeleteMultiple={handleDeleteItems}
+            onItemClick={handleItemClick}
+            deleteTitle='Remove these items from the collection'
+          >
+            <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
+          </ItemsPage>
+        </Box>
       )}
     </Box>
   )
