@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 export const TextFieldStyled = styled(TextField)`
   border-radius: 15px;
-  width: 15rem;
   margin: 1rem;
   background-color: ${({ theme }) => theme.components.textInput.bg};
   color: ${({ theme }) => theme.components.textInput.c};
