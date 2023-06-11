@@ -72,7 +72,7 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
   //     }
   //   : undefined
   return (
-    <S.ItemsListPane>
+    <S.ItemsListPane sx={{ maxWidth: '100%' }}>
       {data.isLoading && <Skeleton width='20rem' height='20rem' />}
       {data.data && (
         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>

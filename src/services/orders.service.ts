@@ -64,6 +64,7 @@ export interface I_OrderForm {
   name: string
   phone: string
   message?: string
+  status: StatusEnum
 }
 
 export const ordersAPI = {

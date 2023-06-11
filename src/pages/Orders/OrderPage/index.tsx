@@ -56,6 +56,10 @@ export const OrderPage = () => {
     if (order) {
       let sum = 0
       cart.forEach((i) => {
+        if (!i.product) {
+          alert('Delete nonexisting products')
+          return
+        }
         sum += i.product.price * i.count
       })
       const form_data: Partial<I_OrderDto> = {
@@ -110,10 +114,15 @@ export const OrderPage = () => {
 
   if (order) {
     return (
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box>
+        <h1>{`Order #${order._id.slice(20, 24)} - ${order.name}`}</h1>
+        <Box sx={{ margin: '0 2rem' }}>
+          <OrderForm initValues={order} isLoading={isLoading} onSubmit={handleOrderUpdate} />
+        </Box>
+
         <Box sx={{ height: '100%' }}>
           <ItemsPage
-            title={`Order #${order._id.slice(20, 24)} - ${order.name}`}
+            title={'Ordered products'}
             data={cart_items}
             columns={cart_item_columns}
             clientPagination
@@ -122,16 +131,16 @@ export const OrderPage = () => {
             deleteTitle='Remove these items from the order'
           >
             <>
-              <RoundButton onClick={() => setOpen(true)}>
+              {/* <RoundButton onClick={() => setOpen(true)}>
                 <EditOutlinedIcon />
-              </RoundButton>
+              </RoundButton> */}
               <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
             </>
           </ItemsPage>
         </Box>
-        <ContentDialog open={open} setOpen={setOpen}>
+        {/* <ContentDialog open={open} setOpen={setOpen}>
           <OrderForm initValues={order} isLoading={isLoading} onSubmit={handleOrderUpdate} />
-        </ContentDialog>
+        </ContentDialog> */}
         <ContentDialog open={itemOpen} setOpen={setItemOpen}>
           {cartItem && (
             <CartItemForm

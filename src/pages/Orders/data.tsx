@@ -5,7 +5,23 @@ import { GridColDef } from '@mui/x-data-grid'
 
 import { PHOTOS_URL } from 'src/utils/constants/constants'
 
-export const columns: GridColDef[] = [{ field: 'name', headerName: 'Name', width: 130 }]
+const date_options = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}
+
+export const columns: GridColDef[] = [
+  { field: 'name', headerName: 'Name', width: 130 },
+  { field: 'status', headerName: 'Status', width: 130 },
+  {
+    field: 'date',
+    headerName: 'Date',
+    width: 130,
+    valueFormatter: (v) =>
+      new Date(v.value).toLocaleDateString('ua-UA', date_options as Intl.DateTimeFormatOptions),
+  },
+]
 
 export const cart_item_columns: GridColDef[] = [
   {
