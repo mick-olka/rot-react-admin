@@ -1,12 +1,13 @@
 import AddIcon from '@mui/icons-material/Add'
 import DeleteOutlined from '@mui/icons-material/DeleteOutlined'
-import { Box, Pagination, Skeleton, Tooltip } from '@mui/material'
+import { Box, Pagination, Tooltip } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 import { useState } from 'react'
 
 import * as S from '../../components/styles'
 
 import { AlertDialog, DataTable, SearchField } from 'src/components'
+import { StatusWrapper } from 'src/layouts/Status'
 
 type DataType<T> = {
   count: number
@@ -66,54 +67,49 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
 
   const onDeleteClick = () => setDeleteDialog(true)
   const onConfirmDelete = () => deleteMany && deleteMany(selected)
-  // const onChooseCollection = onChooseClick
-  //   ? (col_id: string) => {
-  //       onChooseClick(col_id, selected)
-  //     }
-  //   : undefined
   return (
     <S.ItemsListPane sx={{ maxWidth: '100%' }}>
-      {data.isLoading && <Skeleton width='20rem' height='20rem' />}
-      {data.data && (
-        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-          <ControlPane
-            title={title}
-            selected={selected}
-            onDeleteClick={deleteMany ? onDeleteClick : undefined}
-            handleSearchTrigger={onSearchTrigger ? handleSearchTrigger : undefined}
-            onCreateClick={onCreateClick}
-            // onChooseClick={onChooseCollection}
-            deleteTitle={deleteTitle}
-          >
-            {children}
-          </ControlPane>
-          <ItemsTable
-            columns={columns}
-            items={data.data}
-            onSelect={handleSelect}
-            onItemClick={onItemClick}
-            limit={data.limit}
-            clientPagination={clientPagination}
-          />
-          {pagination && !clientPagination && (
-            <Pagination
-              sx={{ paddingTop: '0.5rem' }}
-              onChange={onPageChange}
-              count={Math.ceil(data.count! / data.limit)}
-              page={page}
+      <StatusWrapper isError={data.isError}>
+        {data.data && (
+          <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+            <ControlPane
+              title={title}
+              selected={selected}
+              onDeleteClick={deleteMany ? onDeleteClick : undefined}
+              handleSearchTrigger={onSearchTrigger ? handleSearchTrigger : undefined}
+              onCreateClick={onCreateClick}
+              // onChooseClick={onChooseCollection}
+              deleteTitle={deleteTitle}
+            >
+              {children}
+            </ControlPane>
+            <ItemsTable
+              columns={columns}
+              items={data.data}
+              onSelect={handleSelect}
+              onItemClick={onItemClick}
+              limit={data.limit}
+              clientPagination={clientPagination}
             />
-          )}
-        </Box>
-      )}
-      {data.isError && <div>Error</div>}
-      <AlertDialog
-        open={deleteDialog}
-        setOpen={setDeleteDialog}
-        title={deleteTitle || 'Delete Selected Items?'}
-        text='This action can not be undone'
-        onAgree={onConfirmDelete}
-        onCancel={() => null}
-      />
+            {pagination && !clientPagination && (
+              <Pagination
+                sx={{ paddingTop: '0.5rem' }}
+                onChange={onPageChange}
+                count={Math.ceil(data.count! / data.limit)}
+                page={page}
+              />
+            )}
+          </Box>
+        )}
+        <AlertDialog
+          open={deleteDialog}
+          setOpen={setDeleteDialog}
+          title={deleteTitle || 'Delete Selected Items?'}
+          text='This action can not be undone'
+          onAgree={onConfirmDelete}
+          onCancel={() => null}
+        />
+      </StatusWrapper>
     </S.ItemsListPane>
   )
 }

@@ -6,11 +6,11 @@ import * as S from './styles'
 import { CollectionForm } from 'src/components/Forms/CollectionForm'
 import { useCreateCollection } from 'src/hooks/useCollections'
 import { getRouteWithId } from 'src/routing'
-import { I_CollectionForm } from 'src/services/collections.service'
 import { ROUTES } from 'src/routing/routes'
+import { I_CollectionForm } from 'src/services/collections.service'
 
 export const CreateCollectionPage = () => {
-  const { create, isLoading, isError, product } = useCreateCollection()
+  const { create, isLoading, isError, collection } = useCreateCollection()
 
   const onSubmit = (data: I_CollectionForm) => {
     const create_data = { ...data }
@@ -24,7 +24,7 @@ export const CreateCollectionPage = () => {
         <CollectionForm onSubmit={onSubmit} isLoading={isLoading} />
       </Box>
       {isError && <h3>Error creating collection</h3>}
-      {product && <Navigate to={getRouteWithId(ROUTES.collection, product.data._id)} />}
+      {collection && <Navigate to={getRouteWithId(ROUTES.collection, collection.data._id)} />}
     </S.Pane>
   )
 }

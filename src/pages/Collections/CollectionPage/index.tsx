@@ -78,43 +78,36 @@ export const CollectionPage = () => {
       </Box>
     )
   }
-  if (collection) {
-    return (
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ height: '100%' }}>
-          <ItemsPage
-            title={collection.name.ua}
-            data={products}
-            columns={product_columns}
-            // pagination
-            // page={page}
-            // setPage={setPage}
-            clientPagination
-            onDeleteMultiple={handleDeleteItems}
-            onItemClick={onProdClick}
-            onSearchTrigger={handleSearchTrigger}
-            deleteTitle='Remove these items from the collection'
-          >
-            <RoundButton onClick={() => setOpen(true)}>
-              <EditOutlinedIcon />
-            </RoundButton>
-            <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
-          </ItemsPage>
-        </Box>
-        <ContentDialog open={open} setOpen={setOpen}>
-          <CollectionForm
-            initValues={collection}
-            isLoading={isLoading}
-            onSubmit={handleCollectionUpdate}
-          />
-        </ContentDialog>
-      </Box>
-    )
-  }
-  if (isLoading) return <Box>Loading...</Box>
+
   return (
-    <Box>
-      <h3>Error</h3>
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ height: '100%' }}>
+        <ItemsPage
+          title={collection?.name.ua}
+          data={products}
+          columns={product_columns}
+          // pagination
+          // page={page}
+          // setPage={setPage}
+          clientPagination
+          onDeleteMultiple={handleDeleteItems}
+          onItemClick={onProdClick}
+          onSearchTrigger={handleSearchTrigger}
+          deleteTitle='Remove these items from the collection'
+        >
+          <RoundButton onClick={() => setOpen(true)}>
+            <EditOutlinedIcon />
+          </RoundButton>
+          <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
+        </ItemsPage>
+      </Box>
+      <ContentDialog open={open} setOpen={setOpen}>
+        <CollectionForm
+          initValues={collection}
+          isLoading={isLoading}
+          onSubmit={handleCollectionUpdate}
+        />
+      </ContentDialog>
     </Box>
   )
 }

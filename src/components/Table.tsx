@@ -9,10 +9,11 @@ interface I_Props<T> {
   onSelect: (ids: string[]) => void
   limit?: number
   pagination?: boolean
+  isLoading?: boolean
 }
 
 export const DataTable = <T,>(props: I_Props<T>) => {
-  const { columns, rows, onRowClick, onSelect, limit, pagination } = props
+  const { columns, rows, onRowClick, onSelect, limit, pagination, isLoading } = props
   const pageSize = limit || products_page_limit
   return (
     <DataGrid
@@ -37,6 +38,7 @@ export const DataTable = <T,>(props: I_Props<T>) => {
       }}
       keepNonExistentRowsSelected
       onRowClick={(param) => onRowClick(String(param.id))}
+      loading={isLoading}
       sx={{
         '.MuiDataGrid-overlayWrapperInner': { width: '80vw !important' },
         '.MuiDataGrid-virtualScrollerContent': { width: '80vw !important' },
