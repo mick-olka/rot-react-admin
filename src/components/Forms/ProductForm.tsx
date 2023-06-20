@@ -30,9 +30,15 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
     defaultValues: initValues || def,
   })
 
+  // to filter all other fields that may pass from getById response
+  const prepareSubmit = (data: I_ProductForm) => {
+    const filteredData = { name: data.name, code: data.code, price: data.price, index: data.index }
+    onSubmit(filteredData)
+  }
+
   return (
     <Box sx={{ width: '30rem' }}>
-      <form onSubmitCapture={handleSubmit(onSubmit)}>
+      <form onSubmitCapture={handleSubmit(prepareSubmit)}>
         <S.TextFieldBox>
           <label>Name</label>
           <Box sx={fieldBoxStyles}>

@@ -1,9 +1,11 @@
 import ImageIcon from '@mui/icons-material/Image'
 import { Avatar, Box } from '@mui/material'
 import TextField from '@mui/material/TextField'
-import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
-import { useState } from 'react'
+import { GridColDef } from '@mui/x-data-grid'
+import { useEffect, useState } from 'react'
+import { useDebounce } from 'use-debounce'
 
+import { useUpdateProduct } from 'src/hooks/useProducts'
 import { PHOTOS_URL } from 'src/utils/constants/constants'
 
 export const product_columns: GridColDef[] = [
@@ -31,20 +33,30 @@ export const product_columns: GridColDef[] = [
     // valueGetter: (params) => params.row.thumbnail,
   },
   { field: 'price', headerName: 'Price', width: 130 },
-  { field: 'index', headerName: 'Index', width: 130 },
-  // {
-  //   field: 'index',
-  //   headerName: 'Index',
-  //   width: 130,
-  //   renderCell: (params) => {
-  //     // console.log(params)
-  //     const [index, setIndex] = useState(params.value || 0)
-  //     return (
-  //       <Box onClick={(e) => e.stopPropagation()}>
-  //         <TextField size='small' value={index} onChange={(e) => setIndex(e.currentTarget.value)} />
-  //       </Box>
-  //     )
-  //   },
-  //   // valueGetter: (params) => params.row.thumbnail,
-  // },
+  // { field: 'index', headerName: 'Index', width: 130 },
+  {
+    field: 'index',
+    headerName: 'Index',
+    width: 100,
+    renderCell: (params) => {
+      const [index, setIndex] = useState<number>(params.value || 0)
+      const [value, status] = useDebounce(index, 1000)
+      const { update, isLoading } = useUpdateProduct(params.row._id)
+      useEffect(() => {
+        if (params.value !== value) update({ id: params.row._id, form_data: { index: value } })
+      }, [value])
+      return (
+        <Box onClick={(e) => e.stopPropagation()}>
+          <TextField
+            size='small'
+            type='number'
+            value={index}
+            onChange={(e) => setIndex(Number(e.currentTarget.value))}
+            disabled={isLoading}
+          />
+        </Box>
+      )
+    },
+    // valueGetter: (params) => params.row.thumbnail,
+  },
 ]
