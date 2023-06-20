@@ -32,9 +32,20 @@ export const OrderForm = (props: Readonly<I_Props>) => {
     defaultValues: initValues || def,
   })
   watch('status')
+
+  // in case other fields get passed from getById response
+  const prepareSubmit = (data: I_OrderForm) => {
+    const filtered_data = {
+      name: data.name,
+      phone: data.phone,
+      message: data.message,
+      status: data.status,
+    }
+    onSubmit(filtered_data)
+  }
   return (
     <Box sx={{ width: '30rem' }}>
-      <form onSubmitCapture={handleSubmit(onSubmit)}>
+      <form onSubmitCapture={handleSubmit(prepareSubmit)}>
         <S.TextFieldBox>
           <InputLabel>Client Name</InputLabel>
           <S.FieldBox>

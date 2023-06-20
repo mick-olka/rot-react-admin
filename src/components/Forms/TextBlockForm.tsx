@@ -29,9 +29,17 @@ export const TextBlockForm = (props: Readonly<I_Props>) => {
   } = useForm<I_TextBlockForm>({
     defaultValues: initValues || def,
   })
+
+  // in case other fields get passed from getById response
+  const prepareSubmit = (data: I_TextBlockForm) => {
+    const filtered_data = {
+      text: data.text,
+    }
+    onSubmit(filtered_data)
+  }
   return (
     <Box sx={{ width: '30rem' }}>
-      <form onSubmitCapture={handleSubmit(onSubmit)}>
+      <form onSubmitCapture={handleSubmit(prepareSubmit)}>
         <S.TextFieldBox>
           <label>Text</label>
           <Box sx={fieldBoxStyles}>

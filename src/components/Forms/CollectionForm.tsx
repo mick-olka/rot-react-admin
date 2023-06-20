@@ -31,9 +31,18 @@ export const CollectionForm = (props: Readonly<I_Props>) => {
   } = useForm<I_CollectionForm>({
     defaultValues: initValues || def,
   })
+
+  // in case other fields get passed from getById response
+  const prepareSubmit = (data: I_CollectionForm) => {
+    const filtered_data = {
+      name: data.name,
+      description: data.description,
+    }
+    onSubmit(filtered_data)
+  }
   return (
     <Box sx={{ width: '30rem' }}>
-      <form onSubmitCapture={handleSubmit(onSubmit)}>
+      <form onSubmitCapture={handleSubmit(prepareSubmit)}>
         <S.TextFieldBox>
           <label>Name</label>
           <Box sx={fieldBoxStyles}>

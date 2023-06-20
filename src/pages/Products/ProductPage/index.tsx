@@ -6,7 +6,7 @@ import { SimilarRelatedProducts } from './RelatedProducts'
 
 import { AvatarUploader, PhotosList, ProductForm } from 'src/components'
 import { useProductById, useUpdateProduct } from 'src/hooks/useProducts'
-import { I_Product, I_ProductForm } from 'src/services/products.service'
+import { I_ProductForm } from 'src/services/products.service'
 import { PHOTOS_URL } from 'src/utils/constants/constants'
 
 export const ProductPage = () => {
