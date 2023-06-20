@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import * as S from 'src/components/styles'
 
-import { I_CartItem, I_CartItemPopulated } from 'src/services/orders.service'
+import { I_CartItemPopulated } from 'src/services/orders.service'
 
 interface I_Props {
   onSubmit: (data: I_CartItemPopulated) => void

@@ -1,12 +1,13 @@
-import AddIcon from '@mui/icons-material/Add'
-import DeleteOutlined from '@mui/icons-material/DeleteOutlined'
-import { Box, Pagination, Tooltip } from '@mui/material'
+import { Box, Pagination } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 import { useState } from 'react'
 
+import { ControlPane } from './ControlPane'
+import { ItemsTable } from './ItemsTable'
+
 import * as S from '../../components/styles'
 
-import { AlertDialog, DataTable, SearchField } from 'src/components'
+import { AlertDialog } from 'src/components'
 import { StatusWrapper } from 'src/layouts/Status'
 
 type DataType<T> = {
@@ -70,37 +71,36 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
   return (
     <S.ItemsListPane sx={{ maxWidth: '100%' }}>
       <StatusWrapper isError={data.isError}>
-        {data.data && (
-          <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-            <ControlPane
-              title={title}
-              selected={selected}
-              onDeleteClick={deleteMany ? onDeleteClick : undefined}
-              handleSearchTrigger={onSearchTrigger ? handleSearchTrigger : undefined}
-              onCreateClick={onCreateClick}
-              // onChooseClick={onChooseCollection}
-              deleteTitle={deleteTitle}
-            >
-              {children}
-            </ControlPane>
-            <ItemsTable
-              columns={columns}
-              items={data.data}
-              onSelect={handleSelect}
-              onItemClick={onItemClick}
-              limit={data.limit}
-              clientPagination={clientPagination}
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <ControlPane
+            title={title}
+            selected={selected}
+            onDeleteClick={deleteMany ? onDeleteClick : undefined}
+            handleSearchTrigger={onSearchTrigger ? handleSearchTrigger : undefined}
+            onCreateClick={onCreateClick}
+            // onChooseClick={onChooseCollection}
+            deleteTitle={deleteTitle}
+          >
+            {children}
+          </ControlPane>
+          <ItemsTable
+            columns={columns}
+            items={data.data}
+            onSelect={handleSelect}
+            onItemClick={onItemClick}
+            limit={data.limit}
+            clientPagination={clientPagination}
+            isLoading={data.isLoading}
+          />
+          {pagination && !clientPagination && (
+            <Pagination
+              sx={{ paddingTop: '0.5rem' }}
+              onChange={onPageChange}
+              count={Math.ceil(data.count! / data.limit)}
+              page={page}
             />
-            {pagination && !clientPagination && (
-              <Pagination
-                sx={{ paddingTop: '0.5rem' }}
-                onChange={onPageChange}
-                count={Math.ceil(data.count! / data.limit)}
-                page={page}
-              />
-            )}
-          </Box>
-        )}
+          )}
+        </Box>
         <AlertDialog
           open={deleteDialog}
           setOpen={setDeleteDialog}
@@ -111,81 +111,5 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
         />
       </StatusWrapper>
     </S.ItemsListPane>
-  )
-}
-
-const ControlPane = (
-  props: Readonly<{
-    title?: string
-    selected?: string[]
-    deleteTitle?: string
-    children?: React.ReactNode
-    handleSearchTrigger?: (text: string) => void
-    onDeleteClick?: () => void
-    onCreateClick?: () => void
-    // onChooseClick?: (id: string) => void
-  }>,
-) => {
-  return (
-    <S.ControlPaneStyled>
-      <S.ControlPaneBox>
-        {props.title && <h2>{props.title}</h2>}
-        {props.children}
-        {props.onCreateClick && (
-          <S.RoundButton color='primary' variant='contained' onClick={props.onCreateClick}>
-            <AddIcon />
-          </S.RoundButton>
-        )}
-      </S.ControlPaneBox>
-      <S.ControlPaneBox>
-        {props.handleSearchTrigger && <SearchField onSearchTrigger={props.handleSearchTrigger} />}
-        {props.selected && (
-          <>
-            {/* {props.onChooseClick && (
-              <CollectionSelector
-                disabled={!props.selected.length}
-                onSubmit={props.onChooseClick}
-              />
-            )} */}
-            {props.onDeleteClick && (
-              <Tooltip title={props.deleteTitle || 'Delete Selected Items'}>
-                <Box>
-                  <S.RoundButton
-                    variant='contained'
-                    disabled={!props.selected.length}
-                    onClick={props.onDeleteClick}
-                  >
-                    <DeleteOutlined />
-                  </S.RoundButton>
-                </Box>
-              </Tooltip>
-            )}
-          </>
-        )}
-      </S.ControlPaneBox>
-    </S.ControlPaneStyled>
-  )
-}
-
-const ItemsTable = <T extends { _id: string }>(
-  props: Readonly<{
-    columns: GridColDef[]
-    items: T[]
-    limit: number
-    clientPagination?: boolean
-    onSelect: (ids: string[]) => void
-    onItemClick: (id: string) => void
-  }>,
-) => {
-  const onProdsSelect = (ids: string[]) => props.onSelect(ids)
-  return (
-    <DataTable
-      rows={props.items}
-      columns={props.columns}
-      onRowClick={props.onItemClick}
-      onSelect={onProdsSelect}
-      limit={props.limit}
-      pagination={props.clientPagination}
-    />
   )
 }
