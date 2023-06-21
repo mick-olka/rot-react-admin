@@ -83,7 +83,7 @@ export const useDeleteProduct = () => {
     (id: string) => toasterPending(ProductService.delete(id)),
     { onSuccess: () => queryClient.invalidateQueries(['products']) },
   )
-  return { delete: mutateAsync, product: data, isLoading, isError }
+  return { deleteOne: mutateAsync, product: data, isLoading, isError }
 }
 
 export const useDeleteProductsMany = () => {

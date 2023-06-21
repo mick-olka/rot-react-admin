@@ -1,11 +1,14 @@
-import { Box, Skeleton } from '@mui/material'
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
+import { Box, IconButton } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { SimilarRelatedProducts } from './RelatedProducts'
 
-import { AvatarUploader, PhotosList, ProductForm } from 'src/components'
-import { useProductById, useUpdateProduct } from 'src/hooks/useProducts'
+import { AlertDialog, AvatarUploader, PhotosList, ProductForm } from 'src/components'
+import { useDeleteProduct, useProductById, useUpdateProduct } from 'src/hooks/useProducts'
+import { StatusWrapper } from 'src/layouts/Status'
+import { ROUTES } from 'src/routing/routes'
 import { I_ProductForm } from 'src/services/products.service'
 import { PHOTOS_URL } from 'src/utils/constants/constants'
 
@@ -13,6 +16,8 @@ export const ProductPage = () => {
   const { id } = useParams()
   const { product, isFetching, isError } = useProductById(String(id))
   const { update, isLoading } = useUpdateProduct(String(id))
+  const { deleteOne, isLoading: delete_loading, product: delete_result } = useDeleteProduct()
+  const navigate = useNavigate()
 
   const onSubmit = (data: I_ProductForm) => {
     if (product && data) {
@@ -22,16 +27,27 @@ export const ProductPage = () => {
   }
 
   const [file, setFile] = useState<File | undefined>(undefined)
+  const [deleteAlert, setDeleteAlert] = useState(false)
 
   const uploadAvatar = (file: File) => {
     setFile(file)
   }
 
+  const onDeleteProduct = () => {
+    if (product) deleteOne(product._id)
+    navigate(ROUTES.home)
+  }
+
   return (
-    <Box sx={{ padding: '0 2rem' }}>
-      {!isFetching && product && (
+    <StatusWrapper isLoading={isFetching} isError={isError} sx={{ padding: '0 2rem' }}>
+      {product && (
         <Box>
-          <h2>Update Product</h2>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <h2>Update Product</h2>
+            <IconButton onClick={() => setDeleteAlert(true)} disabled={delete_loading}>
+              <DeleteOutlineRoundedIcon />
+            </IconButton>
+          </Box>
           <Box sx={{ display: 'flex' }}>
             <Box sx={{ margin: '3rem', height: '150px', width: '150px' }}>
               <AvatarUploader
@@ -54,8 +70,14 @@ export const ProductPage = () => {
           />
         </Box>
       )}
-      {isFetching && <Skeleton width='20rem' height='20rem' />}
-      {isError && <div>Error</div>}
-    </Box>
+      <AlertDialog
+        open={deleteAlert}
+        setOpen={setDeleteAlert}
+        title={'Delete this product?'}
+        text='This action can not be undone'
+        onAgree={onDeleteProduct}
+        onCancel={() => null}
+      />
+    </StatusWrapper>
   )
 }

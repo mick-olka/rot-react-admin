@@ -18,7 +18,7 @@ export const getFormData = (data: object): FormData => {
       for (let i = 0; i < value.length; i++) {
         form_data.append(key, value[i])
       }
-    } else form_data.append(key, typeof value === 'string' ? value : parsed_obj)
+    } else form_data.append(key, typeof value === 'string' ? JSON.stringify(value) : parsed_obj)
   }
   return form_data
 }
