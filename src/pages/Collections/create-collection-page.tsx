@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 import * as S from './styles'
 
 import { CollectionForm } from 'src/components/forms/collection-form'
-import { useCreateCollection } from 'src/hooks/useCollections'
+import { useCreateCollection } from 'src/hooks/use-collections'
 import { I_CollectionForm } from 'src/models'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'

@@ -9,7 +9,7 @@ import { ContentDialog } from 'src/components/dialogs/content-dialog'
 import { CartItemForm } from 'src/components/forms/cart-item-form'
 import { ItemsPage } from 'src/components/items-page/ItemsPage'
 
-import { useOrderById, useUpdateOrder } from 'src/hooks/useOrders'
+import { useOrderById, useUpdateOrder } from 'src/hooks/use-orders'
 import { ChooseProducts } from 'src/pages/products/choose-products-pane'
 import { I_OrderDto, I_CartItemPopulated, StatusEnum } from 'src/services/orders.service'
 

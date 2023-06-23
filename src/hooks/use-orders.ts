@@ -3,8 +3,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import { toasterPending } from './data'
 
+import { I_OrderDto } from 'src/models'
 import { OrdersService } from 'src/services'
-import { I_OrderDto } from 'src/services/orders.service'
 import { orders_page_limit } from 'src/utils'
 
 export const useOrders = ({

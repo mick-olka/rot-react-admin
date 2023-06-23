@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'src/styles/normalize.scss'
 import 'src/styles/fonts.scss'
 
-import { useCheckLogin } from './hooks/useAuth'
+import { useCheckLogin } from './hooks/use-auth'
 import { Routing } from './routing'
 import { ROUTES } from './routing/routes'
 import { theme } from './styles/theme'

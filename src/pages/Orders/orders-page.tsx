@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { columns } from './data'
 
 import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { useDeleteOrdersMany, useOrders } from 'src/hooks/useOrders'
+import { useDeleteOrdersMany, useOrders } from 'src/hooks/use-orders'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
 

@@ -5,7 +5,7 @@ import { GridColDef } from '@mui/x-data-grid'
 import { useEffect, useState } from 'react'
 import { useDebounce } from 'use-debounce'
 
-import { useUpdateProduct } from 'src/hooks/useProducts'
+import { useUpdateProduct } from 'src/hooks/use-products'
 import { PHOTOS_URL } from 'src/utils'
 
 export const product_columns: GridColDef[] = [

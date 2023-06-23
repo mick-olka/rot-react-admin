@@ -7,7 +7,7 @@ import { I_Credentials } from './credentials-form'
 import * as S from './styles'
 
 import { TextFieldBox, TextFieldStyled } from 'src/components/styles'
-import { useRegister } from 'src/hooks/useAuth'
+import { useRegister } from 'src/hooks/use-auth'
 import { ROUTES } from 'src/routing/routes'
 import { useAuthStore } from 'src/store/auth.store'
 

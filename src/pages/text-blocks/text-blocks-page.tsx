@@ -6,7 +6,7 @@ import { columns, textBlocksFilter } from './data'
 import { TextBlockForm } from 'src/components'
 import { ContentDialog } from 'src/components/dialogs/content-dialog'
 import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { useTextBlockById, useTextBlocks, useUpdateTextBlock } from 'src/hooks/useTextBlocks'
+import { useTextBlockById, useTextBlocks, useUpdateTextBlock } from 'src/hooks/use-text-blocks'
 import { I_TextBlock, I_TextBlockForm } from 'src/models'
 
 export const TextBlocksPage = () => {

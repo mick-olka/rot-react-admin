@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import { toasterPending } from './data'
 
+import { I_CollectionDto, I_CollectionItemsDto } from 'src/models'
 import { CollectionService } from 'src/services'
-import { I_CollectionDto, I_CollectionItemsDto } from 'src/services/collections.service'
 
 export const useCollections = () => {
   const { data, isLoading, isError } = useQuery(['collections'], () => CollectionService.getAll(), {

@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom'
 import * as S from './styles'
 
 import { AvatarUploader, ProductForm } from 'src/components'
-import { useCreateProduct } from 'src/hooks/useProducts'
+import { useCreateProduct } from 'src/hooks/use-products'
 import { I_ProductForm } from 'src/models'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'

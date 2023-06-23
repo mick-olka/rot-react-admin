@@ -2,8 +2,8 @@ import { useMutation, useQuery } from 'react-query'
 
 import { toasterPending } from './data'
 
+import { I_LoginCreds, I_RegisterCreds } from 'src/models'
 import { AuthService } from 'src/services'
-import { I_LoginCreds, I_RegisterCreds } from 'src/services/auth.service'
 
 export const useLogin = () => {
   const { mutateAsync, data, isLoading, isError } = useMutation(

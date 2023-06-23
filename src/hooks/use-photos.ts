@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import { toasterPending } from './data'
 
+import { I_PhotosDto } from 'src/models'
 import { PhotosService } from 'src/services'
-import { I_PhotosDto } from 'src/services/photos.service'
 
 export const useGetPhotosGroupById = (id: string | undefined) => {
   const { data, isLoading, isError } = useQuery(

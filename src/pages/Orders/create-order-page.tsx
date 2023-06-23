@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 import * as S from './styles'
 
 import { OrderForm } from 'src/components'
-import { useCreateOrder } from 'src/hooks/useOrders'
+import { useCreateOrder } from 'src/hooks/use-orders'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
 import { I_OrderForm, StatusEnum } from 'src/services/orders.service'

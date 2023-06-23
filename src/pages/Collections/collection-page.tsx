@@ -12,7 +12,7 @@ import {
   useCollectionById,
   useUpdateCollection,
   useUpdateCollectionItems,
-} from 'src/hooks/useCollections'
+} from 'src/hooks/use-collections'
 import { I_ProductPopulated, I_CollectionForm } from 'src/models'
 import { ChooseProducts } from 'src/pages/products/choose-products-pane'
 import { product_columns } from 'src/pages/products/data'

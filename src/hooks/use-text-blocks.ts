@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import { toasterPending } from './data'
 
+import { I_TextBlockDto } from 'src/models'
 import { TextBlocksService } from 'src/services'
-import { I_TextBlockDto } from 'src/services/text_blocks.service'
 
 export const useTextBlocks = () => {
   const { data, isLoading, isError } = useQuery(['text_blocks'], () => TextBlocksService.getAll(), {

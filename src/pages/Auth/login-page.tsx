@@ -6,7 +6,7 @@ import { CredentialsForm } from '.'
 import { I_Credentials } from './credentials-form'
 import * as S from './styles'
 
-import { useLogin } from 'src/hooks/useAuth'
+import { useLogin } from 'src/hooks/use-auth'
 import { ROUTES } from 'src/routing/routes'
 import { useAuthStore } from 'src/store/auth.store'
 

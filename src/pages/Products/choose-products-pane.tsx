@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { product_columns } from './data'
 
 import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { useProducts } from 'src/hooks/useProducts'
+import { useProducts } from 'src/hooks/use-products'
 import { useProductsStore } from 'src/store/products.store'
 
 export const ChooseProducts = ({
