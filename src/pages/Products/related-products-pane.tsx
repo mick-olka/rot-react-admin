@@ -1,12 +1,13 @@
 import { Box, Button, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
 import { useState } from 'react'
 
-import { ChooseProducts } from '../ChooseProducts'
-import { product_columns } from '../data'
+import { ChooseProducts } from '.'
+
+import { product_columns } from './data'
 
 import { ItemsPage } from 'src/components/items-page/ItemsPage'
 import { useUpdateProductItems } from 'src/hooks/useProducts'
-import { I_ProductDto, I_ProductPopulated } from 'src/services/products.service'
+import { I_ProductPopulated } from 'src/services/products.service'
 
 interface I_Props {
   prod_id: string

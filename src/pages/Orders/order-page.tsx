@@ -10,7 +10,7 @@ import { CartItemForm } from 'src/components/forms/cart-item-form'
 import { ItemsPage } from 'src/components/items-page/ItemsPage'
 
 import { useOrderById, useUpdateOrder } from 'src/hooks/useOrders'
-import { ChooseProducts } from 'src/pages/Products/ChooseProducts'
+import { ChooseProducts } from 'src/pages/products/choose-products-pane'
 import { I_OrderDto, I_CartItemPopulated, StatusEnum } from 'src/services/orders.service'
 
 // interface I_OrderItemWithId extends I_CartItemPopulated {

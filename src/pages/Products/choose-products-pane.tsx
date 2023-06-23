@@ -1,13 +1,10 @@
 import { Box, Button } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
-import { product_columns } from '../data'
+import { product_columns } from './data'
 
 import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { useDeleteProductsMany, useProducts } from 'src/hooks/useProducts'
-import { getRouteWithId } from 'src/routing'
-import { ROUTES } from 'src/routing/routes'
+import { useProducts } from 'src/hooks/useProducts'
 import { useProductsStore } from 'src/store/products.store'
 
 export const ChooseProducts = ({

@@ -13,8 +13,8 @@ import {
   useUpdateCollection,
   useUpdateCollectionItems,
 } from 'src/hooks/useCollections'
-import { ChooseProducts } from 'src/pages/Products/ChooseProducts'
-import { product_columns } from 'src/pages/Products/data'
+import { ChooseProducts } from 'src/pages/products/choose-products-pane'
+import { product_columns } from 'src/pages/products/data'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
 import { I_CollectionForm } from 'src/services/collections.service'

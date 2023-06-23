@@ -1,9 +1,9 @@
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
 import { Box, Button, IconButton } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { SimilarRelatedProducts } from './related-products'
+import { SimilarRelatedProducts } from '.'
 
 import { AlertDialog, AvatarUploader, ContentDialog, PhotosList, ProductForm } from 'src/components'
 import { useUpdateCollectionItems } from 'src/hooks/useCollections'
