@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import { toasterPending } from './data'
 
+import { I_ProductDto, I_ProductItemsDto } from 'src/models'
 import { ProductService } from 'src/services'
-import { I_ProductDto, I_ProductItemsDto } from 'src/services/products.service'
 import { products_page_limit } from 'src/utils'
 
 export const useProducts = ({

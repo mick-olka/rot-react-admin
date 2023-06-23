@@ -13,12 +13,11 @@ import {
   useUpdateCollection,
   useUpdateCollectionItems,
 } from 'src/hooks/useCollections'
+import { I_ProductPopulated, I_CollectionForm } from 'src/models'
 import { ChooseProducts } from 'src/pages/products/choose-products-pane'
 import { product_columns } from 'src/pages/products/data'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
-import { I_CollectionForm } from 'src/services/collections.service'
-import { I_ProductPopulated } from 'src/services/products.service'
 import { filterArrByReg } from 'src/utils'
 
 export const CollectionPage = () => {

@@ -5,9 +5,9 @@ import * as S from './styles'
 
 import { CollectionForm } from 'src/components/forms/collection-form'
 import { useCreateCollection } from 'src/hooks/useCollections'
+import { I_CollectionForm } from 'src/models'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
-import { I_CollectionForm } from 'src/services/collections.service'
 
 export const CreateCollectionPage = () => {
   const { create, isLoading, isError, collection } = useCreateCollection()

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import { MultiLangTextField } from 'src/components/inputs/multi-lang-text-field'
 import * as S from 'src/components/styles'
-import { I_ProductForm } from 'src/services/products.service'
+import { I_ProductForm } from 'src/models'
 import { lanEnumToObject } from 'src/utils'
 
 interface I_Props {

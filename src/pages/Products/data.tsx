@@ -40,7 +40,7 @@ export const product_columns: GridColDef[] = [
     width: 100,
     renderCell: (params) => {
       const [index, setIndex] = useState<number>(params.value || 0)
-      const [value, status] = useDebounce(index, 1000)
+      const [value] = useDebounce(index, 1000)
       const { update, isLoading } = useUpdateProduct(params.row._id)
       useEffect(() => {
         if (params.value !== value) update({ id: params.row._id, form_data: { index: value } })

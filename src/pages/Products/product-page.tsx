@@ -9,8 +9,8 @@ import { AlertDialog, AvatarUploader, ContentDialog, PhotosList, ProductForm } f
 import { useUpdateCollectionItems } from 'src/hooks/useCollections'
 import { useDeleteProduct, useProductById, useUpdateProduct } from 'src/hooks/useProducts'
 import { StatusWrapper } from 'src/layouts/status'
+import { I_ProductForm } from 'src/models'
 import { ROUTES } from 'src/routing/routes'
-import { I_ProductForm } from 'src/services/products.service'
 import { PHOTOS_URL } from 'src/utils'
 
 export const ProductPage = () => {
@@ -18,7 +18,7 @@ export const ProductPage = () => {
   const { product, isFetching, isError } = useProductById(String(id))
   const { update, isLoading } = useUpdateProduct(String(id))
   const { deleteOne, isLoading: delete_loading } = useDeleteProduct()
-  const collectionsUpdate = useUpdateCollectionItems()
+  // const collectionsUpdate = useUpdateCollectionItems()
   const navigate = useNavigate()
 
   const onSubmit = (data: I_ProductForm) => {

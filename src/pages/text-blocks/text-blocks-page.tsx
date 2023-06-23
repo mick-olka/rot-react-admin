@@ -7,7 +7,7 @@ import { TextBlockForm } from 'src/components'
 import { ContentDialog } from 'src/components/dialogs/content-dialog'
 import { ItemsPage } from 'src/components/items-page/ItemsPage'
 import { useTextBlockById, useTextBlocks, useUpdateTextBlock } from 'src/hooks/useTextBlocks'
-import { I_TextBlock, I_TextBlockForm } from 'src/services/text_blocks.service'
+import { I_TextBlock, I_TextBlockForm } from 'src/models'
 
 export const TextBlocksPage = () => {
   const [filter, setFilter] = useState<string | null>(null)

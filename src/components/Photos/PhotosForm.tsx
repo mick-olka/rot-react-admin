@@ -11,8 +11,7 @@ import { MultiLangTextField } from '../inputs/multi-lang-text-field'
 
 import { AlertDialog } from 'src/components'
 import * as CS from 'src/components/styles'
-import { I_Locales } from 'src/models'
-import { I_Photos } from 'src/services/photos.service'
+import { I_Locales, I_Photos } from 'src/models'
 
 import { areEqualObjects, lanEnumToObject } from 'src/utils'
 

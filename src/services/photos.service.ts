@@ -1,25 +1,8 @@
 import axios from 'axios'
 
-import { I_Locales } from 'src/models'
+import { I_Photos, I_PhotosDto } from 'src/models'
+
 import { getFormData } from 'src/utils'
-
-export interface I_Photos {
-  _id: string
-  path_arr: string[]
-  main_color: I_Locales
-  pill_color: I_Locales
-}
-
-export interface I_PhotosForm {
-  main_color: I_Locales
-  pill_color: I_Locales
-}
-
-export interface I_PhotosDto {
-  files: File[]
-  main_color: I_Locales
-  pill_color: I_Locales
-}
 
 export const photosAPI = {
   async getAll() {

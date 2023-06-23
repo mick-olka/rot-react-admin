@@ -7,7 +7,7 @@ import { product_columns } from './data'
 
 import { ItemsPage } from 'src/components/items-page/ItemsPage'
 import { useUpdateProductItems } from 'src/hooks/useProducts'
-import { I_ProductPopulated } from 'src/services/products.service'
+import { I_ProductPopulated } from 'src/models'
 
 interface I_Props {
   prod_id: string

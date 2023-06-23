@@ -3,7 +3,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
-import { I_AuthResponseData } from 'src/services/auth.service'
+import { I_AuthResponseData } from 'src/models'
 import { LocalStorage } from 'src/utils'
 
 interface State {

@@ -6,9 +6,9 @@ import * as S from './styles'
 
 import { AvatarUploader, ProductForm } from 'src/components'
 import { useCreateProduct } from 'src/hooks/useProducts'
+import { I_ProductForm } from 'src/models'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
-import { I_ProductForm } from 'src/services/products.service'
 
 export const CreateProductPage = () => {
   const { create, isLoading, isError, product } = useCreateProduct()

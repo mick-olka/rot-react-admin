@@ -1,34 +1,6 @@
 import axios from 'axios'
 
-import { I_Locales } from '.'
-
-import { I_ProductPopulated } from './products.service'
-
-export interface I_Collection {
-  _id: string
-  name: I_Locales
-  url_name: string
-  items: I_ProductPopulated[]
-  keywords: string[]
-  description: I_Locales
-  index: number
-}
-
-export interface I_CollectionDto {
-  name?: I_Locales
-  url_name?: string
-  items?: string[]
-}
-
-export interface I_CollectionItemsDto {
-  items: string[]
-  action: 'add' | 'delete'
-}
-
-export interface I_CollectionForm {
-  name: I_Locales
-  description: I_Locales
-}
+import { I_Collection, I_CollectionDto, I_CollectionItemsDto } from 'src/models'
 
 export const collectionsAPI = {
   async getAll() {
