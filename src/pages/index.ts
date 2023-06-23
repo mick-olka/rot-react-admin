@@ -1,6 +1,6 @@
 export { HomePage } from './Home'
-export { Login } from './Auth/Login'
-export { Register } from './Auth/Register'
+export { Login } from './Auth/login'
+export { Register } from './Auth/register'
 export { ProductsList as ProductsPage } from './Products'
 export { ProductPage } from './Products/ProductPage'
 export { CreateProductPage } from './Products/CreateProduct'

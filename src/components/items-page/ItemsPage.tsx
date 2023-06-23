@@ -8,7 +8,7 @@ import { ItemsTable } from './ItemsTable'
 import * as S from '../styles'
 
 import { AlertDialog } from 'src/components'
-import { StatusWrapper } from 'src/layouts/Status'
+import { StatusWrapper } from 'src/layouts/status'
 
 type DataType<T> = {
   count: number

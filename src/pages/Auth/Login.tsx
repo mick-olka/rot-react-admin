@@ -1,14 +1,14 @@
-import { Box } from '@mui/material'
 import { useEffect, useLayoutEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { CredentialsForm, I_Credentials } from '.'
+import { CredentialsForm } from '.'
 
+import { I_Credentials } from './credentials-form'
 import * as S from './styles'
 
 import { useLogin } from 'src/hooks/useAuth'
-import { useAuthStore } from 'src/store/auth.store'
 import { ROUTES } from 'src/routing/routes'
+import { useAuthStore } from 'src/store/auth.store'
 
 export const Login = () => {
   const { login, tokens, isLoading, isError } = useLogin()
