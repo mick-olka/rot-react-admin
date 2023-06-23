@@ -1,11 +1,9 @@
-import { Box } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 
-import * as S from '../styles'
+import * as S from './styles'
 
-import { useAuthStore } from 'src/store/auth.store'
-
-import { ROUTES } from 'src/routing/routes'
+import { ROUTES } from 'src/routing'
+import { useAuthStore } from 'src/store'
 
 export const Footer = () => {
   const navigate = useNavigate()

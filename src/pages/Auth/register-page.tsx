@@ -3,13 +3,13 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { CredentialsForm } from '.'
 
-import { I_Credentials } from './credentials-form'
 import * as S from './styles'
 
-import { TextFieldBox, TextFieldStyled } from 'src/components/styles'
-import { useRegister } from 'src/hooks/use-auth'
-import { ROUTES } from 'src/routing/routes'
-import { useAuthStore } from 'src/store/auth.store'
+import { TextFieldBox, TextFieldStyled } from 'src/components'
+import { useRegister } from 'src/hooks'
+import { I_LoginCreds } from 'src/models'
+import { ROUTES } from 'src/routing'
+import { useAuthStore } from 'src/store'
 
 export const Register = () => {
   const { register, tokens, isLoading, isError } = useRegister()
@@ -17,7 +17,7 @@ export const Register = () => {
   const { state } = useLocation()
   const navigate = useNavigate()
   const [adminKey, setAdminKey] = useState<string>('')
-  const onSubmit = (dat: I_Credentials) => {
+  const onSubmit = (dat: I_LoginCreds) => {
     const registerData = { ...dat, admin_key: adminKey }
     register(registerData)
   }

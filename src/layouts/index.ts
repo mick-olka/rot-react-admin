@@ -1,2 +1,3 @@
 export { MainLayout } from './Main'
-export { Footer } from './Main/components/Footer'
+export { Footer } from './Main/Footer'
+export * from './status'

@@ -3,21 +3,12 @@ import { Box, Button } from '@mui/material'
 import { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { ContentDialog } from 'src/components/dialogs/content-dialog'
-import { CollectionForm } from 'src/components/forms/collection-form'
-import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { RoundButton } from 'src/components/styles'
+import { RoundButton, ItemsPage, ContentDialog, CollectionForm } from 'src/components'
 
-import {
-  useCollectionById,
-  useUpdateCollection,
-  useUpdateCollectionItems,
-} from 'src/hooks/use-collections'
+import { useCollectionById, useUpdateCollection, useUpdateCollectionItems } from 'src/hooks'
 import { I_ProductPopulated, I_CollectionForm } from 'src/models'
-import { ChooseProducts } from 'src/pages/products/choose-products-pane'
-import { product_columns } from 'src/pages/products/data'
-import { getRouteWithId } from 'src/routing'
-import { ROUTES } from 'src/routing/routes'
+import { ChooseProducts, product_columns } from 'src/pages'
+import { ROUTES, getRouteWithId } from 'src/routing'
 import { filterArrByReg } from 'src/utils'
 
 export const CollectionPage = () => {

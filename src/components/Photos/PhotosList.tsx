@@ -12,7 +12,7 @@ import {
   useDeletePhotoFromGroup,
   useDeletePhotosGroup,
   useUpdatePhotosGroup,
-} from 'src/hooks/usePhotos'
+} from 'src/hooks/use-photos'
 import { I_Locales, I_Photos } from 'src/models'
 import { lanEnumToObject } from 'src/utils'
 

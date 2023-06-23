@@ -1,12 +1,10 @@
 import { Box } from '@mui/material'
 import { useMemo, useState } from 'react'
 
-import { columns, textBlocksFilter } from './data'
+import { text_blocks_columns, textBlocksFilter } from './data'
 
-import { TextBlockForm } from 'src/components'
-import { ContentDialog } from 'src/components/dialogs/content-dialog'
-import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { useTextBlockById, useTextBlocks, useUpdateTextBlock } from 'src/hooks/use-text-blocks'
+import { ItemsPage, ContentDialog, TextBlockForm } from 'src/components'
+import { useTextBlockById, useTextBlocks, useUpdateTextBlock } from 'src/hooks'
 import { I_TextBlock, I_TextBlockForm } from 'src/models'
 
 export const TextBlocksPage = () => {
@@ -47,7 +45,7 @@ export const TextBlocksPage = () => {
       <ItemsPage
         title='Text on Site'
         data={data}
-        columns={columns}
+        columns={text_blocks_columns}
         clientPagination
         onItemClick={onItemClick}
         onSearchTrigger={handleSearchTrigger}

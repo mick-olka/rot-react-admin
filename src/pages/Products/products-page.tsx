@@ -3,15 +3,12 @@ import { useNavigate } from 'react-router-dom'
 
 import { product_columns } from './data'
 
-import { CollectionSelector } from 'src/components'
-import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { useUpdateCollectionItems } from 'src/hooks/use-collections'
-import { useDeleteProductsMany, useProducts } from 'src/hooks/use-products'
-import { getRouteWithId } from 'src/routing'
-import { ROUTES } from 'src/routing/routes'
-import { useProductsStore } from 'src/store/products.store'
+import { ItemsPage, CollectionSelector } from 'src/components'
+import { useDeleteProductsMany, useProducts, useUpdateCollectionItems } from 'src/hooks'
+import { ROUTES, getRouteWithId } from 'src/routing'
+import { useProductsStore } from 'src/store'
 
-export const ProductsList = () => {
+export const ProductsListPage = () => {
   const page = useProductsStore((state) => state.page)
   const setPage = useProductsStore((state) => state.setPage)
   const { deleteMany } = useDeleteProductsMany()

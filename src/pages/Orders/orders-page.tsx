@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { columns } from './data'
+import { orders_columns } from './data'
 
-import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { useDeleteOrdersMany, useOrders } from 'src/hooks/use-orders'
-import { getRouteWithId } from 'src/routing'
-import { ROUTES } from 'src/routing/routes'
+import { ItemsPage } from 'src/components'
+import { useDeleteOrdersMany, useOrders } from 'src/hooks'
+import { ROUTES, getRouteWithId } from 'src/routing'
 
 export const OrdersPage = () => {
   const { deleteMany } = useDeleteOrdersMany()
@@ -33,7 +32,7 @@ export const OrdersPage = () => {
     <ItemsPage
       title='Orders'
       data={data}
-      columns={columns}
+      columns={orders_columns}
       onDeleteMultiple={deleteMany}
       onItemClick={onItemClick}
       pagination

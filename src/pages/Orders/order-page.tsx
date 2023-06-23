@@ -4,14 +4,10 @@ import { useParams } from 'react-router-dom'
 
 import { cart_item_columns } from './data'
 
-import { OrderForm } from 'src/components'
-import { ContentDialog } from 'src/components/dialogs/content-dialog'
-import { CartItemForm } from 'src/components/forms/cart-item-form'
-import { ItemsPage } from 'src/components/items-page/ItemsPage'
-
-import { useOrderById, useUpdateOrder } from 'src/hooks/use-orders'
-import { ChooseProducts } from 'src/pages/products/choose-products-pane'
-import { I_OrderDto, I_CartItemPopulated, StatusEnum } from 'src/services/orders.service'
+import { ItemsPage, CartItemForm, OrderForm, ContentDialog } from 'src/components'
+import { useOrderById, useUpdateOrder } from 'src/hooks'
+import { I_CartItemPopulated, I_OrderDto, StatusEnum } from 'src/models'
+import { ChooseProducts } from 'src/pages'
 
 // interface I_OrderItemWithId extends I_CartItemPopulated {
 //   _id: string

@@ -6,11 +6,15 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { SimilarRelatedProducts } from '.'
 
 import { AlertDialog, AvatarUploader, ContentDialog, PhotosList, ProductForm } from 'src/components'
-import { useUpdateCollectionItems } from 'src/hooks/use-collections'
-import { useDeleteProduct, useProductById, useUpdateProduct } from 'src/hooks/use-products'
-import { StatusWrapper } from 'src/layouts/status'
+import {
+  useUpdateCollectionItems,
+  useDeleteProduct,
+  useProductById,
+  useUpdateProduct,
+} from 'src/hooks'
+import { StatusWrapper } from 'src/layouts'
 import { I_ProductForm } from 'src/models'
-import { ROUTES } from 'src/routing/routes'
+import { ROUTES } from 'src/routing'
 import { PHOTOS_URL } from 'src/utils'
 
 export const ProductPage = () => {

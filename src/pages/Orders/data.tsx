@@ -11,7 +11,7 @@ const date_options = {
   day: 'numeric',
 }
 
-export const columns: GridColDef[] = [
+export const orders_columns: GridColDef[] = [
   { field: 'name', headerName: 'Name', width: 130 },
   { field: 'status', headerName: 'Status', width: 130 },
   {

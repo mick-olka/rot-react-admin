@@ -1,5 +1,5 @@
-import { ProductsPage } from '../index'
+import { ProductsListPage } from '../index'
 
 export const HomePage = () => {
-  return <ProductsPage />
+  return <ProductsListPage />
 }

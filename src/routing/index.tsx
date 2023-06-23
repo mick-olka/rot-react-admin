@@ -7,7 +7,7 @@ import {
   Login,
   Register,
   CollectionPage,
-  CollectionsPage,
+  CollectionsListPage,
   CreateCollectionPage,
   CreateProductPage,
   ProductPage,
@@ -16,8 +16,10 @@ import {
   CreateOrderPage,
   TextBlocksPage,
 } from 'src/pages'
-import { ROUTES } from 'src/routing/routes'
-import { useAuthStore } from 'src/store/auth.store'
+import { ROUTES } from 'src/routing'
+import { useAuthStore } from 'src/store'
+
+export { ROUTES } from './routes'
 
 export const Routing = () => {
   return (
@@ -57,7 +59,7 @@ export const Routing = () => {
         element={
           <RequireAuth>
             <MainLayout>
-              <CollectionsPage />
+              <CollectionsListPage />
             </MainLayout>
           </RequireAuth>
         }

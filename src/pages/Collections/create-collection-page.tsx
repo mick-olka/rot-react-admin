@@ -3,11 +3,10 @@ import { Navigate } from 'react-router-dom'
 
 import * as S from './styles'
 
-import { CollectionForm } from 'src/components/forms/collection-form'
-import { useCreateCollection } from 'src/hooks/use-collections'
+import { CollectionForm } from 'src/components'
+import { useCreateCollection } from 'src/hooks'
 import { I_CollectionForm } from 'src/models'
-import { getRouteWithId } from 'src/routing'
-import { ROUTES } from 'src/routing/routes'
+import { ROUTES, getRouteWithId } from 'src/routing'
 
 export const CreateCollectionPage = () => {
   const { create, isLoading, isError, collection } = useCreateCollection()

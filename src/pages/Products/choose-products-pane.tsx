@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 
 import { product_columns } from './data'
 
-import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { useProducts } from 'src/hooks/use-products'
-import { useProductsStore } from 'src/store/products.store'
+import { ItemsPage } from 'src/components'
+import { useProducts } from 'src/hooks'
+import { useProductsStore } from 'src/store'
 
 export const ChooseProducts = ({
   onSubmit,

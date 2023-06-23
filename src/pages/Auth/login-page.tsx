@@ -3,12 +3,12 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { CredentialsForm } from '.'
 
-import { I_Credentials } from './credentials-form'
 import * as S from './styles'
 
-import { useLogin } from 'src/hooks/use-auth'
-import { ROUTES } from 'src/routing/routes'
-import { useAuthStore } from 'src/store/auth.store'
+import { useLogin } from 'src/hooks'
+import { I_LoginCreds } from 'src/models'
+import { ROUTES } from 'src/routing'
+import { useAuthStore } from 'src/store'
 
 export const Login = () => {
   const { login, tokens, isLoading, isError } = useLogin()
@@ -20,7 +20,7 @@ export const Login = () => {
   useLayoutEffect(() => {
     logout()
   }, [])
-  const onSubmit = (dat: I_Credentials) => {
+  const onSubmit = (dat: I_LoginCreds) => {
     login(dat)
   }
   useEffect(() => {

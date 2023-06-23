@@ -5,8 +5,8 @@ import { ChooseProducts } from '.'
 
 import { product_columns } from './data'
 
-import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { useUpdateProductItems } from 'src/hooks/use-products'
+import { ItemsPage } from 'src/components'
+import { useUpdateProductItems } from 'src/hooks'
 import { I_ProductPopulated } from 'src/models'
 
 interface I_Props {

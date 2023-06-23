@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom'
 
 import { columns } from './data'
 
-import { ItemsPage } from 'src/components/items-page/ItemsPage'
-import { useCollections, useDeleteCollectionsMany } from 'src/hooks/use-collections'
+import { ItemsPage } from 'src/components'
+import { useCollections, useDeleteCollectionsMany } from 'src/hooks'
 import { I_Collection } from 'src/models'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
 import { filterArrByReg } from 'src/utils'
 
-export const CollectionsList = () => {
+export const CollectionsListPage = () => {
   const { deleteMany } = useDeleteCollectionsMany()
   const [filter, setFilter] = useState<string | null>()
   const { collections, isLoading, isError } = useCollections()

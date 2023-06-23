@@ -5,9 +5,9 @@ import * as S from './styles'
 
 import { OrderForm } from 'src/components'
 import { useCreateOrder } from 'src/hooks/use-orders'
+import { I_OrderForm, StatusEnum } from 'src/models'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
-import { I_OrderForm, StatusEnum } from 'src/services/orders.service'
 
 export const CreateOrderPage = () => {
   const { create, isLoading, isError, order } = useCreateOrder()

@@ -1,15 +1,12 @@
 import { Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 
-export { Register as SignUp } from './register-page'
-export { Login as SignIn } from './login-page'
-import { TextFieldBox, TextFieldStyled } from 'src/components/styles'
-import { I_LoginCreds } from 'src/services/auth.service'
-
-export interface I_Credentials extends I_LoginCreds {}
+export { Register as SignUp, Login as SignIn } from '.'
+import { TextFieldBox, TextFieldStyled } from 'src/components'
+import { I_LoginCreds } from 'src/models'
 
 interface I_Props {
-  onSubmit: (dat: I_Credentials) => void
+  onSubmit: (dat: I_LoginCreds) => void
   isLoading: boolean
 }
 
@@ -18,7 +15,7 @@ export const CredentialsForm = ({ onSubmit, isLoading }: I_Props) => {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<I_Credentials>({
+  } = useForm<I_LoginCreds>({
     defaultValues: {
       email: '',
       password: '',
