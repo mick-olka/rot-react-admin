@@ -1,2 +1,2 @@
-export { AlertDialog } from './AlertDialog'
-export { ContentDialog } from './ContentDialog'
+export { AlertDialog } from './alert-dialog'
+export { ContentDialog } from './content-dialog'

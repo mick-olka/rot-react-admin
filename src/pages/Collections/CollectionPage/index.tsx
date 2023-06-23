@@ -3,9 +3,9 @@ import { Box, Button } from '@mui/material'
 import { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { ContentDialog } from 'src/components/Dialogs/ContentDialog'
-import { CollectionForm } from 'src/components/Forms/CollectionForm'
-import { ItemsPage } from 'src/components/ItemsPage/ItemsPage'
+import { ContentDialog } from 'src/components/dialogs/content-dialog'
+import { CollectionForm } from 'src/components/forms/collection-form'
+import { ItemsPage } from 'src/components/items-page/ItemsPage'
 import { RoundButton } from 'src/components/styles'
 
 import {

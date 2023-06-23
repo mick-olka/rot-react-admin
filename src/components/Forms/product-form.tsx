@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 
-import { MultiLangTextField } from 'src/components/MultiLangTextField'
+import { MultiLangTextField } from 'src/components/inputs/multi-lang-text-field'
 import * as S from 'src/components/styles'
 import { lanEnumToObject } from 'src/services'
 import { I_ProductForm } from 'src/services/products.service'

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FieldValues, Path, RegisterOptions, UseFormRegister } from 'react-hook-form'
 
-import * as S from './styles'
+import * as S from '../styles'
 
 interface I_Props<T extends FieldValues> {
   register: UseFormRegister<T>

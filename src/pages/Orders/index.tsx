@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { columns } from './data'
 
-import { ItemsPage } from 'src/components/ItemsPage/ItemsPage'
+import { ItemsPage } from 'src/components/items-page/ItemsPage'
 import { useDeleteOrdersMany, useOrders } from 'src/hooks/useOrders'
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'

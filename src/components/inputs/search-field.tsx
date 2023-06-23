@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useDebounce } from 'use-debounce'
 
-import * as S from './styles'
+import * as S from '../styles'
 
 export const SearchField = ({
   onSearchTrigger,

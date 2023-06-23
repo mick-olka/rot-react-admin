@@ -4,8 +4,8 @@ import { useMemo, useState } from 'react'
 import { columns, textBlocksFilter } from './data'
 
 import { TextBlockForm } from 'src/components'
-import { ContentDialog } from 'src/components/Dialogs/ContentDialog'
-import { ItemsPage } from 'src/components/ItemsPage/ItemsPage'
+import { ContentDialog } from 'src/components/dialogs/content-dialog'
+import { ItemsPage } from 'src/components/items-page/ItemsPage'
 import { useTextBlockById, useTextBlocks, useUpdateTextBlock } from 'src/hooks/useTextBlocks'
 import { I_TextBlock, I_TextBlockForm } from 'src/services/text_blocks.service'
 

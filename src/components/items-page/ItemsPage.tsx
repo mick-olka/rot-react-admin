@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { ControlPane } from './ControlPane'
 import { ItemsTable } from './ItemsTable'
 
-import * as S from '../../components/styles'
+import * as S from '../styles'
 
 import { AlertDialog } from 'src/components'
 import { StatusWrapper } from 'src/layouts/Status'

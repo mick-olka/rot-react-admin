@@ -2,7 +2,7 @@ import AddIcon from '@mui/icons-material/Add'
 import DeleteOutlined from '@mui/icons-material/DeleteOutlined'
 import { Box, Tooltip } from '@mui/material'
 
-import * as S from '../../components/styles'
+import * as S from '../styles'
 
 import { SearchField } from 'src/components'
 

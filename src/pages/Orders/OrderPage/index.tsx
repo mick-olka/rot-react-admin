@@ -6,9 +6,9 @@ import { useParams } from 'react-router-dom'
 import { cart_item_columns } from '../data'
 
 import { OrderForm } from 'src/components'
-import { ContentDialog } from 'src/components/Dialogs/ContentDialog'
-import { CartItemForm } from 'src/components/Forms/CartItemForm'
-import { ItemsPage } from 'src/components/ItemsPage/ItemsPage'
+import { ContentDialog } from 'src/components/dialogs/content-dialog'
+import { CartItemForm } from 'src/components/forms/cart-item-form'
+import { ItemsPage } from 'src/components/items-page/ItemsPage'
 import { RoundButton } from 'src/components/styles'
 
 import { useOrderById, useUpdateOrder } from 'src/hooks/useOrders'
@@ -56,10 +56,10 @@ export const OrderPage = () => {
     if (order) {
       let sum = 0
       cart.forEach((i) => {
-        if (!i.product) {
-          alert('Delete nonexisting products')
-          return
-        }
+        // if (!i.product) {
+        //   alert('Delete nonexisting products')
+        //   return
+        // }
         sum += i.product.price * i.count
       })
       const form_data: Partial<I_OrderDto> = {

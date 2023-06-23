@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 import { useEffect, useState } from 'react'
 
-import { ItemSelector } from '.'
+import { ItemSelector } from '..'
 
 import { useCollections } from 'src/hooks/useCollections'
 

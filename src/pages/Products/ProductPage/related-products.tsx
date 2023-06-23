@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { ChooseProducts } from '../ChooseProducts'
 import { product_columns } from '../data'
 
-import { ItemsPage } from 'src/components/ItemsPage/ItemsPage'
+import { ItemsPage } from 'src/components/items-page/ItemsPage'
 import { useUpdateProductItems } from 'src/hooks/useProducts'
 import { I_ProductDto, I_ProductPopulated } from 'src/services/products.service'
 

@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { Gallery } from './Gallery'
 import * as S from './styles'
 
-import { MultiLangTextField } from '../MultiLangTextField'
+import { MultiLangTextField } from '../inputs/multi-lang-text-field'
 
 import { AlertDialog } from 'src/components'
 import * as CS from 'src/components/styles'

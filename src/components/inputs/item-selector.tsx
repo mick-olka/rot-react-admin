@@ -1,5 +1,5 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 interface I_Props {
   items: { id: string; name: string }[]
