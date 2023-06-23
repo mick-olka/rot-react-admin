@@ -1,8 +1,8 @@
 import { Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 
-export { Register as SignUp } from './register'
-export { Login as SignIn } from './login'
+export { Register as SignUp } from './register-page'
+export { Login as SignIn } from './login-page'
 import { TextFieldBox, TextFieldStyled } from 'src/components/styles'
 import { I_LoginCreds } from 'src/services/auth.service'
 

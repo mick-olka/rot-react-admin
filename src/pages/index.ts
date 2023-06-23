@@ -1,13 +1,14 @@
 export { HomePage } from './Home'
-export { Login } from './Auth/login'
-export { Register } from './Auth/register'
+export { Login, Register } from './auth'
 export { ProductsList as ProductsPage } from './Products'
 export { ProductPage } from './Products/ProductPage'
 export { CreateProductPage } from './Products/CreateProduct'
 export { ChooseProducts } from './Products/ChooseProducts'
-export { CollectionsList as CollectionsPage } from './Collections'
-export { CollectionPage } from './Collections/CollectionPage'
-export { CreateCollectionPage } from './Collections/CreateCollection'
+export {
+  CreateCollectionPage,
+  CollectionPage,
+  CollectionsList as CollectionsPage,
+} from './collections'
 export { OrdersPage } from './Orders'
 export { OrderPage } from './Orders/OrderPage'
 export { CreateOrderPage } from './Orders/CreateOrder'
