@@ -1,4 +1,4 @@
-export { HomePage } from './Home'
+export { HomePage } from './home'
 export { Login, Register } from './auth'
 export { ProductsList as ProductsPage } from './Products'
 export { ProductPage } from './Products/ProductPage'
@@ -10,6 +10,6 @@ export {
   CollectionsList as CollectionsPage,
 } from './collections'
 export { OrdersPage } from './Orders'
-export { OrderPage } from './Orders/OrderPage'
-export { CreateOrderPage } from './Orders/CreateOrder'
+export { OrderPage } from './Orders/order-page'
+export { CreateOrderPage } from './Orders/create-order-page'
 export { TextBlocksPage } from './TextBlocks'
