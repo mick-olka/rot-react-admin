@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { ItemSelector } from '..'
 
-import { useCollections } from 'src/hooks/use-collections'
+import { useCollections } from 'src/hooks'
 
 interface I_Props {
   disabled?: boolean

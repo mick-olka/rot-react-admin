@@ -1,9 +1,8 @@
 import { Box, InputLabel, MenuItem, Select } from '@mui/material'
 import { useForm } from 'react-hook-form'
 
-import * as S from 'src/components/styles'
-
-import { I_OrderForm, StatusEnum } from 'src/services/orders.service'
+import { TextFieldBox, FieldBox, TextFieldStyled, ButtonStyled } from 'src/components'
+import { I_OrderForm, StatusEnum } from 'src/models'
 
 interface I_Props {
   onSubmit: (data: I_OrderForm) => void
@@ -46,30 +45,30 @@ export const OrderForm = (props: Readonly<I_Props>) => {
   return (
     <Box sx={{ width: '30rem' }}>
       <form onSubmitCapture={handleSubmit(prepareSubmit)}>
-        <S.TextFieldBox>
+        <TextFieldBox>
           <InputLabel>Client Name</InputLabel>
-          <S.FieldBox>
-            <S.TextFieldStyled {...register('name', { required: !!required })} />
-          </S.FieldBox>
-        </S.TextFieldBox>
+          <FieldBox>
+            <TextFieldStyled {...register('name', { required: !!required })} />
+          </FieldBox>
+        </TextFieldBox>
 
-        <S.TextFieldBox>
+        <TextFieldBox>
           <InputLabel>Client Phone</InputLabel>
-          <S.FieldBox>
-            <S.TextFieldStyled {...register('phone', { required: !!required })} />
-          </S.FieldBox>
-        </S.TextFieldBox>
+          <FieldBox>
+            <TextFieldStyled {...register('phone', { required: !!required })} />
+          </FieldBox>
+        </TextFieldBox>
 
-        <S.TextFieldBox>
+        <TextFieldBox>
           <InputLabel>Details</InputLabel>
-          <S.FieldBox>
-            <S.TextFieldStyled {...register('message', { required: false })} />
-          </S.FieldBox>
-        </S.TextFieldBox>
+          <FieldBox>
+            <TextFieldStyled {...register('message', { required: false })} />
+          </FieldBox>
+        </TextFieldBox>
 
-        <S.TextFieldBox>
+        <TextFieldBox>
           <InputLabel>Status</InputLabel>
-          <S.FieldBox>
+          <FieldBox>
             <Select
               value={getValues('status')}
               onChange={(e) => setValue('status', e.target.value as StatusEnum)}
@@ -80,12 +79,12 @@ export const OrderForm = (props: Readonly<I_Props>) => {
               <MenuItem value={StatusEnum.w}>Cancelled</MenuItem>
               <MenuItem value={StatusEnum.p}>In Progress</MenuItem>
             </Select>
-          </S.FieldBox>
-        </S.TextFieldBox>
+          </FieldBox>
+        </TextFieldBox>
 
-        <S.ButtonStyled variant='contained' type='submit' disabled={isLoading}>
+        <ButtonStyled variant='contained' type='submit' disabled={isLoading}>
           {isLoading ? 'Loading...' : 'Save'}
-        </S.ButtonStyled>
+        </ButtonStyled>
       </form>
     </Box>
   )
