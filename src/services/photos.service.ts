@@ -1,8 +1,7 @@
 import axios from 'axios'
 
-import { I_Locales } from '.'
-
-import { getFormData } from 'src/utils/helpers/utils'
+import { I_Locales } from 'src/models'
+import { getFormData } from 'src/utils'
 
 export interface I_Photos {
   _id: string

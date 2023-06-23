@@ -3,7 +3,7 @@ import ImageIcon from '@mui/icons-material/Image'
 import { Avatar, Box, IconButton, Typography } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 
-import { PHOTOS_URL } from 'src/utils/constants/constants'
+import { PHOTOS_URL } from 'src/utils'
 
 const date_options = {
   year: 'numeric',

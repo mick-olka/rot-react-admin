@@ -19,7 +19,7 @@ import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
 import { I_CollectionForm } from 'src/services/collections.service'
 import { I_ProductPopulated } from 'src/services/products.service'
-import { filterArrByReg } from 'src/utils/helpers/utils'
+import { filterArrByReg } from 'src/utils'
 
 export const CollectionPage = () => {
   const id = String(useParams().id)

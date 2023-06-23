@@ -6,10 +6,10 @@ import { useState } from 'react'
 
 import * as PS from './styles'
 
-import { AvatarUploader, FilesDragDrop } from 'src/components'
+import { FilesDragDrop } from 'src/components'
 import * as S from 'src/components/styles'
-import { PHOTOS_URL } from 'src/utils/constants/constants'
-import { ButtonClickEvent } from 'src/utils/types'
+import { ButtonClickEvent } from 'src/models'
+import { PHOTOS_URL } from 'src/utils'
 
 interface I_Props {
   readonly path_arr: string[]

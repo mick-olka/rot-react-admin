@@ -1,8 +1,7 @@
 import axios from 'axios'
 
-import { I_Locales } from '.'
-
-import { orders_page_limit } from 'src/utils/constants/constants'
+import { I_Locales } from 'src/models'
+import { orders_page_limit } from 'src/utils/constants'
 
 interface I_ProductPopulated {
   _id: string

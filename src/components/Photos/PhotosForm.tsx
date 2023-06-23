@@ -11,9 +11,10 @@ import { MultiLangTextField } from '../inputs/multi-lang-text-field'
 
 import { AlertDialog } from 'src/components'
 import * as CS from 'src/components/styles'
-import { I_Locales, lanEnumToObject } from 'src/services'
+import { I_Locales } from 'src/models'
 import { I_Photos } from 'src/services/photos.service'
-import { areEqualObjects } from 'src/utils/helpers/utils'
+
+import { areEqualObjects, lanEnumToObject } from 'src/utils'
 
 const def: I_FormData = {
   main_color: lanEnumToObject(''),

@@ -5,7 +5,7 @@ import { toasterPending } from './data'
 
 import { OrdersService } from 'src/services'
 import { I_OrderDto } from 'src/services/orders.service'
-import { orders_page_limit } from 'src/utils/constants/constants'
+import { orders_page_limit } from 'src/utils'
 
 export const useOrders = ({
   page,

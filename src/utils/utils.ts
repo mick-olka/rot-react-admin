@@ -1,4 +1,4 @@
-import { I_Locales } from 'src/services'
+import { E_Languages, I_Locales } from 'src/models'
 
 const isFile = (v: unknown) => {
   return v instanceof File
@@ -7,6 +7,14 @@ const isFile = (v: unknown) => {
 const isArrayOfFiles = (v: unknown) => {
   if (Array.isArray(v) && v[0] instanceof File) return true
   return false
+}
+
+export const lanEnumToObject = <T>(value: T): { [key in E_Languages]: T } => {
+  return {
+    en: value,
+    ua: value,
+    de: value,
+  }
 }
 
 export const getFormData = (data: object): FormData => {

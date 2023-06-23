@@ -1,6 +1,6 @@
 import { DataGrid, GridColDef, GridRowSelectionModel } from '@mui/x-data-grid'
 
-import { products_page_limit } from 'src/utils/constants/constants'
+import { products_page_limit } from 'src/utils'
 
 interface I_Props<T> {
   columns: GridColDef[]

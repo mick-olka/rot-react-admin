@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useDebounce } from 'use-debounce'
 
 import { useUpdateProduct } from 'src/hooks/useProducts'
-import { PHOTOS_URL } from 'src/utils/constants/constants'
+import { PHOTOS_URL } from 'src/utils'
 
 export const product_columns: GridColDef[] = [
   { field: 'name', headerName: 'Name', width: 130, valueGetter: (param) => param.value.ua },

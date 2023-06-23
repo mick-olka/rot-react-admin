@@ -13,8 +13,9 @@ import {
   useDeletePhotosGroup,
   useUpdatePhotosGroup,
 } from 'src/hooks/usePhotos'
-import { I_Locales, lanEnumToObject } from 'src/services'
+import { I_Locales } from 'src/models'
 import { I_Photos } from 'src/services/photos.service'
+import { lanEnumToObject } from 'src/utils'
 
 interface I_Props {
   product_id: string

@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
 import { I_AuthResponseData } from 'src/services/auth.service'
-import { LocalStorage } from 'src/utils/helpers/localStorage'
+import { LocalStorage } from 'src/utils'
 
 interface State {
   isAuth: boolean

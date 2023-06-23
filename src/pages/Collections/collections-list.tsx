@@ -9,7 +9,7 @@ import { useCollections, useDeleteCollectionsMany } from 'src/hooks/useCollectio
 import { getRouteWithId } from 'src/routing'
 import { ROUTES } from 'src/routing/routes'
 import { I_Collection } from 'src/services/collections.service'
-import { filterArrByReg } from 'src/utils/helpers/utils'
+import { filterArrByReg } from 'src/utils'
 
 export const CollectionsList = () => {
   const { deleteMany } = useDeleteCollectionsMany()

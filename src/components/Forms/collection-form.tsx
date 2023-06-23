@@ -5,8 +5,8 @@ import { MultiLangTextField } from '../inputs/multi-lang-text-field'
 
 import * as S from 'src/components/styles'
 
-import { lanEnumToObject } from 'src/services'
 import { I_CollectionForm } from 'src/services/collections.service'
+import { lanEnumToObject } from 'src/utils'
 
 interface I_Props {
   onSubmit: (data: I_CollectionForm) => void

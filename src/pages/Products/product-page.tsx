@@ -11,7 +11,7 @@ import { useDeleteProduct, useProductById, useUpdateProduct } from 'src/hooks/us
 import { StatusWrapper } from 'src/layouts/status'
 import { ROUTES } from 'src/routing/routes'
 import { I_ProductForm } from 'src/services/products.service'
-import { PHOTOS_URL } from 'src/utils/constants/constants'
+import { PHOTOS_URL } from 'src/utils'
 
 export const ProductPage = () => {
   const { id } = useParams()

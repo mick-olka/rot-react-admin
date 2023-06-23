@@ -1,11 +1,9 @@
 import axios from 'axios'
 
-import { I_Locales, E_Languages } from '.'
-
 import { I_Photos } from './photos.service'
 
-import { products_page_limit } from 'src/utils/constants/constants'
-import { getFormData } from 'src/utils/helpers/utils'
+import { E_Languages, I_Locales } from 'src/models'
+import { products_page_limit, getFormData } from 'src/utils'
 
 export type I_ProductFeatures = {
   [key in E_Languages]: [
