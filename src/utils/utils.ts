@@ -1,4 +1,4 @@
-import { E_Languages, I_Locales } from 'src/models'
+import { E_Languages, I_Locales, languages_list } from 'src/models'
 
 const isFile = (v: unknown) => {
   return v instanceof File
@@ -15,6 +15,14 @@ export const lanEnumToObject = <T>(value: T): { [key in E_Languages]: T } => {
     ua: value,
     de: value,
   }
+}
+
+export const getLangList = (
+  transform?: (list_el: E_Languages) => string,
+): string[] | E_Languages[] => {
+  return languages_list.map((el) => {
+    return transform ? transform(el) : el
+  })
 }
 
 export const getFormData = (data: object): FormData => {

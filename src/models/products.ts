@@ -1,12 +1,10 @@
 import { E_Languages, I_Locales, I_Photos } from '.'
 
 export type I_ProductFeatures = {
-  [key in E_Languages]: [
-    {
-      key: string
-      value: string
-    },
-  ]
+  [key in E_Languages]: {
+    key: string
+    value: string
+  }[]
 }
 
 export interface I_ProductPopulated {
@@ -48,17 +46,22 @@ export interface I_ProductForm {
   oldPrice?: number
   index?: number
   keywords?: string[]
+  description?: I_Locales
+  features: I_ProductFeatures
 }
 
 export interface I_ProductDto {
   name: I_Locales
   code: string
   price: number
+  oldPrice?: number
   thumbnail?: File
   related_products?: string[]
   similar_products?: string[]
   index?: number
   keywords?: string[]
+  description?: I_Locales
+  features?: I_ProductFeatures
 }
 
 export interface I_ProductItemsDto {

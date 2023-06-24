@@ -35,10 +35,14 @@ export const MultiLangTextField = <I_FormData extends FieldValues>({
         <S.TextFieldStyled
           key={n}
           {...register(n, registerOptions)}
-          sx={{ display: n === names[current] ? 'block' : 'none' }}
+          sx={{
+            display: n === names[current] ? 'block' : 'none',
+            width: textarea ? '30rem' : 'auto',
+          }}
           label={label}
           error={error}
           multiline={textarea || false}
+          fullWidth
         />
       ))}
 

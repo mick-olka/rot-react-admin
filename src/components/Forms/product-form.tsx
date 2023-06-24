@@ -4,6 +4,10 @@ import IconButton from '@mui/material/IconButton'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { fieldBoxStyles } from './data'
+
+import { FeaturesManager } from './features-manager'
+
 import { MultiLangTextField, TextListCreator } from 'src/components'
 import * as S from 'src/components/styles'
 import { I_ProductForm } from 'src/models'
@@ -17,14 +21,14 @@ interface I_Props {
 }
 const def: I_ProductForm = {
   name: lanEnumToObject(''),
+  description: lanEnumToObject(''),
   code: '',
   price: 1000,
   oldPrice: undefined,
   index: 0,
   keywords: [],
+  features: lanEnumToObject([]),
 }
-
-const fieldBoxStyles = { display: 'flex', width: '20rem', alignItems: 'left' }
 
 export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Readonly<I_Props>) => {
   const [isSale, setIsSale] = useState(false)
@@ -39,7 +43,7 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
     defaultValues: initValues || def,
   })
 
-  watch('keywords')
+  watch(['keywords', 'features'])
 
   // to filter all other fields that may pass from getById response
   const prepareSubmit = (data: I_ProductForm) => {
@@ -49,6 +53,8 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
       price: data.price,
       index: data.index,
       keywords: data.keywords,
+      description: data.description,
+      features: data.features,
     }
     onSubmit(filteredData)
   }
@@ -62,6 +68,9 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
   return (
     <Box sx={{ width: '30rem' }}>
       <form onSubmitCapture={handleSubmit(prepareSubmit)}>
+        <S.ButtonStyled variant='contained' type='submit' disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'Save'}
+        </S.ButtonStyled>
         <S.TextFieldBox>
           <Box sx={fieldBoxStyles}>
             <MultiLangTextField
@@ -115,17 +124,38 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
         </S.TextFieldBox>
 
         <S.TextFieldBox>
+          <Box sx={fieldBoxStyles}>
+            <MultiLangTextField
+              register={register}
+              names={['description.ua', 'description.en', 'description.de']}
+              label='Description'
+              textarea
+            />
+          </Box>
+        </S.TextFieldBox>
+
+        <S.TextFieldBox>
           <TextListCreator
             label='Keywords'
             list={getValues('keywords')}
             onListChange={(l) => setValue('keywords', l)}
+            sx={{ width: '30rem' }}
           />
         </S.TextFieldBox>
 
-        <S.ButtonStyled variant='contained' type='submit' disabled={isLoading}>
-          {isLoading ? 'Loading...' : 'Save'}
-        </S.ButtonStyled>
+        <FeaturesManager
+          features={getValues('features')}
+          onChange={(f) => setValue('features', f)}
+        />
       </form>
     </Box>
   )
 }
+
+// const features = ({ features, lan }: { features: I_ProductFeatures; lan: E_Languages }) => {
+//   return (
+//     <Box>
+
+//     </Box>
+//   )
+// }
