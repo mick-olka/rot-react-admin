@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 
+import { TextListCreator } from '../inputs'
 import { MultiLangTextField } from '../inputs/multi-lang-text-field'
 
 import * as S from 'src/components/styles'
@@ -28,6 +29,8 @@ export const CollectionForm = (props: Readonly<I_Props>) => {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
+    setValue,
   } = useForm<I_CollectionForm>({
     defaultValues: initValues || def,
   })
@@ -64,6 +67,24 @@ export const CollectionForm = (props: Readonly<I_Props>) => {
               textarea
             />
           </Box>
+        </S.TextFieldBox>
+
+        <S.TextFieldBox>
+          <S.TextFieldStyled
+            type='number'
+            {...register('index', { required: false })}
+            label='Index'
+            fullWidth
+          />
+        </S.TextFieldBox>
+
+        <S.TextFieldBox>
+          <TextListCreator
+            label='Keywords'
+            list={getValues('keywords')}
+            onListChange={(l) => setValue('keywords', l)}
+            sx={{ width: '100%' }}
+          />
         </S.TextFieldBox>
 
         <S.ButtonStyled variant='contained' type='submit' disabled={isLoading}>

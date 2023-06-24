@@ -23,19 +23,22 @@ export const CredentialsForm = ({ onSubmit, isLoading }: I_Props) => {
   })
 
   return (
-    <Box>
+    <Box sx={{ width: 'fit-content', margin: '0 auto' }}>
       <form onSubmitCapture={handleSubmit(onSubmit)}>
         <TextFieldBox>
-          <label>Email</label>
-          <TextFieldStyled error={!!errors.email} {...register('email', { required: true })} />
+          <TextFieldStyled
+            error={!!errors.email}
+            {...register('email', { required: true })}
+            label='email'
+          />
         </TextFieldBox>
 
         <TextFieldBox>
-          <label>Password</label>
           <TextFieldStyled
             error={!!errors.password}
             type='password'
             {...register('password', { required: true, minLength: 4 })}
+            label='Password'
           />
         </TextFieldBox>
 

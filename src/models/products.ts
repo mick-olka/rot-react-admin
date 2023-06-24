@@ -48,6 +48,7 @@ export interface I_ProductForm {
   keywords?: string[]
   description?: I_Locales
   features: I_ProductFeatures
+  url_name?: string
 }
 
 export interface I_ProductDto {
@@ -62,6 +63,7 @@ export interface I_ProductDto {
   keywords?: string[]
   description?: I_Locales
   features?: I_ProductFeatures
+  url_name?: string
 }
 
 export interface I_ProductItemsDto {

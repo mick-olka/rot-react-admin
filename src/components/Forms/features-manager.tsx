@@ -17,7 +17,7 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
   const [featuresLan, setFeaturesLan] = useState<E_Languages>(E_Languages.ua)
 
   const handleFeatureLan = (event: React.MouseEvent<HTMLElement>, lan: E_Languages) => {
-    setFeaturesLan(lan)
+    if (lan !== null) setFeaturesLan(lan)
   }
 
   const addFeature = () => {
@@ -73,7 +73,7 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
         variant='contained'
         onClick={addFeature}
         color='inherit'
-        sx={{ width: '92%' }}
+        sx={{ width: '90%' }}
       >
         <AddRoundedIcon fontSize='small' />
       </Button>

@@ -27,6 +27,7 @@ const def: I_ProductForm = {
   index: 0,
   keywords: [],
   features: lanEnumToObject([]),
+  url_name: '',
 }
 
 export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Readonly<I_Props>) => {
@@ -54,6 +55,7 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
       keywords: data.keywords,
       description: data.description,
       features: data.features,
+      url_name: data.url_name,
     }
     onSubmit(filteredData)
   }
@@ -81,6 +83,10 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
             names={['name.ua', 'name.en', 'name.de']}
             label='Name'
           />
+        </S.TextFieldBox>
+
+        <S.TextFieldBox>
+          <S.TextFieldStyled {...register('url_name')} label='Url Name' fullWidth />
         </S.TextFieldBox>
 
         <S.TextFieldBox>

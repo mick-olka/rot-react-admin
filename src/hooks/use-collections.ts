@@ -34,10 +34,10 @@ export const useUpdateCollection = (validation_id?: string) => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     ({ id, form_data }: { id: string; form_data: I_CollectionDto }) => {
-      delete form_data.items // for items use updateCollectionItems (PUT)
+      if (form_data.items) delete form_data.items // for items use updateCollectionItems (PUT)
       return toasterPending(CollectionService.update(id, form_data))
     },
-    { onSuccess: () => queryClient.invalidateQueries(['collections', validation_id]) },
+    { onSuccess: () => queryClient.invalidateQueries(['collections']) },
   )
   return { update: mutateAsync, collection: data, isLoading, isError }
 }

@@ -12,7 +12,10 @@ export interface I_Collection {
 
 export interface I_CollectionDto {
   name?: I_Locales
+  description?: I_Locales
   url_name?: string
+  keywords?: string[]
+  index?: number
   items?: string[]
 }
 
@@ -24,4 +27,7 @@ export interface I_CollectionItemsDto {
 export interface I_CollectionForm {
   name: I_Locales
   description: I_Locales
+  url_name?: string
+  keywords?: string[]
+  index?: number
 }
