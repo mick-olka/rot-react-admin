@@ -28,7 +28,7 @@ export const DataTable = <T,>(props: I_Props<T>) => {
       disableColumnFilter
       disableRowSelectionOnClick
       // hideFooterSelectedRowCount={!pagination}
-      // hideFooter={!pagination}
+      hideFooter
       hideFooterPagination={!pagination}
       onRowSelectionModelChange={(ids: GridRowSelectionModel) => {
         onSelect(ids as string[])

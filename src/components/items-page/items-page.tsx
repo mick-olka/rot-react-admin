@@ -2,8 +2,8 @@ import { Box, Pagination } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 import { useState } from 'react'
 
-import { ControlPane } from './ControlPane'
-import { ItemsTable } from './ItemsTable'
+import { ControlPane } from './control-pane'
+import { ItemsTable } from './items-table'
 
 import * as S from '../styles'
 

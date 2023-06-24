@@ -20,6 +20,7 @@ export const SearchField = ({
         placeholder='Search'
         value={text}
         onChange={(e) => setText(e.target.value)}
+        size='small'
       />
     </Box>
   )

@@ -21,7 +21,7 @@ export const TextFieldBox = styled(Box)`
 `
 export const ItemsListPane = styled(Box)`
   &&& {
-    height: calc(100% - 2rem);
+    height: calc(100% - 0.5rem);
     padding: 0 1rem;
   }
 `
@@ -43,7 +43,7 @@ export const ControlPaneStyled = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0 1rem;
+  /* padding: 0.5rem 0 1rem; */
   & > div > * {
     margin-right: 1rem;
   }

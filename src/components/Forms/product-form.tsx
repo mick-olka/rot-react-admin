@@ -1,6 +1,5 @@
 import PercentRoundedIcon from '@mui/icons-material/PercentRounded'
-import { Box, Divider } from '@mui/material'
-import IconButton from '@mui/material/IconButton'
+import { Box } from '@mui/material'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 

@@ -21,11 +21,15 @@ export const ControlPane = (
   return (
     <S.ControlPaneStyled>
       <S.ControlPaneBox>
-        {props.title && <h2>{props.title}</h2>}
+        {props.title && (
+          <h2>
+            {props.title}: {props.selected?.length || null}
+          </h2>
+        )}
         {props.children}
         {props.onCreateClick && (
           <S.RoundButton color='primary' variant='contained' onClick={props.onCreateClick}>
-            <AddIcon />
+            <AddIcon fontSize='small' />
           </S.RoundButton>
         )}
       </S.ControlPaneBox>
@@ -46,8 +50,9 @@ export const ControlPane = (
                     variant='contained'
                     disabled={!props.selected.length}
                     onClick={props.onDeleteClick}
+                    width='3rem'
                   >
-                    <DeleteOutlined />
+                    <DeleteOutlined fontSize='small' />
                   </S.RoundButton>
                 </Box>
               </Tooltip>

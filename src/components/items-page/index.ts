@@ -1,3 +1,3 @@
-export { ItemsPage } from './ItemsPage'
-export { ControlPane } from './ControlPane'
-export { ItemsTable } from './ItemsTable'
+export { ItemsPage } from './items-page'
+export { ControlPane } from './control-pane'
+export { ItemsTable } from './items-table'
