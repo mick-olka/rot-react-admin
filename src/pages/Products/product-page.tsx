@@ -50,20 +50,22 @@ export const ProductPage = () => {
       {product && (
         <Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <h2>Update Product</h2>
+            <h2 style={{ margin: '0.5rem 2rem 0' }}>Update Product</h2>
             <Button onClick={() => setCollectionsDialog(true)}>Manage Collections</Button>
             <IconButton onClick={() => setDeleteDialog(true)} disabled={delete_loading}>
               <DeleteOutlineRoundedIcon />
             </IconButton>
-            {/* <Box>{product.collections.join(', ')}</Box> */}
           </Box>
-          <Box sx={{ display: 'flex' }}>
-            <Box sx={{ margin: '3rem', height: '150px', width: '150px' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+            <Box sx={{ margin: '1rem', height: '200px', minWidth: '300px' }}>
               <AvatarUploader
                 handleChange={uploadAvatar}
                 currentURL={`${PHOTOS_URL}${product.thumbnail}`}
               />
             </Box>
+            <h2 style={{ margin: '2rem' }}>{product.name.ua}</h2>
+          </Box>
+          <Box width='fit-content' sx={{ width: '100%' }}>
             <ProductForm isLoading={isLoading} initValues={product} onSubmit={onSubmit} />
           </Box>
           <PhotosList

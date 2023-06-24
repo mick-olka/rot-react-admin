@@ -3,6 +3,8 @@ import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
 import { Box, Button, IconButton, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { useState } from 'react'
 
+import { FeaturesManagerWrapper } from './styles'
+
 import * as S from 'src/components/styles'
 import { E_Languages, I_ProductFeatures } from 'src/models'
 
@@ -35,10 +37,10 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+    <FeaturesManagerWrapper>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '90%' }}>
         <h3>Features</h3>
-        <ToggleButtonGroup value={featuresLan} exclusive onChange={handleFeatureLan}>
+        <ToggleButtonGroup value={featuresLan} exclusive onChange={handleFeatureLan} size='small'>
           {Object.values(E_Languages).map((l) => (
             <ToggleButton key={l} value={l}>
               {l}
@@ -53,6 +55,7 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
             label='Title'
             size='small'
             onChange={(e) => handleUpdate(i, 'key', e.target.value)}
+            sx={{ marginRight: 1 }}
           />
           <S.TextFieldStyled
             value={f.value}
@@ -70,10 +73,10 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
         variant='contained'
         onClick={addFeature}
         color='inherit'
-        sx={{ width: '90%', marginLeft: '5px' }}
+        sx={{ width: '92%' }}
       >
-        <AddRoundedIcon />
+        <AddRoundedIcon fontSize='small' />
       </Button>
-    </Box>
+    </FeaturesManagerWrapper>
   )
 }

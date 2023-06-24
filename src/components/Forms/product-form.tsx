@@ -1,5 +1,5 @@
 import PercentRoundedIcon from '@mui/icons-material/PercentRounded'
-import { Box } from '@mui/material'
+import { Box, Divider } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -66,61 +66,69 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
   }
 
   return (
-    <Box sx={{ width: '30rem' }}>
-      <form onSubmitCapture={handleSubmit(prepareSubmit)}>
-        <S.ButtonStyled variant='contained' type='submit' disabled={isLoading}>
+    <S.Form onSubmitCapture={handleSubmit(prepareSubmit)}>
+      <Box sx={{ width: '40%', minWidth: '20rem' }}>
+        <S.ButtonStyled
+          variant='contained'
+          type='submit'
+          disabled={isLoading}
+          sx={{ position: 'fixed', left: '-8px', bottom: 0 }}
+        >
           {isLoading ? 'Loading...' : 'Save'}
         </S.ButtonStyled>
         <S.TextFieldBox>
-          <Box sx={fieldBoxStyles}>
-            <MultiLangTextField
-              register={register}
-              names={['name.ua', 'name.en', 'name.de']}
-              label='Name'
-            />
-          </Box>
+          <MultiLangTextField
+            register={register}
+            names={['name.ua', 'name.en', 'name.de']}
+            label='Name'
+          />
         </S.TextFieldBox>
 
         <S.TextFieldBox>
-          <Box sx={fieldBoxStyles}>
-            <S.TextFieldStyled {...register('code', { required: !!required })} label='Code' />
-          </Box>
+          <S.TextFieldStyled
+            {...register('code', { required: !!required })}
+            label='Code'
+            fullWidth
+          />
           {errors.code && <span>This field is required</span>}
         </S.TextFieldBox>
 
         <S.TextFieldBox>
-          <Box sx={fieldBoxStyles}>
-            {isSale && (
-              <S.TextFieldStyled
-                type='number'
-                {...register('oldPrice', { required: !!required })}
-                label='Old Price'
-              />
-            )}
+          {isSale && (
             <S.TextFieldStyled
               type='number'
-              {...register('price', { required: !!required })}
-              label={isSale ? 'New Price' : 'Price'}
+              {...register('oldPrice', { required: !!required })}
+              label='Old Price'
+              fullWidth
             />
-            <IconButton
-              sx={{ width: '55px', height: '55px', bgcolor: isSale ? 'Highlight' : 'none' }}
-              onClick={toggleSale}
-              title='Discount'
-            >
-              <PercentRoundedIcon />
-            </IconButton>
-          </Box>
+          )}
+          <S.TextFieldStyled
+            type='number'
+            {...register('price', { required: !!required })}
+            label={isSale ? 'New Price' : 'Price'}
+            fullWidth
+          />
+          <S.RoundButton
+            sx={{
+              width: '55px',
+              height: '55px',
+              bgcolor: isSale ? 'Highlight' : 'none',
+            }}
+            onClick={toggleSale}
+            title='Discount'
+          >
+            <PercentRoundedIcon />
+          </S.RoundButton>
           {errors.code && <span>This field is required</span>}
         </S.TextFieldBox>
 
         <S.TextFieldBox>
-          <Box sx={fieldBoxStyles}>
-            <S.TextFieldStyled
-              type='number'
-              {...register('index', { required: false })}
-              label='Index'
-            />
-          </Box>
+          <S.TextFieldStyled
+            type='number'
+            {...register('index', { required: false })}
+            label='Index'
+            fullWidth
+          />
         </S.TextFieldBox>
 
         <S.TextFieldBox>
@@ -139,23 +147,19 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
             label='Keywords'
             list={getValues('keywords')}
             onListChange={(l) => setValue('keywords', l)}
-            sx={{ width: '30rem' }}
+            sx={{ width: '100%' }}
           />
         </S.TextFieldBox>
+      </Box>
 
+      {/* <Divider orientation='vertical' flexItem /> */}
+
+      <Box sx={{ width: '40%', minWidth: '35rem' }}>
         <FeaturesManager
           features={getValues('features')}
           onChange={(f) => setValue('features', f)}
         />
-      </form>
-    </Box>
+      </Box>
+    </S.Form>
   )
 }
-
-// const features = ({ features, lan }: { features: I_ProductFeatures; lan: E_Languages }) => {
-//   return (
-//     <Box>
-
-//     </Box>
-//   )
-// }

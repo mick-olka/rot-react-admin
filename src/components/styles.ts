@@ -13,7 +13,8 @@ export const TextFieldStyled = styled(TextField)`
 
 export const TextFieldBox = styled(Box)`
   display: flex;
-  max-width: 30rem;
+  width: 100%;
+  /* max-width: 30rem; */
   margin: 1rem auto;
   justify-content: space-between;
   align-items: center;
@@ -34,8 +35,10 @@ export const RoundButton = styled(Button)<{ width?: string }>`
     background-color: ${({ theme }) => theme.components.button.bg};
     color: ${({ theme }) => theme.components.button.c};
     opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+    margin: 0.5rem;
   }
 `
+
 export const ControlPaneStyled = styled(Box)`
   display: flex;
   justify-content: space-between;
@@ -89,6 +92,7 @@ export const MultipleLangFieldPane = styled(Box)`
   display: flex;
   position: relative;
   align-items: center;
+  width: 100%;
 `
 
 export const ImageUploadIconStyled = styled(Box)`
@@ -111,4 +115,11 @@ export const FieldBox = styled(Box)`
   display: flex;
   width: 20rem;
   align-items: left;
+`
+export const Form = styled.form`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  flex-wrap: wrap;
 `

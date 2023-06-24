@@ -37,21 +37,17 @@ export const MultiLangTextField = <I_FormData extends FieldValues>({
           {...register(n, registerOptions)}
           sx={{
             display: n === names[current] ? 'block' : 'none',
-            width: textarea ? '30rem' : 'auto',
+            // width: textarea ? '30rem' : 'auto',
           }}
           label={label}
           error={error}
           multiline={textarea || false}
+          rows={textarea ? 3 : undefined}
           fullWidth
         />
       ))}
 
-      <S.RoundButton
-        width='3rem'
-        variant='contained'
-        onClick={cycleLang}
-        sx={{ margin: '0 0.5rem' }}
-      >
+      <S.RoundButton width='3rem' variant='contained' onClick={cycleLang}>
         {names[current].split('.')[1].toUpperCase()}
       </S.RoundButton>
     </S.MultipleLangFieldPane>
