@@ -1,5 +1,5 @@
 export { DataTable } from './data-display'
-export { ItemSelector, CollectionSelector, MultiLangTextField, SearchField } from './inputs'
+export * from './inputs'
 export { AvatarUploader, FilesDragDrop } from './file-upload'
 export { ProductForm, TextBlockForm, CartItemForm, CollectionForm, OrderForm } from './forms'
 export { PhotosList, Gallery, PhotosForm } from './photos'

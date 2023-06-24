@@ -45,7 +45,9 @@ export interface I_ProductForm {
   name: I_Locales
   code: string
   price: number
+  oldPrice?: number
   index?: number
+  keywords?: string[]
 }
 
 export interface I_ProductDto {
@@ -56,6 +58,7 @@ export interface I_ProductDto {
   related_products?: string[]
   similar_products?: string[]
   index?: number
+  keywords?: string[]
 }
 
 export interface I_ProductItemsDto {
