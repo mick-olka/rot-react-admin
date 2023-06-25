@@ -16,7 +16,7 @@ import { PHOTOS_URL } from 'src/utils'
 
 export const ProductPage = () => {
   const { id } = useParams()
-  const { product, isFetching, isError, refetch } = useProductById(String(id))
+  const { product, isFetching, isError } = useProductById(String(id))
   const { update, isLoading } = useUpdateProduct(String(id))
   const { deleteOne, isLoading: delete_loading } = useDeleteProduct()
   const navigate = useNavigate()
@@ -41,7 +41,7 @@ export const ProductPage = () => {
   }
 
   return (
-    <StatusWrapper isLoading={isFetching} isError={isError} sx={{ padding: '0 2rem' }}>
+    <StatusWrapper isLoading={isFetching && !product} isError={isError} sx={{ padding: '0 2rem' }}>
       {product && (
         <Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -59,11 +59,7 @@ export const ProductPage = () => {
             </Box>
             <Box margin='2rem'>
               <h2 style={{ margin: '2rem' }}>{product.name.ua}</h2>
-              <CollectionsManager
-                available_list={product.collections}
-                product_id={product._id}
-                onUpdate={() => refetch()}
-              />
+              <CollectionsManager available_list={product.collections} product_id={product._id} />
             </Box>
           </Box>
           <Box width='fit-content' sx={{ width: '100%' }}>

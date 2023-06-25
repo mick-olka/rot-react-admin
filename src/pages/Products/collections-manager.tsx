@@ -1,12 +1,14 @@
 import { Box, Chip, Stack } from '@mui/material'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useQueryClient } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 
 import { ItemSelector } from 'src/components'
 
 import { useCollections, useUpdateCollectionItems } from 'src/hooks'
 import { StatusWrapper } from 'src/layouts'
 import { E_Queries } from 'src/models'
+import { getRouteWithId, ROUTES } from 'src/routing'
 
 export const CollectionsManager = ({
   product_id,
@@ -17,19 +19,18 @@ export const CollectionsManager = ({
   available_list: string[]
   onUpdate?: () => void
 }) => {
+  const navigate = useNavigate()
   const all = useCollections()
-  const { update, isError, isLoading, collection: updated, isSuccess } = useUpdateCollectionItems()
+  const { update, isError, isLoading, isSuccess } = useUpdateCollectionItems()
   const queryClient = useQueryClient()
-  const handleDelete = (collection_id: string) => {
-    update({ id: collection_id, data: { action: 'delete', items: [product_id] } })
-    queryClient.invalidateQueries([E_Queries.products, product_id])
+  const handleUpdateItems = (collection_id: string, action: 'add' | 'delete') => {
+    update({ id: collection_id, data: { action, items: [product_id] } })
     onUpdate && onUpdate()
   }
-  const handleAdd = (collection_id: string) => {
-    update({ id: collection_id, data: { action: 'add', items: [product_id] } })
-    queryClient.invalidateQueries([E_Queries.products, product_id])
-    onUpdate && onUpdate()
-  }
+
+  useEffect(() => {
+    if (isSuccess) queryClient.invalidateQueries([E_Queries.products, product_id])
+  }, [isSuccess])
 
   const [own_collections, other_collections] = useMemo(() => {
     const owned: { id: string; name: string }[] = []
@@ -45,8 +46,10 @@ export const CollectionsManager = ({
   }, [available_list, all.collections])
 
   const handleCollectionSelected = (id: string) => {
-    handleAdd(id)
+    handleUpdateItems(id, 'add')
   }
+
+  console.log(other_collections)
 
   return (
     <StatusWrapper
@@ -67,7 +70,12 @@ export const CollectionsManager = ({
       <StatusWrapper isError={all.isError} isLoading={all.isLoading}>
         <Stack direction='row' spacing={1}>
           {own_collections.map((c) => (
-            <Chip key={c.id} label={c.name} onDelete={() => handleDelete(c.id)} />
+            <Chip
+              key={c.id}
+              label={c.name}
+              onClick={() => navigate(getRouteWithId(ROUTES.collection, c.id))}
+              onDelete={() => handleUpdateItems(c.id, 'delete')}
+            />
           ))}
         </Stack>
       </StatusWrapper>
