@@ -43,6 +43,7 @@ export const ControlPaneStyled = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 4rem;
   /* padding: 0.5rem 0 1rem; */
   & > div > * {
     margin-right: 1rem;

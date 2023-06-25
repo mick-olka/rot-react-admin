@@ -1,5 +1,5 @@
-import { List, ListItem, ListItemText } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { ListItemText, MenuItem, MenuList, Paper } from '@mui/material'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { ROUTES } from 'src/routing/routes'
 
@@ -11,15 +11,22 @@ const items = [
 ]
 
 export const NavPane = () => {
+  const location = useLocation()
   return (
-    <List>
-      {items.map((i) => (
-        <ListItem key={i.route}>
-          <ListItemText>
-            <Link to={i.route}>{i.title}</Link>
-          </ListItemText>
-        </ListItem>
-      ))}
-    </List>
+    <Paper sx={{ height: '100%' }}>
+      <MenuList>
+        {items.map((i) => (
+          <Link to={i.route} key={i.route}>
+            <MenuItem
+              sx={{ height: '3rem', bgcolor: location.pathname === i.route ? '#ddd' : null }}
+            >
+              <ListItemText sx={{ textAlign: 'left', textTransform: 'uppercase' }}>
+                {i.title}
+              </ListItemText>
+            </MenuItem>
+          </Link>
+        ))}
+      </MenuList>
+    </Paper>
   )
 }

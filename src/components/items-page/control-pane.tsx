@@ -21,17 +21,17 @@ export const ControlPane = (
   return (
     <S.ControlPaneStyled>
       <S.ControlPaneBox>
+        {props.onCreateClick && (
+          <S.RoundButton color='primary' variant='contained' onClick={props.onCreateClick}>
+            <AddIcon fontSize='small' />
+          </S.RoundButton>
+        )}
         {props.title && (
           <h2>
             {props.title}: {props.selected?.length || null}
           </h2>
         )}
         {props.children}
-        {props.onCreateClick && (
-          <S.RoundButton color='primary' variant='contained' onClick={props.onCreateClick}>
-            <AddIcon fontSize='small' />
-          </S.RoundButton>
-        )}
       </S.ControlPaneBox>
       <S.ControlPaneBox>
         {props.handleSearchTrigger && <SearchField onSearchTrigger={props.handleSearchTrigger} />}

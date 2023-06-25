@@ -32,7 +32,7 @@ export const MainNav = styled.nav`
   color: ${({ theme }) => theme.components.nav.c};
   width: 10rem;
   padding: 0.1rem;
-  border-right: 1px solid ${({ theme }) => theme.colors.light_gray};
+  /* border-right: 1px solid ${({ theme }) => theme.colors.light_gray}; */
 `
 
 export const MainFooter = styled.footer`
