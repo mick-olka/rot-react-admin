@@ -1,17 +1,14 @@
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
-import { Box, Button, IconButton } from '@mui/material'
+import { Box, IconButton } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { SimilarRelatedProducts } from '.'
 
-import { AlertDialog, AvatarUploader, ContentDialog, PhotosList, ProductForm } from 'src/components'
-import {
-  useUpdateCollectionItems,
-  useDeleteProduct,
-  useProductById,
-  useUpdateProduct,
-} from 'src/hooks'
+import { CollectionsManager } from './collections-manager'
+
+import { AlertDialog, AvatarUploader, PhotosList, ProductForm } from 'src/components'
+import { useDeleteProduct, useProductById, useUpdateProduct } from 'src/hooks'
 import { StatusWrapper } from 'src/layouts'
 import { I_ProductForm } from 'src/models'
 import { ROUTES } from 'src/routing'
@@ -19,10 +16,9 @@ import { PHOTOS_URL } from 'src/utils'
 
 export const ProductPage = () => {
   const { id } = useParams()
-  const { product, isFetching, isError } = useProductById(String(id))
+  const { product, isFetching, isError, refetch } = useProductById(String(id))
   const { update, isLoading } = useUpdateProduct(String(id))
   const { deleteOne, isLoading: delete_loading } = useDeleteProduct()
-  // const collectionsUpdate = useUpdateCollectionItems()
   const navigate = useNavigate()
 
   const onSubmit = (data: I_ProductForm) => {
@@ -34,7 +30,6 @@ export const ProductPage = () => {
 
   const [file, setFile] = useState<File | undefined>(undefined)
   const [deleteDialog, setDeleteDialog] = useState(false)
-  const [collectionsDialog, setCollectionsDialog] = useState(false)
 
   const uploadAvatar = (file: File) => {
     setFile(file)
@@ -51,7 +46,6 @@ export const ProductPage = () => {
         <Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <h2 style={{ margin: '0.5rem 2rem 0' }}>Update Product</h2>
-            <Button onClick={() => setCollectionsDialog(true)}>Manage Collections</Button>
             <IconButton onClick={() => setDeleteDialog(true)} disabled={delete_loading}>
               <DeleteOutlineRoundedIcon />
             </IconButton>
@@ -63,7 +57,14 @@ export const ProductPage = () => {
                 currentURL={`${PHOTOS_URL}${product.thumbnail}`}
               />
             </Box>
-            <h2 style={{ margin: '2rem' }}>{product.name.ua}</h2>
+            <Box margin='2rem'>
+              <h2 style={{ margin: '2rem' }}>{product.name.ua}</h2>
+              <CollectionsManager
+                available_list={product.collections}
+                product_id={product._id}
+                onUpdate={() => refetch()}
+              />
+            </Box>
           </Box>
           <Box width='fit-content' sx={{ width: '100%' }}>
             <ProductForm isLoading={isLoading} initValues={product} onSubmit={onSubmit} />
@@ -89,13 +90,6 @@ export const ProductPage = () => {
         onAgree={onDeleteProduct}
         onCancel={() => null}
       />
-      <ContentDialog
-        open={collectionsDialog}
-        setOpen={setCollectionsDialog}
-        title='Manage Collections'
-      >
-        <Box>Collections</Box>
-      </ContentDialog>
     </StatusWrapper>
   )
 }

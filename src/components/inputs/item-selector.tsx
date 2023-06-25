@@ -33,8 +33,8 @@ export const ItemSelector = ({ items, placeholder, onSelect, init }: I_Props) =>
         <Select
           value={current.id}
           onChange={handleChange}
-          sx={{ width: '30rem' }}
           label={placeholder || def.name}
+          fullWidth
         >
           {items.map((i) => (
             <MenuItem key={i.id} value={i.id}>

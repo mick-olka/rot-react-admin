@@ -7,6 +7,7 @@ import { useUpdateCollection } from 'src/hooks'
 
 export const columns: GridColDef[] = [
   { field: 'name', headerName: 'Name', width: 130, valueGetter: (param) => param.value.ua },
+  { field: 'url_name', headerName: 'Url', width: 130 },
   {
     field: 'index',
     headerName: 'Index',

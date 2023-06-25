@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import { toasterPending } from './data'
 
-import { I_OrderDto } from 'src/models'
+import { E_Queries, I_OrderDto } from 'src/models'
 import { OrdersService } from 'src/services'
 import { orders_page_limit } from 'src/utils'
 
@@ -17,7 +17,7 @@ export const useOrders = ({
   limit?: number
 }) => {
   const { data, isLoading, isError, refetch } = useQuery(
-    ['orders'],
+    [E_Queries.orders],
     () => OrdersService.getAll({ page, regex, limit }),
     {
       select: ({ data }) => data,
@@ -38,7 +38,7 @@ export const useOrders = ({
 
 export const useOrderById = (id: string | undefined) => {
   const { data, isLoading, isError } = useQuery(
-    ['orders', id],
+    [E_Queries.orders, id],
     () => OrdersService.getById(String(id)),
     { select: ({ data }) => data, enabled: !!id },
   )
@@ -49,7 +49,7 @@ export const useCreateOrder = () => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     (form_data: I_OrderDto) => toasterPending(OrdersService.create(form_data)),
-    { onSuccess: () => queryClient.invalidateQueries(['orders']) },
+    { onSuccess: () => queryClient.invalidateQueries([E_Queries.orders]) },
   )
   return { create: mutateAsync, order: data, isLoading, isError }
 }
@@ -59,7 +59,7 @@ export const useUpdateOrder = () => {
   const { mutateAsync, data, isLoading, isError } = useMutation(
     ({ id, form_data }: { id: string; form_data: Partial<I_OrderDto> }) =>
       toasterPending(OrdersService.update(id, form_data)),
-    { onSuccess: () => queryClient.invalidateQueries(['orders']) },
+    { onSuccess: () => queryClient.invalidateQueries([E_Queries.orders]) },
   )
   return { update: mutateAsync, order: data, isLoading, isError }
 }
@@ -71,7 +71,7 @@ export const useUpdateOrder = () => {
 //       toasterPending(OrdersService.updateItems(id, data)),
 //     {
 //       onSuccess: (data) =>
-//         queryClient.invalidateQueries(['orders', validation_id || data.data.url_name]),
+//         queryClient.invalidateQueries([E_Queries.orders, validation_id || data.data.url_name]),
 //     },
 //   )
 //   return { update: mutateAsync, product: data, isLoading, isError }
@@ -82,7 +82,7 @@ export const useDeleteOrder = () => {
   const { mutateAsync, data, isLoading, isError } = useMutation(
     'delete collection',
     (id: string) => toasterPending(OrdersService.delete(id)),
-    { onSuccess: () => queryClient.invalidateQueries(['orders']) },
+    { onSuccess: () => queryClient.invalidateQueries([E_Queries.orders]) },
   )
   return { delete: mutateAsync, order: data, isLoading, isError }
 }
@@ -91,7 +91,7 @@ export const useDeleteOrdersMany = () => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     (ids: string[]) => toasterPending(OrdersService.deleteMany(ids)),
-    { onSuccess: () => queryClient.invalidateQueries(['orders']) },
+    { onSuccess: () => queryClient.invalidateQueries([E_Queries.orders]) },
   )
   return { deleteMany: mutateAsync, order: data, isLoading, isError }
 }

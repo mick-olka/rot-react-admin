@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import { toasterPending } from './data'
 
-import { I_ProductDto, I_ProductItemsDto } from 'src/models'
+import { E_Queries, I_ProductDto, I_ProductItemsDto } from 'src/models'
 import { ProductService } from 'src/services'
 import { products_page_limit } from 'src/utils'
 
@@ -16,7 +16,7 @@ export const useProducts = ({
   limit?: number
 }) => {
   const { data, isLoading, isError, refetch } = useQuery(
-    'products',
+    E_Queries.products,
     () => ProductService.getAll({ page, regex, limit }),
     {
       select: ({ data }) => data,
@@ -35,8 +35,8 @@ export const useProducts = ({
 }
 
 export const useProductById = (id: string | undefined) => {
-  const { data, isError, isFetching } = useQuery(
-    ['products', id],
+  const { data, isError, isFetching, refetch } = useQuery(
+    [E_Queries.products, id],
     () => ProductService.getById(String(id)),
     {
       select: ({ data }) => data,
@@ -45,14 +45,14 @@ export const useProductById = (id: string | undefined) => {
       enabled: !!id, // disable request if id === undefined
     },
   )
-  return { product: data, isFetching, isError }
+  return { product: data, isFetching, isError, refetch }
 }
 
 export const useCreateProduct = () => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     (form_data: I_ProductDto) => toasterPending(ProductService.create(form_data)),
-    { onSuccess: () => queryClient.invalidateQueries(['products']) },
+    { onSuccess: () => queryClient.invalidateQueries([E_Queries.products]) },
   )
   return { create: mutateAsync, product: data, isLoading, isError }
 }
@@ -62,7 +62,7 @@ export const useUpdateProduct = (id: string) => {
   const { mutateAsync, data, isLoading, isError } = useMutation(
     ({ id, form_data }: { id: string; form_data: Partial<I_ProductDto> }) =>
       toasterPending(ProductService.update(id, form_data)),
-    { onSuccess: () => queryClient.invalidateQueries(['products']) },
+    { onSuccess: () => queryClient.invalidateQueries([E_Queries.products]) },
   )
   return { update: mutateAsync, product: data, isLoading, isError }
 }
@@ -72,7 +72,7 @@ export const useUpdateProductItems = (id: string) => {
   const { mutateAsync, data, isLoading, isError } = useMutation(
     ({ id, form_data }: { id: string; form_data: I_ProductItemsDto }) =>
       toasterPending(ProductService.updateItems(id, form_data)),
-    { onSuccess: () => queryClient.invalidateQueries(['products', id]) },
+    { onSuccess: () => queryClient.invalidateQueries([E_Queries.products, id]) },
   )
   return { update: mutateAsync, product: data, isLoading, isError }
 }
@@ -81,7 +81,7 @@ export const useDeleteProduct = () => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     (id: string) => toasterPending(ProductService.delete(id)),
-    { onSuccess: () => queryClient.invalidateQueries(['products']) },
+    { onSuccess: () => queryClient.invalidateQueries([E_Queries.products]) },
   )
   return { deleteOne: mutateAsync, product: data, isLoading, isError }
 }
@@ -90,7 +90,7 @@ export const useDeleteProductsMany = () => {
   const queryClient = useQueryClient()
   const { mutateAsync, data, isLoading, isError } = useMutation(
     (ids: string[]) => toasterPending(ProductService.deleteMany(ids)),
-    { onSuccess: () => queryClient.invalidateQueries(['products']) },
+    { onSuccess: () => queryClient.invalidateQueries([E_Queries.products]) },
   )
   return { deleteMany: mutateAsync, products: data, isLoading, isError }
 }

@@ -79,6 +79,10 @@ export const CollectionForm = (props: Readonly<I_Props>) => {
         </S.TextFieldBox>
 
         <S.TextFieldBox>
+          <S.TextFieldStyled {...register('url_name')} label='Url Name' fullWidth />
+        </S.TextFieldBox>
+
+        <S.TextFieldBox>
           <TextListCreator
             label='Keywords'
             list={getValues('keywords')}
