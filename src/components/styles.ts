@@ -111,11 +111,11 @@ export const ImageUploadIconStyled = styled(Box)`
   }
 `
 
-export const FieldBox = styled(Box)`
-  display: flex;
-  width: 20rem;
-  align-items: left;
-`
+// export const FieldBox = styled(Box)`
+//   display: flex;
+//   width: 20rem;
+//   align-items: left;
+// `
 export const Form = styled.form`
   width: 100%;
   display: flex;

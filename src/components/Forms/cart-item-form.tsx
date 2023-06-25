@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import * as S from 'src/components/styles'
 
-import { I_CartItemPopulated } from 'src/services/orders.service'
+import { I_CartItemPopulated } from 'src/models'
 
 interface I_Props {
   onSubmit: (data: I_CartItemPopulated) => void
@@ -20,8 +20,6 @@ interface I_Props {
 //   product: '',
 // }
 
-const fieldBoxStyles = { display: 'flex', width: '20rem', alignItems: 'left' }
-
 export const CartItemForm = (props: Readonly<I_Props>) => {
   const { onSubmit, onCancel, isLoading, initValues } = props
   const {
@@ -35,24 +33,15 @@ export const CartItemForm = (props: Readonly<I_Props>) => {
     <Box sx={{ width: '30rem' }}>
       <form onSubmitCapture={handleSubmit(onSubmit)}>
         <S.TextFieldBox>
-          <label>Main Color</label>
-          <Box sx={fieldBoxStyles}>
-            <S.TextFieldStyled {...register('main_color', { required: false })} />
-          </Box>
+          <S.TextFieldStyled {...register('main_color', { required: false })} label='Main Color' />
         </S.TextFieldBox>
 
         <S.TextFieldBox>
-          <label>Textile Color</label>
-          <Box sx={fieldBoxStyles}>
-            <S.TextFieldStyled {...register('pill_color', { required: false })} />
-          </Box>
+          <S.TextFieldStyled {...register('pill_color', { required: false })} label='Pill Color' />
         </S.TextFieldBox>
 
         <S.TextFieldBox>
-          <label>Count</label>
-          <Box sx={fieldBoxStyles}>
-            <S.TextFieldStyled {...register('count', { required: true })} />
-          </Box>
+          <S.TextFieldStyled {...register('count', { required: true })} label='Count' />
         </S.TextFieldBox>
 
         <S.ButtonStyled variant='contained' type='submit' disabled={isLoading}>

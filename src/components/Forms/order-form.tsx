@@ -1,7 +1,7 @@
-import { Box, InputLabel, MenuItem, Select } from '@mui/material'
+import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { useForm } from 'react-hook-form'
 
-import { TextFieldBox, FieldBox, TextFieldStyled, ButtonStyled } from 'src/components'
+import { TextFieldBox, TextFieldStyled, ButtonStyled } from 'src/components'
 import { I_OrderForm, StatusEnum } from 'src/models'
 
 interface I_Props {
@@ -43,43 +43,48 @@ export const OrderForm = (props: Readonly<I_Props>) => {
     onSubmit(filtered_data)
   }
   return (
-    <Box sx={{ width: '30rem' }}>
+    <Box sx={{ width: '100%' }}>
       <form onSubmitCapture={handleSubmit(prepareSubmit)}>
         <TextFieldBox>
-          <InputLabel>Client Name</InputLabel>
-          <FieldBox>
-            <TextFieldStyled {...register('name', { required: !!required })} />
-          </FieldBox>
+          <TextFieldStyled
+            {...register('name', { required: !!required })}
+            fullWidth
+            label='Client Name'
+          />
         </TextFieldBox>
 
         <TextFieldBox>
-          <InputLabel>Client Phone</InputLabel>
-          <FieldBox>
-            <TextFieldStyled {...register('phone', { required: !!required })} />
-          </FieldBox>
+          <TextFieldStyled
+            {...register('phone', { required: !!required })}
+            fullWidth
+            label='Phone'
+          />
         </TextFieldBox>
 
         <TextFieldBox>
-          <InputLabel>Details</InputLabel>
-          <FieldBox>
-            <TextFieldStyled {...register('message', { required: false })} />
-          </FieldBox>
+          <TextFieldStyled
+            {...register('message', { required: false })}
+            fullWidth
+            label='Message'
+          />
         </TextFieldBox>
 
         <TextFieldBox>
-          <InputLabel>Status</InputLabel>
-          <FieldBox>
+          <FormControl fullWidth>
+            <InputLabel>Status</InputLabel>
             <Select
               value={getValues('status')}
               onChange={(e) => setValue('status', e.target.value as StatusEnum)}
-              sx={{ width: '15rem', textAlign: 'left' }}
+              sx={{ textAlign: 'left' }}
+              label='Status'
+              fullWidth
             >
               <MenuItem value={StatusEnum.c}>Cancelled</MenuItem>
               <MenuItem value={StatusEnum.d}>Done</MenuItem>
               <MenuItem value={StatusEnum.w}>Cancelled</MenuItem>
               <MenuItem value={StatusEnum.p}>In Progress</MenuItem>
             </Select>
-          </FieldBox>
+          </FormControl>
         </TextFieldBox>
 
         <ButtonStyled variant='contained' type='submit' disabled={isLoading}>

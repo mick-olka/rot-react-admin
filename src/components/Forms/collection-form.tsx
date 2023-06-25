@@ -21,8 +21,6 @@ const def: I_CollectionForm = {
   description: lanEnumToObject(''),
 }
 
-const fieldBoxStyles = { display: 'flex', width: '20rem', alignItems: 'left' }
-
 export const CollectionForm = (props: Readonly<I_Props>) => {
   const { onSubmit, isLoading, initValues } = props
   const {
@@ -47,26 +45,22 @@ export const CollectionForm = (props: Readonly<I_Props>) => {
     <Box sx={{ width: '30rem' }}>
       <form onSubmitCapture={handleSubmit(prepareSubmit)}>
         <S.TextFieldBox>
-          <label>Name</label>
-          <Box sx={fieldBoxStyles}>
-            <MultiLangTextField
-              registerOptions={{ required: true }}
-              register={register}
-              names={['name.ua', 'name.en', 'name.de']}
-              error={!!errors.name}
-            />
-          </Box>
+          <MultiLangTextField
+            registerOptions={{ required: true }}
+            register={register}
+            names={['name.ua', 'name.en', 'name.de']}
+            error={!!errors.name}
+            label='Name'
+          />
         </S.TextFieldBox>
 
         <S.TextFieldBox>
-          <label>Description</label>
-          <Box sx={fieldBoxStyles}>
-            <MultiLangTextField
-              register={register}
-              names={['description.ua', 'description.en', 'description.de']}
-              textarea
-            />
-          </Box>
+          <MultiLangTextField
+            register={register}
+            names={['description.ua', 'description.en', 'description.de']}
+            textarea
+            label='Description'
+          />
         </S.TextFieldBox>
 
         <S.TextFieldBox>
