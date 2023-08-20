@@ -2,12 +2,15 @@ import { Box, Button, TextField } from '@mui/material'
 import styled from 'styled-components'
 
 export const TextFieldStyled = styled(TextField)`
-  border-radius: 15px;
-  margin: 1rem;
-  background-color: ${({ theme }) => theme.components.textInput.bg};
-  color: ${({ theme }) => theme.components.textInput.c};
-  .MuiFormLabel-root {
-    font-size: 20px;
+  &&& {
+    width: calc(100% - 4rem);
+    border-radius: 15px;
+    /* margin: 1rem; */
+    background-color: ${({ theme }) => theme.components.textInput.bg};
+    color: ${({ theme }) => theme.components.textInput.c};
+    .MuiFormLabel-root {
+      font-size: 20px;
+    }
   }
 `
 

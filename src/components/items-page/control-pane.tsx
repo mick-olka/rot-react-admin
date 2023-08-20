@@ -26,11 +26,7 @@ export const ControlPane = (
             <AddIcon fontSize='small' />
           </S.RoundButton>
         )}
-        {props.title && (
-          <h2>
-            {props.title}: {props.selected?.length || null}
-          </h2>
-        )}
+        {props.title && <h2>{props.title}</h2>}
         {props.children}
       </S.ControlPaneBox>
       <S.ControlPaneBox>
@@ -51,12 +47,14 @@ export const ControlPane = (
                     disabled={!props.selected.length}
                     onClick={props.onDeleteClick}
                     width='3rem'
+                    sx={{ bgcolor: '#fff !important' }}
                   >
-                    <DeleteOutlined fontSize='small' />
+                    <DeleteOutlined fontSize='small' color='warning' />
                   </S.RoundButton>
                 </Box>
               </Tooltip>
             )}
+            <h2>{props.selected?.length || null}</h2>
           </>
         )}
       </S.ControlPaneBox>

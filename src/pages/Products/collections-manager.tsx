@@ -57,7 +57,6 @@ export const CollectionsManager = ({
       errorAlert
       loadingAlert
     >
-      {/* <h2>Collections:</h2> */}
       <Box width='15rem'>
         <ItemSelector
           placeholder='Add to Collection'

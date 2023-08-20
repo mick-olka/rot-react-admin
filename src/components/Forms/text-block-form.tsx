@@ -5,7 +5,7 @@ import { MultiLangTextField } from '../inputs/multi-lang-text-field'
 
 import * as S from 'src/components/styles'
 
-import { I_TextBlockForm } from 'src/services/text_blocks.service'
+import { I_TextBlockForm } from 'src/models'
 import { lanEnumToObject } from 'src/utils'
 
 interface I_Props {

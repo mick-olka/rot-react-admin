@@ -7,7 +7,7 @@ import { SimilarRelatedProducts } from '.'
 
 import { CollectionsManager } from './collections-manager'
 
-import { AlertDialog, AvatarUploader, PhotosList, ProductForm } from 'src/components'
+import { AlertDialog, AvatarUploader, PhotosList, ProductForm, RoundButton } from 'src/components'
 import { useDeleteProduct, useProductById, useUpdateProduct } from 'src/hooks'
 import { StatusWrapper } from 'src/layouts'
 import { I_ProductForm } from 'src/models'
@@ -43,10 +43,16 @@ export const ProductPage = () => {
   return (
     <StatusWrapper isLoading={isFetching && !product} isError={isError} sx={{ padding: '0 2rem' }}>
       {product && (
-        <Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <h2 style={{ margin: '0.5rem 2rem 0' }}>Update Product</h2>
-            <IconButton onClick={() => setDeleteDialog(true)} disabled={delete_loading}>
+        <Box sx={{ marginBottom: '2rem' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            {/* <h2 style={{ margin: '0.5rem 2rem 0' }}>Update Product</h2> */}
+            <h2 style={{ margin: '2rem' }}>{product.name.ua}</h2>
+            <IconButton
+              color='warning'
+              onClick={() => setDeleteDialog(true)}
+              disabled={delete_loading}
+              sx={{ width: '3rem', height: '3rem' }}
+            >
               <DeleteOutlineRoundedIcon />
             </IconButton>
           </Box>
@@ -58,7 +64,6 @@ export const ProductPage = () => {
               />
             </Box>
             <Box margin='2rem'>
-              <h2 style={{ margin: '2rem' }}>{product.name.ua}</h2>
               <CollectionsManager available_list={product.collections} product_id={product._id} />
             </Box>
           </Box>
