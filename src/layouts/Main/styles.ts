@@ -22,6 +22,7 @@ export const MainMiddle = styled.div`
 
 export const MainContent = styled.main`
   width: 100%;
+  overflow: auto;
   & > div {
     height: 100%;
   }

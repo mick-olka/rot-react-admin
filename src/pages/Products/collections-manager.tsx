@@ -49,8 +49,6 @@ export const CollectionsManager = ({
     handleUpdateItems(id, 'add')
   }
 
-  console.log(other_collections)
-
   return (
     <StatusWrapper
       isError={isError}

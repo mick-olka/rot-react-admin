@@ -38,12 +38,13 @@ export const product_columns: GridColDef[] = [
     field: 'index',
     headerName: 'Index',
     width: 100,
-    renderCell: (params) => {
-      const [index, setIndex] = useState<number>(params.value || 0)
+    renderCell: (row_props) => {
+      const [index, setIndex] = useState<number>(row_props.value || 0)
       const [value] = useDebounce(index, 1000)
-      const { update, isLoading } = useUpdateProduct(params.row._id)
+      const { update, isLoading } = useUpdateProduct(row_props.row._id)
       useEffect(() => {
-        if (params.value !== value) update({ id: params.row._id, form_data: { index: value } })
+        if (row_props.value !== value)
+          update({ id: row_props.row._id, form_data: { index: value } })
       }, [value])
       return (
         <Box onClick={(e) => e.stopPropagation()}>
