@@ -2,7 +2,9 @@ import { Box } from '@mui/material'
 import styled from 'styled-components'
 
 export const MainLayout = styled(Box)`
-  height: 100%;
+  position: relative;
+  max-height: 100vh;
+  overflow: hidden;
   background-color: ${({ theme }) => theme.components.main.bg};
   color: ${({ theme }) => theme.components.main.c};
 `
@@ -16,15 +18,21 @@ export const MainHeader = styled.header`
 `
 
 export const MainMiddle = styled.div`
+  position: relative;
   min-height: calc(94vh - 2px);
+  height: calc(94vh - 2px);
+  /* max-height: calc(94vh - 2px); */
+  /* overflow: auto; */
   display: flex;
 `
 
 export const MainContent = styled.main`
   width: 100%;
+  height: 100%;
+  max-height: 100%;
   overflow: auto;
   & > div {
-    height: 100%;
+    height: fit-content;
   }
 `
 

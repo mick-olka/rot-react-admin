@@ -33,8 +33,7 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
   const handleUpdate = (index: number, field: 'key' | 'value', value: string) => {
     const array = [...features[featuresLan]]
     array.splice(index, 1, { ...array[index], [field]: value })
-    const new_data = { ...features, [featuresLan]: array }
-    onChange(new_data)
+    onChange({ ...features, [featuresLan]: array })
   }
 
   return (
@@ -57,14 +56,12 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
         <Box key={'f' + i} sx={{ display: 'flex' }}>
           <CS.TextFieldStyled
             value={f.key}
-            // label='Title'
             size='small'
             onChange={(e) => handleUpdate(i, 'key', e.target.value)}
             sx={{ marginRight: 1 }}
           />
           <CS.TextFieldStyled
             value={f.value}
-            // label='Value'
             size='small'
             onChange={(e) => handleUpdate(i, 'value', e.target.value)}
           />
