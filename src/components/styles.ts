@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const TextFieldStyled = styled(TextField)`
   &&& {
-    width: calc(100% - 4rem);
+    /* width: calc(100% - 4rem); */
     border-radius: 15px;
     /* margin: 1rem; */
     background-color: ${({ theme }) => theme.components.textInput.bg};

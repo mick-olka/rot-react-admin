@@ -1,11 +1,11 @@
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
-import { Box, Button, IconButton, ToggleButton, ToggleButtonGroup } from '@mui/material'
+import { Box, Button, IconButton, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
 import { useState } from 'react'
 
-import { FeaturesManagerWrapper } from './styles'
+import * as S from './styles'
 
-import * as S from 'src/components/styles'
+import * as CS from 'src/components/styles'
 import { E_Languages, I_ProductFeatures } from 'src/models'
 
 interface I_Props {
@@ -37,7 +37,7 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
   }
 
   return (
-    <FeaturesManagerWrapper>
+    <S.FeaturesManagerWrapper>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '90%' }}>
         <h3>Features</h3>
         <ToggleButtonGroup value={featuresLan} exclusive onChange={handleFeatureLan} size='small'>
@@ -48,18 +48,22 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
           ))}
         </ToggleButtonGroup>
       </Box>
+      <Box sx={{ display: 'flex' }}>
+        <Typography sx={{ fontWeight: 600, width: '48%' }}>Title</Typography>
+        <Typography fontWeight={600}>Value</Typography>
+      </Box>
       {features[featuresLan].map((f, i) => (
-        <Box key={'f' + i}>
-          <S.TextFieldStyled
+        <Box key={'f' + i} sx={{ display: 'flex' }}>
+          <CS.TextFieldStyled
             value={f.key}
-            label='Title'
+            // label='Title'
             size='small'
             onChange={(e) => handleUpdate(i, 'key', e.target.value)}
             sx={{ marginRight: 1 }}
           />
-          <S.TextFieldStyled
+          <CS.TextFieldStyled
             value={f.value}
-            label='Value'
+            // label='Value'
             size='small'
             onChange={(e) => handleUpdate(i, 'value', e.target.value)}
           />
@@ -77,6 +81,6 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
       >
         <AddRoundedIcon fontSize='small' />
       </Button>
-    </FeaturesManagerWrapper>
+    </S.FeaturesManagerWrapper>
   )
 }
