@@ -25,14 +25,15 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
   }
 
   const deleteFeature = (i: number) => {
-    onChange({ ...features, [featuresLan]: features[featuresLan].splice(i, 1) })
+    const new_features = [...features[featuresLan]]
+    new_features.splice(i, 1)
+    onChange({ ...features, [featuresLan]: new_features })
   }
 
   const handleUpdate = (index: number, field: 'key' | 'value', value: string) => {
     const array = [...features[featuresLan]]
     array.splice(index, 1, { ...array[index], [field]: value })
     const new_data = { ...features, [featuresLan]: array }
-    console.log(new_data)
     onChange(new_data)
   }
 
