@@ -1,4 +1,4 @@
-import { Box, Chip, Stack } from '@mui/material'
+import { Box, Chip, Stack, Typography } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
@@ -57,7 +57,8 @@ export const CollectionsManager = ({
       errorAlert
       loadingAlert
     >
-      <Box width='15rem'>
+      <Box sx={{ width: '20rem', display: 'flex', alignItems: 'center' }}>
+        <Typography>Collections: </Typography>
         <ItemSelector
           placeholder='Add to Collection'
           items={other_collections}

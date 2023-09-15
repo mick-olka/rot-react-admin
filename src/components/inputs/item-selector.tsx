@@ -31,8 +31,8 @@ export const ItemSelector = ({ items, placeholder, onSelect, init }: I_Props) =>
   }
 
   return (
-    <Box sx={{ margin: 1 }}>
-      <FormControl fullWidth>
+    <Box sx={{ margin: 1, flexGrow: 1 }}>
+      <FormControl fullWidth size='small'>
         <InputLabel>{placeholder || def.name}</InputLabel>
         <Select
           value={items.length ? current.id : def.id}

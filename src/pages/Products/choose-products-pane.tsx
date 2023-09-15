@@ -14,7 +14,7 @@ export const ChooseProducts = ({
 }: {
   onSubmit: (ids: string[]) => void
   onCancel: () => void
-  collectionId: string
+  collectionId?: string
 }) => {
   const page = useProductsStore((state) => state.page)
   const setPage = useProductsStore((state) => state.setPage)
@@ -23,9 +23,9 @@ export const ChooseProducts = ({
   const [selected, setSelected] = useState<string[]>([])
   const { products, count, isLoading, isError, refetch, limit } = useProducts({ page, regex })
   const products_filtered = useMemo(() => {
-    if (products)
+    if (products && collectionId)
       return products.map((p) => ({ ...p, disabled: p.collections.includes(collectionId) }))
-    return []
+    return products || []
   }, [products])
   const data = { data: products_filtered, count: count || 0, isLoading, isError, refetch, limit }
   useEffect(() => {

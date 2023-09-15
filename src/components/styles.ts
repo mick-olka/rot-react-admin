@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const TextFieldStyled = styled(TextField)`
   &&& {
-    /* width: calc(100% - 4rem); */
+    /* width: calc(100% - 7rem); */
     border-radius: 15px;
     /* margin: 1rem; */
     background-color: ${({ theme }) => theme.components.textInput.bg};
@@ -122,10 +122,10 @@ export const ImageUploadIconStyled = styled(Box)`
 // `
 export const Form = styled.form`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   margin: 1rem;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 `
 
 export const Thumbnail = styled(Avatar)`

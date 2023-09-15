@@ -38,7 +38,7 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
 
   return (
     <S.FeaturesManagerWrapper>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '90%' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <h3>Features</h3>
         <ToggleButtonGroup value={featuresLan} exclusive onChange={handleFeatureLan} size='small'>
           {Object.values(E_Languages).map((l) => (
@@ -49,8 +49,10 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
         </ToggleButtonGroup>
       </Box>
       <Box sx={{ display: 'flex' }}>
-        <Typography sx={{ fontWeight: 600, width: '48%' }}>Title</Typography>
-        <Typography fontWeight={600}>Value</Typography>
+        <Typography sx={{ fontWeight: 600, flexGrow: 1 }}>Title</Typography>
+        <Typography fontWeight={600} sx={{ flexGrow: 1 }}>
+          Value
+        </Typography>
       </Box>
       {features[featuresLan].map((f, i) => (
         <Box key={'f' + i} sx={{ display: 'flex' }}>
@@ -58,27 +60,24 @@ export const FeaturesManager = ({ features, onChange }: I_Props) => {
             value={f.key}
             size='small'
             onChange={(e) => handleUpdate(i, 'key', e.target.value)}
-            sx={{ marginRight: 1 }}
+            sx={{ marginRight: 1, flexGrow: 1 }}
           />
           <CS.TextFieldStyled
             value={f.value}
             size='small'
             onChange={(e) => handleUpdate(i, 'value', e.target.value)}
+            sx={{ flexGrow: 1 }}
           />
           <IconButton onClick={() => deleteFeature(i)}>
             <DeleteOutlineRoundedIcon />
           </IconButton>
         </Box>
       ))}
-      <Button
-        size='small'
-        variant='contained'
-        onClick={addFeature}
-        color='inherit'
-        sx={{ width: '90%' }}
-      >
-        <AddRoundedIcon fontSize='small' />
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '0.5rem' }}>
+        <S.AddBtn onClick={addFeature} size='small'>
+          <AddRoundedIcon fontSize='small' />
+        </S.AddBtn>
+      </Box>
     </S.FeaturesManagerWrapper>
   )
 }

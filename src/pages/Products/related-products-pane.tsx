@@ -18,7 +18,7 @@ interface I_Props {
 type ListType = 'similar' | 'related' | null
 
 export const SimilarRelatedProducts = ({ prod_id, related, similar }: I_Props) => {
-  const [type, setType] = useState<ListType>(null)
+  const [type, setType] = useState<ListType>('related')
 
   const [productsSelectionMode, setProductsSelectionMode] = useState(false)
   const { update, isLoading } = useUpdateProductItems(prod_id)
@@ -82,6 +82,7 @@ export const SimilarRelatedProducts = ({ prod_id, related, similar }: I_Props) =
             setProductsSelectionMode(false)
           }}
           onCancel={() => setProductsSelectionMode(false)}
+          collectionId={'none'}
         />
       </Box>
     )
@@ -98,7 +99,7 @@ export const SimilarRelatedProducts = ({ prod_id, related, similar }: I_Props) =
         </ToggleButton>
       </ToggleButtonGroup>
       {type && (
-        <Box sx={{ height: '600px' }}>
+        <Box sx={{ height: '500px' }}>
           <ItemsPage
             // title={''}
             data={data[type]}

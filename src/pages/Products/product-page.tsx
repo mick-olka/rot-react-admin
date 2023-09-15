@@ -1,13 +1,13 @@
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
-import { Box, IconButton } from '@mui/material'
-import { useState } from 'react'
+import { Box, IconButton, Tab, Tabs, Typography } from '@mui/material'
+import { SyntheticEvent, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { SimilarRelatedProducts } from '.'
+import { CustomTabPanel, SimilarRelatedProducts, a11yProps } from '.'
 
 import { CollectionsManager } from './collections-manager'
 
-import { AlertDialog, AvatarUploader, PhotosList, ProductForm, RoundButton } from 'src/components'
+import { AlertDialog, AvatarUploader, PhotosList, ProductForm } from 'src/components'
 import { useDeleteProduct, useProductById, useUpdateProduct } from 'src/hooks'
 import { StatusWrapper } from 'src/layouts'
 import { I_ProductForm } from 'src/models'
@@ -20,6 +20,11 @@ export const ProductPage = () => {
   const { update, isLoading } = useUpdateProduct(String(id))
   const { deleteOne, isLoading: delete_loading } = useDeleteProduct()
   const navigate = useNavigate()
+  const [tab, setTab] = useState(0)
+
+  const handleChange = (event: SyntheticEvent, newValue: number) => {
+    setTab(newValue)
+  }
 
   const onSubmit = (data: I_ProductForm) => {
     if (product && data) {
@@ -45,7 +50,6 @@ export const ProductPage = () => {
       {product && (
         <Box sx={{ marginBottom: '2rem' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            {/* <h2 style={{ margin: '0.5rem 2rem 0' }}>Update Product</h2> */}
             <h2 style={{ margin: '2rem' }}>{product.name.ua}</h2>
             <IconButton
               color='warning'
@@ -63,24 +67,38 @@ export const ProductPage = () => {
                 currentURL={`${PHOTOS_URL}${product.thumbnail}`}
               />
             </Box>
-            <Box margin='2rem'>
+            <Box sx={{ margin: '2rem' }}>
               <CollectionsManager available_list={product.collections} product_id={product._id} />
             </Box>
           </Box>
-          <Box width='fit-content' sx={{ width: '100%' }}>
-            <ProductForm isLoading={isLoading} initValues={product} onSubmit={onSubmit} />
+          <Box sx={{ width: '100%' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <Tabs value={tab} onChange={handleChange} aria-label='basic tabs example'>
+                <Tab label='General' {...a11yProps(0)} />
+                <Tab label='Photos' {...a11yProps(1)} />
+                <Tab label='Related' {...a11yProps(2)} />
+              </Tabs>
+            </Box>
+            <CustomTabPanel value={tab} index={0}>
+              <Box width='fit-content' sx={{ width: '100%' }}>
+                <ProductForm isLoading={isLoading} initValues={product} onSubmit={onSubmit} />
+              </Box>
+            </CustomTabPanel>
+            <CustomTabPanel value={tab} index={1}>
+              <PhotosList
+                product_id={product._id}
+                product_url={product.url_name}
+                photos={product.photos}
+              />
+            </CustomTabPanel>
+            <CustomTabPanel value={tab} index={2}>
+              <SimilarRelatedProducts
+                prod_id={product._id}
+                related={product.related_products}
+                similar={product.similar_products}
+              />
+            </CustomTabPanel>
           </Box>
-          <PhotosList
-            product_id={product._id}
-            product_url={product.url_name}
-            photos={product.photos}
-          />
-          <hr />
-          <SimilarRelatedProducts
-            prod_id={product._id}
-            related={product.related_products}
-            similar={product.similar_products}
-          />
         </Box>
       )}
       <AlertDialog

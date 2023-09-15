@@ -37,6 +37,7 @@ export const TextListCreator = ({ label, list, onListChange, options, sx }: I_Pr
       options={options || []}
       sx={{ width: '20rem', ...sx }}
       freeSolo
+      limitTags={5}
       renderInput={(params) => <TextField {...params} label={label || 'Write here'} />}
     />
   )

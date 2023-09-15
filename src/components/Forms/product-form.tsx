@@ -1,3 +1,4 @@
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import PercentRoundedIcon from '@mui/icons-material/PercentRounded'
 import { Box } from '@mui/material'
 import { useState } from 'react'
@@ -68,7 +69,7 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
 
   return (
     <S.Form onSubmitCapture={handleSubmit(prepareSubmit)}>
-      <Box sx={{ width: '40%', minWidth: '20rem' }}>
+      <Box sx={{ minWidth: '20rem' }}>
         <S.ButtonStyled
           variant='contained'
           type='submit'
@@ -98,7 +99,7 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
           {errors.code && <span>This field is required</span>}
         </S.TextFieldBox>
 
-        <S.TextFieldBox>
+        <S.TextFieldBox sx={{ position: 'relative' }}>
           {isSale && (
             <S.TextFieldStyled
               type='number'
@@ -112,17 +113,18 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
             {...register('price', { required: !!required })}
             label={isSale ? 'New Price' : 'Price'}
             fullWidth
+            // sx={{ marginLeft: '1rem' }}
           />
           <S.RoundButton
             sx={{
-              width: '55px',
-              height: '55px',
+              position: 'absolute',
+              right: '0',
               bgcolor: isSale ? 'Highlight' : 'none',
             }}
             onClick={toggleSale}
             title='Discount'
           >
-            <PercentRoundedIcon />
+            {isSale ? <CloseRoundedIcon /> : <PercentRoundedIcon />}
           </S.RoundButton>
           {errors.code && <span>This field is required</span>}
         </S.TextFieldBox>
@@ -156,10 +158,7 @@ export const ProductForm = ({ onSubmit, isLoading, initValues, required }: Reado
           />
         </S.TextFieldBox>
       </Box>
-
-      {/* <Divider orientation='vertical' flexItem /> */}
-
-      <Box sx={{ width: '40%', minWidth: '35rem' }}>
+      <Box sx={{ minWidth: '35rem' }}>
         <FeaturesManager
           features={getValues('features')}
           onChange={(f) => setValue('features', f)}
