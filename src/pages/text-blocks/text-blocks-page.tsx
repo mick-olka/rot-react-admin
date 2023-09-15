@@ -1,4 +1,3 @@
-import { Box } from '@mui/material'
 import { useMemo, useState } from 'react'
 
 import { text_blocks_columns, textBlocksFilter } from './data'
@@ -41,7 +40,7 @@ export const TextBlocksPage = () => {
     limit: 99,
   }
   return (
-    <Box>
+    <>
       <ItemsPage
         title='Text on Site'
         data={data}
@@ -57,6 +56,6 @@ export const TextBlocksPage = () => {
           initValues={text_block}
         />
       </ContentDialog>
-    </Box>
+    </>
   )
 }

@@ -55,10 +55,11 @@ export const CollectionPage = () => {
     count: collection?.items.length || 0,
     limit: 20,
   }
-  if (productsSelectionMode) {
+  if (productsSelectionMode && collection) {
     return (
       <Box>
         <ChooseProducts
+          collectionId={collection._id}
           onSubmit={(ids) => {
             handleAddItems(ids)
             setProductsSelectionMode(false)
@@ -70,27 +71,25 @@ export const CollectionPage = () => {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      <Box sx={{ height: '100%' }}>
-        <ItemsPage
-          title={collection?.name.ua}
-          data={products}
-          columns={product_columns}
-          // pagination
-          // page={page}
-          // setPage={setPage}
-          clientPagination
-          onDeleteMultiple={handleDeleteItems}
-          onItemClick={onProdClick}
-          onSearchTrigger={handleSearchTrigger}
-          deleteTitle='Remove these items from the collection'
-        >
-          <RoundButton onClick={() => setOpen(true)}>
-            <EditOutlinedIcon />
-          </RoundButton>
-          <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
-        </ItemsPage>
-      </Box>
+    <>
+      <ItemsPage
+        title={collection?.name.ua}
+        data={products}
+        columns={product_columns}
+        // pagination
+        // page={page}
+        // setPage={setPage}
+        clientPagination
+        onDeleteMultiple={handleDeleteItems}
+        onItemClick={onProdClick}
+        onSearchTrigger={handleSearchTrigger}
+        deleteTitle='Remove these items from the collection'
+      >
+        <RoundButton onClick={() => setOpen(true)}>
+          <EditOutlinedIcon />
+        </RoundButton>
+        <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
+      </ItemsPage>
       <ContentDialog open={open} setOpen={setOpen}>
         <CollectionForm
           initValues={collection}
@@ -98,6 +97,6 @@ export const CollectionPage = () => {
           onSubmit={handleCollectionUpdate}
         />
       </ContentDialog>
-    </Box>
+    </>
   )
 }

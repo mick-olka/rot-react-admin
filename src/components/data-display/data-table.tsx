@@ -1,4 +1,4 @@
-import { DataGrid, GridColDef, GridRowSelectionModel } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridRowParams, GridRowSelectionModel } from '@mui/x-data-grid'
 
 import { products_page_limit } from 'src/utils'
 
@@ -27,6 +27,7 @@ export const DataTable = <T,>(props: I_Props<T>) => {
       disableColumnMenu
       disableColumnFilter
       disableRowSelectionOnClick
+      isRowSelectable={(params: GridRowParams) => !params.row.disabled}
       // hideFooterSelectedRowCount={!pagination}
       hideFooter
       hideFooterPagination={!pagination}

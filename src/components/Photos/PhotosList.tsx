@@ -126,7 +126,7 @@ export const PhotosList = ({ product_id, product_url, photos }: I_Props) => {
         title='Delete Photos Group?'
         text='This action can not be undone'
         onAgree={onConfirmDelete}
-        onCancel={() => null}
+        onCancel={() => setEditingId(null)}
       />
     </Box>
   )

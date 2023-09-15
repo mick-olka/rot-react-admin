@@ -20,12 +20,10 @@ interface I_Props {
 }
 
 export const Gallery = (props: I_Props) => {
-  // const [newFiles, setNewFiles] = useState<File[]>([])
   const [open, setOpen] = useState(false)
   const [image, setImage] = useState<string>('')
   const onPhotoDeleteClick = (e: ButtonClickEvent, path: string) => {
     e.stopPropagation()
-    // e.preventDefault()
     props.onDeletePhoto && props.onDeletePhoto(path)
   }
   const onNewPhotoDeleteClick = (e: ButtonClickEvent, file: File) => {
@@ -34,7 +32,6 @@ export const Gallery = (props: I_Props) => {
     props.setNewFiles(new_files)
   }
   const onPhotoOpenClick = (url: string) => {
-    // console.log('open photo')
     setImage(url)
     setOpen(true)
   }
@@ -42,10 +39,6 @@ export const Gallery = (props: I_Props) => {
     const new_files = [...props.newFiles, ...files]
     props.setNewFiles(new_files)
   }
-  // useEffect(() => {
-  //   console.log(files)
-  //   // setPathArr((arr) => [...arr, URL.createObjectURL(file)])
-  // }, [files])
   return (
     <Box sx={{ display: 'flex', overflow: 'auto', width: '100%' }}>
       {props.path_arr.map((path) => (
@@ -73,7 +66,7 @@ export const Gallery = (props: I_Props) => {
               </S.RoundButton>
             )}
           </PS.PhotoOverlay>
-          <Avatar
+          <S.Image
             sx={{ width: 150, height: 150 }}
             src={`${PHOTOS_URL}${path}`}
             variant='rounded'
@@ -141,11 +134,11 @@ export const Gallery = (props: I_Props) => {
         open={open}
         sx={{ '& .MuiPaper-root': { maxWidth: 'calc(100% - 64px)' } }}
       >
-        <Avatar
+        <S.Image
           variant='square'
           alt='image'
           src={image || undefined}
-          sx={{ width: 800, height: 800 }}
+          sx={{ minWidth: '700px', minHeight: '700px', margin: '1rem' }}
         />
       </Dialog>
     </Box>

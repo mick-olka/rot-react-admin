@@ -37,7 +37,7 @@ export const MultiLangTextField = <I_FormData extends FieldValues>({
           {...register(n, registerOptions)}
           sx={{
             display: n === names[current] ? 'block' : 'none',
-            // width: textarea ? '30rem' : 'auto',
+            '& textarea': { resize: 'both' },
           }}
           label={label}
           error={error}

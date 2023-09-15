@@ -1,15 +1,17 @@
 import ImageIcon from '@mui/icons-material/Image'
-import { Avatar, Box } from '@mui/material'
-import TextField from '@mui/material/TextField'
+import { Box, Typography, TextField } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 import { useEffect, useState } from 'react'
 import { useDebounce } from 'use-debounce'
 
+import * as S from './styles'
+
+import { useTextBlockById } from 'src/hooks'
 import { useUpdateProduct } from 'src/hooks/use-products'
 import { PHOTOS_URL } from 'src/utils'
 
 export const product_columns: GridColDef[] = [
-  { field: 'name', headerName: 'Name', width: 130, valueGetter: (param) => param.value.ua },
+  { field: 'name', headerName: 'Name', flex: 1, valueGetter: (param) => param.value.ua },
   {
     field: 'thumbnail',
     headerName: 'Image',
@@ -18,22 +20,25 @@ export const product_columns: GridColDef[] = [
       <Box>
         {params.value ? (
           <Box sx={{ width: '3rem', height: '3rem' }}>
-            <Avatar
-              alt={params.value}
-              src={`${PHOTOS_URL}${params.value}`}
-              sx={{ width: 100, height: 50 }}
-              variant='square'
-            />
+            <S.Thumbnail alt={params.value} src={`${PHOTOS_URL}${params.value}`} variant='square' />
           </Box>
         ) : (
           <ImageIcon />
         )}
       </Box>
     ),
-    // valueGetter: (params) => params.row.thumbnail,
   },
-  { field: 'price', headerName: 'Price', width: 130 },
-  // { field: 'index', headerName: 'Index', width: 130 },
+  { field: 'price', headerName: 'Price', width: 130, valueFormatter: (p) => `$ ${p.value}` },
+  {
+    field: 'price_uah',
+    headerName: 'UAH',
+    width: 130,
+    renderCell: (row_props) => {
+      const d = useTextBlockById('dollar')
+      const c = d.text_block ? Number(d.text_block.text.ua) : 37
+      return <Typography>{Number(row_props.row.price) * c} ₴</Typography>
+    },
+  },
   {
     field: 'index',
     headerName: 'Index',

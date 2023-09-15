@@ -6,7 +6,7 @@ import { useDebounce } from 'use-debounce'
 import { useUpdateCollection } from 'src/hooks'
 
 export const columns: GridColDef[] = [
-  { field: 'name', headerName: 'Name', width: 130, valueGetter: (param) => param.value.ua },
+  { field: 'name', headerName: 'Name', flex: 1, valueGetter: (param) => param.value.ua },
   { field: 'url_name', headerName: 'Url', width: 130 },
   {
     field: 'index',

@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material'
+import { Avatar, Box, Button, TextField } from '@mui/material'
 import styled from 'styled-components'
 
 export const TextFieldStyled = styled(TextField)`
@@ -126,4 +126,23 @@ export const Form = styled.form`
   justify-content: space-between;
   margin: 1rem;
   flex-wrap: wrap;
+`
+
+export const Thumbnail = styled(Avatar)`
+  &&& {
+    width: 100%;
+    height: 100%;
+    & img {
+      object-fit: contain;
+    }
+  }
+`
+export const Image = styled(Avatar)`
+  &&& {
+    width: 150px;
+    height: 150px;
+    img {
+      object-fit: contain;
+    }
+  }
 `

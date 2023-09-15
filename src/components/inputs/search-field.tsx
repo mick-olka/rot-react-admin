@@ -10,7 +10,7 @@ export const SearchField = ({
   onSearchTrigger: (searchText: string) => void
 }) => {
   const [text, setText] = useState('')
-  const search = useDebounce(text, 1000)
+  const search = useDebounce(text, 500)
   useEffect(() => {
     onSearchTrigger(search[0])
   }, [search[0]])

@@ -26,12 +26,7 @@ export const AvatarUploader = ({
       <FileUploader handleChange={onChange} name='file' types={fileTypes}>
         {url ? (
           <Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
-            <Avatar
-              src={url}
-              alt={url || 'no photo'}
-              sx={{ width: '100%', height: '100%' }}
-              variant='rounded'
-            />
+            <S.Thumbnail src={url} alt={url || 'no photo'} variant='rounded' />
             <S.ImageUploadIconStyled>
               <ImageIcon sx={{ width: '50%', height: '50%', opacity: 0.8 }} />
             </S.ImageUploadIconStyled>

@@ -1,4 +1,5 @@
 export { CollectionPage } from './collection-page'
+import { Box } from '@mui/material'
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 

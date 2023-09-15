@@ -1,5 +1,5 @@
 import { Box, Button } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { product_columns } from './data'
 
@@ -10,9 +10,11 @@ import { useProductsStore } from 'src/store'
 export const ChooseProducts = ({
   onSubmit,
   onCancel,
+  collectionId,
 }: {
   onSubmit: (ids: string[]) => void
   onCancel: () => void
+  collectionId: string
 }) => {
   const page = useProductsStore((state) => state.page)
   const setPage = useProductsStore((state) => state.setPage)
@@ -20,8 +22,12 @@ export const ChooseProducts = ({
   const [regex, setRegex] = useState<string | undefined>(undefined)
   const [selected, setSelected] = useState<string[]>([])
   const { products, count, isLoading, isError, refetch, limit } = useProducts({ page, regex })
-  const data = { data: products, count: count || 0, isLoading, isError, refetch, limit }
-  // const navigate = useNavigate()
+  const products_filtered = useMemo(() => {
+    if (products)
+      return products.map((p) => ({ ...p, disabled: p.collections.includes(collectionId) }))
+    return []
+  }, [products])
+  const data = { data: products_filtered, count: count || 0, isLoading, isError, refetch, limit }
   useEffect(() => {
     data.refetch()
   }, [page, regex])
@@ -29,14 +35,8 @@ export const ChooseProducts = ({
     if (regex) setPage(1)
   }, [data.count])
   const onProdClick = (id: string) => {
-    // if (products) {
-    //   const url_name = products.find((p) => p._id === id)?.url_name
-    //   if (url_name) navigate(getRouteWithId(ROUTES.product, url_name))
-    // }
+    //
   }
-  // const onCreateProdClick = () => {
-  //   navigate(ROUTES.createProduct)
-  // }
   const handleSearchTrigger = (searchText: string | undefined) => {
     if (searchText) setRegex(searchText)
     else setRegex(undefined)
