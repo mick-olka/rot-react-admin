@@ -1,7 +1,6 @@
 import ImageIcon from '@mui/icons-material/Image'
 
 import { Box } from '@mui/material'
-import Avatar from '@mui/material/Avatar'
 import { useState } from 'react'
 import { FileUploader } from 'react-drag-drop-files'
 
@@ -26,7 +25,7 @@ export const AvatarUploader = ({
       <FileUploader handleChange={onChange} name='file' types={fileTypes}>
         {url ? (
           <Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
-            <S.Thumbnail src={url} alt={url || 'no photo'} variant='rounded' />
+            <S.Thumbnail src={url} alt={'R'} variant='rounded' />
             <S.ImageUploadIconStyled>
               <ImageIcon sx={{ width: '50%', height: '50%', opacity: 0.8 }} />
             </S.ImageUploadIconStyled>

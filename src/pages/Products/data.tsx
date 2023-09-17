@@ -20,7 +20,7 @@ export const product_columns: GridColDef[] = [
       <Box>
         {params.value ? (
           <Box sx={{ width: '3rem', height: '3rem' }}>
-            <S.Thumbnail alt={params.value} src={`${PHOTOS_URL}${params.value}`} variant='square' />
+            <S.Thumbnail alt={'R'} src={`${PHOTOS_URL}${params.value}`} variant='square' />
           </Box>
         ) : (
           <ImageIcon />
@@ -48,8 +48,9 @@ export const product_columns: GridColDef[] = [
       const [value] = useDebounce(index, 1000)
       const { update, isLoading } = useUpdateProduct(row_props.row._id)
       useEffect(() => {
-        if (row_props.value !== value)
+        if (row_props.value !== value) {
           update({ id: row_props.row._id, form_data: { index: value } })
+        }
       }, [value])
       return (
         <Box onClick={(e) => e.stopPropagation()}>

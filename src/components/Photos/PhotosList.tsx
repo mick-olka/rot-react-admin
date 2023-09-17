@@ -3,9 +3,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Box, Button, IconButton } from '@mui/material'
 import { useState } from 'react'
 
-import { PhotosForm } from './PhotosForm'
-
-import { AlertDialog } from 'src/components/dialogs/alert-dialog'
+import { AlertDialog, PhotosForm } from 'src/components'
 
 import {
   useCreatePhotosGroup,

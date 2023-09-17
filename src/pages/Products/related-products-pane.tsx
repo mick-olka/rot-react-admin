@@ -83,6 +83,7 @@ export const SimilarRelatedProducts = ({ prod_id, related, similar }: I_Props) =
           }}
           onCancel={() => setProductsSelectionMode(false)}
           collectionId={'none'}
+          exclude={[prod_id]}
         />
       </Box>
     )

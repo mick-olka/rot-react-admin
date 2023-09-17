@@ -5,16 +5,19 @@ import { product_columns } from './data'
 
 import { ItemsPage } from 'src/components'
 import { useProducts } from 'src/hooks'
+import { I_Product } from 'src/models'
 import { useProductsStore } from 'src/store'
 
 export const ChooseProducts = ({
   onSubmit,
   onCancel,
   collectionId,
+  exclude,
 }: {
   onSubmit: (ids: string[]) => void
   onCancel: () => void
   collectionId?: string
+  exclude?: string[]
 }) => {
   const page = useProductsStore((state) => state.page)
   const setPage = useProductsStore((state) => state.setPage)
@@ -23,10 +26,12 @@ export const ChooseProducts = ({
   const [selected, setSelected] = useState<string[]>([])
   const { products, count, isLoading, isError, refetch, limit } = useProducts({ page, regex })
   const products_filtered = useMemo(() => {
+    let res: I_Product[] = products || []
     if (products && collectionId)
-      return products.map((p) => ({ ...p, disabled: p.collections.includes(collectionId) }))
-    return products || []
-  }, [products])
+      res = res.map((p) => ({ ...p, disabled: p.collections.includes(collectionId) }))
+    if (products && exclude) res = res.filter((p) => ({ ...p, disabled: !exclude.includes(p._id) }))
+    return res
+  }, [products, collectionId, exclude])
   const data = { data: products_filtered, count: count || 0, isLoading, isError, refetch, limit }
   useEffect(() => {
     data.refetch()

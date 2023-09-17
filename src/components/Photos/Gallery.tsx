@@ -104,7 +104,7 @@ export const Gallery = (props: I_Props) => {
             sx={{ width: 150, height: 150 }}
             src={URL.createObjectURL(f)}
             variant='rounded'
-            alt={f.name}
+            alt={'R'}
           />
         </Box>
       ))}

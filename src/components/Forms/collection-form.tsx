@@ -38,6 +38,9 @@ export const CollectionForm = (props: Readonly<I_Props>) => {
     const filtered_data = {
       name: data.name,
       description: data.description,
+      keywords: data.keywords,
+      index: data.index,
+      url_name: data.url_name,
     }
     onSubmit(filtered_data)
   }

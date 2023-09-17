@@ -4,10 +4,9 @@ import { Box, Typography } from '@mui/material'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Gallery } from './Gallery'
-import * as S from './styles'
-
 import { MultiLangTextField } from '../inputs/multi-lang-text-field'
+import { Gallery } from '../photos/Gallery'
+import * as S from '../photos/styles'
 
 import { AlertDialog } from 'src/components'
 import * as CS from 'src/components/styles'
@@ -51,6 +50,7 @@ export const PhotosForm = ({ data, editMode, onCancel, onSubmit, onDeletePhoto }
   // }, [watchFields])
   const onSave = (form_data: I_FormData) => {
     onSubmit && onSubmit(form_data, newFiles)
+    setNewFiles([])
   }
   const handleCancelClick = () => {
     const unsaved_data = getValues()

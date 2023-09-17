@@ -40,7 +40,7 @@ export const cart_item_columns: GridColDef[] = [
           <>
             <Box sx={{ width: '3rem', height: '3rem' }}>
               <Avatar
-                alt={params.value.thumbnail}
+                alt={'R'}
                 src={`${PHOTOS_URL}${params.value.thumbnail}`}
                 sx={{ width: 100, height: 50 }}
                 variant='square'
