@@ -55,6 +55,7 @@ export const product_columns: GridColDef[] = [
       return (
         <Box onClick={(e) => e.stopPropagation()}>
           <TextField
+            id={row_props.row._id + 'input'}
             size='small'
             type='number'
             value={index}

@@ -98,6 +98,7 @@ export const ItemsPage = <T extends { _id: string }>(props: I_Props<T>) => {
               onChange={onPageChange}
               count={Math.ceil(data.count! / data.limit)}
               page={page}
+              boundaryCount={50}
             />
           )}
         </Box>
