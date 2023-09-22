@@ -7,7 +7,7 @@ export const collectionsAPI = {
     return axios.get<I_Collection[]>('/collections')
   },
   async getById(id: string) {
-    return axios.get<I_Collection>(`/collections/${id}`)
+    return axios.get<I_Collection>(`/collections/${id}?all=true`)
   },
   async create(data: I_CollectionDto) {
     return axios.post<I_Collection>(`/collections/`, data)

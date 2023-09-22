@@ -91,14 +91,6 @@ export const SimilarRelatedProducts = ({ prod_id, related, similar }: I_Props) =
 
   return (
     <Box>
-      <ToggleButtonGroup value={type} exclusive onChange={handleTypeChange}>
-        <ToggleButton value='related'>
-          <Typography>Related</Typography>
-        </ToggleButton>
-        <ToggleButton value='similar'>
-          <Typography>Similar</Typography>
-        </ToggleButton>
-      </ToggleButtonGroup>
       {type && (
         <Box sx={{ height: '500px' }}>
           <ItemsPage
@@ -110,7 +102,19 @@ export const SimilarRelatedProducts = ({ prod_id, related, similar }: I_Props) =
             onItemClick={handleItemClick}
             deleteTitle='Remove these items from the collection'
           >
-            <Button onClick={() => setProductsSelectionMode(true)}>Add Products</Button>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '45vw' }}>
+              <Button onClick={() => setProductsSelectionMode(true)} variant='outlined'>
+                Add Products
+              </Button>
+              <ToggleButtonGroup value={type} exclusive onChange={handleTypeChange}>
+                <ToggleButton value='related'>
+                  <Typography>Related</Typography>
+                </ToggleButton>
+                <ToggleButton value='similar'>
+                  <Typography>Similar</Typography>
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Box>
           </ItemsPage>
         </Box>
       )}

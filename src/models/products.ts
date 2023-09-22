@@ -32,6 +32,7 @@ export interface I_Product {
   similar_products: I_ProductPopulated[]
   collections: string[]
   index?: number
+  active: boolean
 }
 
 export interface I_ProductsResData {
@@ -49,6 +50,7 @@ export interface I_ProductForm {
   description?: I_Locales
   features: I_ProductFeatures
   url_name?: string
+  active?: boolean
 }
 
 export interface I_ProductDto {
@@ -64,6 +66,7 @@ export interface I_ProductDto {
   description?: I_Locales
   features?: I_ProductFeatures
   url_name?: string
+  active?: boolean
 }
 
 export interface I_ProductItemsDto {

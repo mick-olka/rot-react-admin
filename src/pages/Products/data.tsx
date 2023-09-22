@@ -1,5 +1,5 @@
 import ImageIcon from '@mui/icons-material/Image'
-import { Box, Typography, TextField } from '@mui/material'
+import { Box, Typography, TextField, Switch } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 import { useEffect, useState } from 'react'
 import { useDebounce } from 'use-debounce'
@@ -61,6 +61,32 @@ export const product_columns: GridColDef[] = [
             value={index}
             onChange={(e) => setIndex(Number(e.currentTarget.value))}
             disabled={isLoading}
+          />
+        </Box>
+      )
+    },
+    // valueGetter: (params) => params.row.thumbnail,
+  },
+  {
+    field: 'active',
+    headerName: 'Active',
+    width: 100,
+    renderCell: (row_props) => {
+      const [active, setActive] = useState<boolean>(row_props.value || false)
+      const { update, isLoading } = useUpdateProduct(row_props.row._id)
+      useEffect(() => {
+        if (row_props.value !== active) {
+          update({ id: row_props.row._id, form_data: { active } })
+        }
+      }, [active])
+      return (
+        <Box onClick={(e) => e.stopPropagation()}>
+          <Switch
+            id={row_props.row._id + 'active'}
+            checked={active}
+            onChange={(e, v) => setActive(v)}
+            disabled={isLoading}
+            // inputProps={{ 'aria-label': 'controlled' }}
           />
         </Box>
       )

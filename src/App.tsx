@@ -32,7 +32,7 @@ function App() {
   return (
     <AppStyled>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         <AuthGuard>
           <ThemeProvider theme={theme}>
             <Routing />
