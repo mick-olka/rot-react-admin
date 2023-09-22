@@ -139,6 +139,14 @@ export const Routing = () => {
           </MainLayout>
         }
       />
+      <Route
+        path={'*'}
+        element={
+          <MainLayout>
+            <Navigate to={ROUTES.home} />
+          </MainLayout>
+        }
+      />
     </Routes>
   )
 }

@@ -1,24 +1,24 @@
 export enum ROUTES {
-  home = '/',
-  error = '/*',
+  home = '/admin/',
+  error = '/admin/*',
 
   // Info
-  info = '/info',
+  info = '/admin/info',
 
-  product = '/product/:id',
-  createProduct = '/product/create',
+  product = '/admin/product/:id',
+  createProduct = '/admin/product/create',
 
-  collectionsPage = '/collections',
-  collection = '/collections/:id',
-  createCollection = '/collections/create',
+  collectionsPage = '/admin/collections',
+  collection = '/admin/collections/:id',
+  createCollection = '/admin/collections/create',
 
-  ordersPage = '/orders',
-  order = '/orders/:id',
-  createOrder = '/orders/create',
+  ordersPage = '/admin/orders',
+  order = '/admin/orders/:id',
+  createOrder = '/admin/orders/create',
 
-  textBlocksPage = '/text_blocks',
+  textBlocksPage = '/admin/text_blocks',
 
   // Auth
-  login = '/login',
-  register = '/register',
+  login = '/admin/login',
+  register = '/admin/register',
 }
