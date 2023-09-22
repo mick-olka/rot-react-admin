@@ -1,5 +1,5 @@
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
-import { Box, IconButton, Tab, Tabs, Typography } from '@mui/material'
+import { Box, IconButton, Link, Tab, Tabs, Typography } from '@mui/material'
 import { SyntheticEvent, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -12,7 +12,7 @@ import { useDeleteProduct, useProductById, useUpdateProduct } from 'src/hooks'
 import { StatusWrapper } from 'src/layouts'
 import { I_ProductForm } from 'src/models'
 import { ROUTES } from 'src/routing'
-import { PHOTOS_URL } from 'src/utils'
+import { PHOTOS_URL, client_url } from 'src/utils'
 
 export const ProductPage = () => {
   const { id } = useParams()
@@ -50,7 +50,14 @@ export const ProductPage = () => {
       {product && (
         <Box sx={{ marginBottom: '2rem' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <h2 style={{ margin: '2rem' }}>{product.name.ua}</h2>
+            <Link
+              href={client_url + 'products/' + product.url_name}
+              target='_blank'
+              color='inherit'
+              sx={{ textDecoration: 'none', cursor: 'pointer' }}
+            >
+              <h2 style={{ margin: '2rem' }}>{product.name.ua}</h2>
+            </Link>
             <IconButton
               color='warning'
               onClick={() => setDeleteDialog(true)}
