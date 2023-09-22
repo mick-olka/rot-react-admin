@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "serve -s -p 3005 dist"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
