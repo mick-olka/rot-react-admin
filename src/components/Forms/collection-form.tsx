@@ -19,6 +19,7 @@ interface I_Props {
 const def: I_CollectionForm = {
   name: lanEnumToObject(''),
   description: lanEnumToObject(''),
+  index: 1000,
 }
 
 export const CollectionForm = (props: Readonly<I_Props>) => {
@@ -39,7 +40,7 @@ export const CollectionForm = (props: Readonly<I_Props>) => {
       name: data.name,
       description: data.description,
       keywords: data.keywords,
-      index: data.index,
+      index: Number(data.index),
       url_name: data.url_name,
     }
     onSubmit(filtered_data)

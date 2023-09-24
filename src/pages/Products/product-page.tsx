@@ -50,14 +50,16 @@ export const ProductPage = () => {
       {product && (
         <Box sx={{ marginBottom: '2rem' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Link
-              href={client_url + 'products/' + product.url_name}
-              target='_blank'
-              color='inherit'
-              sx={{ textDecoration: 'none', cursor: 'pointer' }}
-            >
-              <h2 style={{ margin: '2rem' }}>{product.name.ua}</h2>
-            </Link>
+            <h2 style={{ margin: '2rem' }}>
+              <Link
+                href={client_url + 'products/' + product.url_name}
+                target='_blank'
+                color='inherit'
+                sx={{ textDecoration: 'none', cursor: 'pointer' }}
+              >
+                {product.name.ua}
+              </Link>
+            </h2>
             <IconButton
               color='warning'
               onClick={() => setDeleteDialog(true)}
